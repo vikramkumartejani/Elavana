@@ -16,7 +16,7 @@ const StrategicPatnerships = () => {
             </div>
 
             <div className="md:px-8 px-5">
-                <div className="mt-[65px] mb-[88px] bg-[#3A96AF] max-w-[1280px] mx-auto w-full rounded-[12px] sm:rounded-[24px] py-8 lg:py-9 relative px-8 lg:px-[50px] flex items-center overflow-hidden">
+                <div className="mt-14 sm:mt-[65px] mb-14 sm:mb-[88px] bg-[#3A96AF] max-w-[1280px] mx-auto w-full rounded-[12px] sm:rounded-[24px] py-8 lg:py-9 relative px-8 lg:px-[50px] flex items-center overflow-hidden">
                     <Image
                         src='/assets/bg-circle.svg'
                         alt="bg"
