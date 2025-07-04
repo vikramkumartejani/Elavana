@@ -1,8 +1,9 @@
+import ServiceProviders from '@/components/CustomerFlow/ServiceProviders/ServiceProviders'
 import React from 'react'
 
 const Page = () => {
     return (
-        <div>Page</div>
+        <ServiceProviders/>
     )
 }
 
