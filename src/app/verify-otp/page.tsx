@@ -1,11 +1,14 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import RippleButton from "@/components/ui/Button";
 import { useRouter, useSearchParams } from "next/navigation";
 
+// Force dynamic rendering (no static export)
+export const dynamic = "force-dynamic";
+
 const RESEND_OTP_TIME = 30; // seconds
 
-const VerifyOtp = () => {
+function VerifyOtpForm() {
     const [otp, setOtp] = useState("");
     const [error, setError] = useState("");
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -87,6 +90,12 @@ const VerifyOtp = () => {
             </div>
         </div>
     );
-};
+}
 
-export default VerifyOtp; 
+export default function VerifyOtpPage() {
+    return (
+        <Suspense>
+            <VerifyOtpForm />
+        </Suspense>
+    );
+}
