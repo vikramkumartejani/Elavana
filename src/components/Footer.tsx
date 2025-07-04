@@ -32,7 +32,7 @@ const contactLinks: readonly FooterLink[] = [
 const Footer: React.FC = () => {
    
     return (
-        <div className='bg-[#F7F8F9] w-full mt-10 pt-8 sm:pt-14 md:pt-20 lg:pt-[118px] rounded-t-[20px] md:rounded-t-[40px]'>
+        <div className='bg-[#F7F8F9] w-full pt-8 sm:pt-14 md:pt-20 lg:pt-[118px] rounded-t-[20px] md:rounded-t-[40px]'>
             <div className='w-full md:px-8 px-5'>
                 <div className='max-w-[1280px] mx-auto flex items-start justify-between md:flex-row flex-col gap-8'>
                     <div className='md:max-w-[280px] lg:max-w-[311px] flex flex-col gap-6 md:gap-[33px]'>
