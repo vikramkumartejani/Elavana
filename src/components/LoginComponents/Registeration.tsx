@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import RippleButton from '../ui/Button';
+import Link from 'next/link';
 
 const options = [
     {
@@ -30,45 +31,39 @@ const Registeration = () => {
     const router = useRouter();
 
     return (
-        <div className="flex flex-col items-center justify-center py-10">
-            <h2 className="text-[24px] md:text-[32px] leading-[40px] font-bold text-center mb-8 text-[#252525] tracking-[0.5px]">Join as a Service Provider or Customer</h2>
+        <div className="flex flex-col items-center justify-center py-6 sm:py-10 px-4">
+            <h2 className="text-[24px] md:text-[32px] leading-[30px] sm:leading-[40px] font-bold text-center mb-6 sm:mb-8 text-[#252525] tracking-[0.5px]">Join as a Service Provider or Customer</h2>
 
-            <div className="flex items-center gap-[50px] mb-8">
+            <div className="flex items-center flex-wrap md:flex-nowrap gap-6 lg:gap-[50px] mb-6 sm:mb-8">
                 {options.map(option => (
                     <button
                         key={option.value}
                         type="button"
                         onClick={() => setSelected(option.value)}
-                        className={`flex flex-col items-start min-w-[313px] px-8 py-10 rounded-[24px] border h-[212px] transition-all shadow-sm bg-white focus:outline-none ${selected === option.value
+                        className={`flex flex-col items-start min-w-full md:min-w-[313px] px-6 sm:px-8 py-8 sm:py-10 rounded-2xl sm:rounded-[24px] border sm:h-[212px] transition-all shadow-sm bg-white focus:outline-none ${selected === option.value
                             ? 'border-[#3A96AF] shadow-md'
                             : 'border-transparent hover:border-[#3A96AF]'
                             }`}
                         aria-pressed={selected === option.value}
                         style={{ boxShadow: "0px 4px 24px 0px #3A96AF14" }}
                     >
-                        <span className="mb-8">{option.icon}</span>
-                        <span className="text-[24px] leading-[28px] tracking-[0.5px] font-medium text-black">{option.label}</span>
+                        <span className="mb-6 sm:mb-8">{option.icon}</span>
+                        <span className="text-[18px] sm:text-[24px] leading-[20px] sm:leading-[28px] tracking-[0.5px] font-medium text-black">{option.label}</span>
                     </button>
                 ))}
             </div>
 
             <RippleButton
                 type="button"
-                className="w-full max-w-[410px] h-[56px] border border-[#9CB0C9] bg-[#3A96AF] text-white rounded-[16px] font-semibold text-[20px] leading-[24px] tracking-[0.5px] mb-8"
+                className="w-full max-w-[410px] h-[44px] sm:h-[56px] border border-[#9CB0C9] bg-[#3A96AF] hover:bg-[#2a7a8f] transition duration-200 text-white rounded-lg sm:rounded-[16px] font-semibold text-[16px] sm:text-[20px] sm:leading-[24px] tracking-[0.5px] mb-4 sm:mb-8"
                 onClick={() => router.push('/sign-up')}
             >
                 Create Account
             </RippleButton>
 
-            <div className="text-center text-[20px] leading-[24px] font-normal tracking-[0.5px] text-[#676D75]">
+            <div className="text-center text-[14px] sm:text-[20px] sm:leading-[24px] font-normal tracking-[0.5px] text-[#676D75]">
                 Already have a account?{' '}
-                <button
-                    type="button"
-                    onClick={() => router.push('/login')}
-                    className="text-[#3A96AF] font-semibold hover:underline focus:outline-none"
-                >
-                    Log In
-                </button>
+                <Link href='/login' className="text-[#3A96AF] font-semibold hover:underline focus:outline-none">Log In</Link>
             </div>
         </div>
     );

@@ -2,6 +2,8 @@
 import React, { useState, FormEvent, ChangeEvent } from 'react';
 import RippleButton from '../ui/Button';
 import { useRouter } from 'next/navigation';
+import Password from '@/SvgIcons/Password';
+import Link from 'next/link';
 
 interface LoginFormData {
     email: string;
@@ -101,21 +103,21 @@ const Login: React.FC = () => {
     };
 
     const getInputClassName = (hasError: boolean): string => {
-        return `w-full rounded-[12px] bg-[#F8FAFC] outline-none px-5 py-[18px] placeholder:text-[#9A9EA6] text-[16px] leading-[20px] tracking-[0.5px] transition-colors ${hasError
+        return `w-full rounded-lg sm:rounded-[12px] bg-[#F8FAFC] outline-none px-4 sm:px-5 py-3.5 sm:py-[18px] placeholder:text-[#9A9EA6] text-[14px] sm:text-[16px] leading-[18px] sm:leading-[20px] tracking-[0.5px] transition-colors ${hasError
             ? ''
             : 'border border-transparent focus:border-[#3A96AF]'
             }`;
     };
 
     return (
-        <div className="w-full max-w-[597px] mx-auto h-auto bg-white p-10 flex flex-col items-center justify-center" style={{ boxShadow: "0px 4px 24px 0px #25252514" }}>
-            <h2 className="text-[#252525] text-[40px] font-semibold text-center mb-4">Welcome Back</h2>
-            <p className="text-[#676D75] text-[24px] leading-[28px] text-center mb-8">Log in to continue your journey.</p>
+        <div className="w-full max-w-[597px] mx-auto h-auto bg-white px-5 py-8 sm:p-10 flex flex-col items-center justify-center" style={{ boxShadow: "0px 4px 24px 0px #25252514" }}>
+            <h2 className="text-[#252525] text-[24px] sm:text-[40px] sm:leading-[44px] font-semibold text-center mb-2 sm:mb-4">Welcome Back</h2>
+            <p className="text-[#676D75] text-[16px] sm:text-[24px] sm:leading-[28px] text-center mb-8">Log in to continue your journey.</p>
 
             <form onSubmit={handleSubmit} className="w-full flex flex-col gap-4">
                 {/* Email Field */}
-                <div className="flex flex-col gap-3">
-                    <label htmlFor="email" className="text-[20px] leading-[16px] font-medium text-black tracking-[0.5px]">
+                <div className="flex flex-col gap-2 sm:gap-3">
+                    <label htmlFor="email" className="text-[14px] sm:text-[20px] leading-[14px] sm:leading-[16px] font-medium text-black tracking-[0.5px]">
                         Email
                     </label>
                     <input
@@ -137,8 +139,8 @@ const Login: React.FC = () => {
                 </div>
 
                 {/* Password Field */}
-                <div className="flex flex-col gap-3 relative">
-                    <label htmlFor="password" className="text-[20px] leading-[16px] font-medium text-black tracking-[0.5px]">
+                <div className="flex flex-col gap-2 sm:gap-3 relative">
+                    <label htmlFor="password" className="text-[14px] sm:text-[20px] leading-[14px] sm:leading-[16px] font-medium text-black tracking-[0.5px]">
                         Password
                     </label>
                     <div className="relative">
@@ -155,21 +157,15 @@ const Login: React.FC = () => {
                         />
                         <button
                             type="button"
-                            className="absolute right-5 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 focus:outline-none focus:text-gray-600"
+                            className="cursor-pointer absolute right-5 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 focus:outline-none focus:text-gray-600"
                             tabIndex={-1}
                             onClick={togglePasswordVisibility}
                             aria-label={showPassword ? 'Hide password' : 'Show password'}
                         >
                             {showPassword ? (
-                                <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.878 9.878L8.464 8.464M9.878 9.878l-0.415-0.415m4.242 4.242L15.121 15.121M9.878 9.878l4.242 4.242m0 0l1.415 1.415M14.12 14.12l.415.415" />
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3l18 18" />
-                                </svg>
+                                <svg className='sm:w-6 sm:h-6 w-5 h-5' fill="none" viewBox="0 0 24 24" stroke="#9A9EA6"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
                             ) : (
-                                <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                                </svg>
+                                <Password />
                             )}
                         </button>
                     </div>
@@ -201,7 +197,7 @@ const Login: React.FC = () => {
                 <RippleButton
                     type="submit"
                     disabled={isSubmitting}
-                    className={`mt-4 border border-[#9CB0C9] rounded-[12px] h-[48px] text-[#FFFFFF] text-[20px] leading-[24px] font-semibold tracking-[0.5px] transition-colors ${isSubmitting
+                    className={`sm:mt-4 border border-[#9CB0C9] rounded-lg sm:rounded-[12px] h-[44px] sm:h-[48px] text-[#FFFFFF] text-[16px] sm:text-[20px] sm:leading-[24px] font-semibold tracking-[0.5px] transition duration-200 ${isSubmitting
                         ? 'bg-gray-400 cursor-not-allowed'
                         : 'bg-[#3A96AF] hover:bg-[#2a7a8f]'
                         }`}
@@ -210,15 +206,9 @@ const Login: React.FC = () => {
                 </RippleButton>
             </form>
 
-            <div className="mt-8 text-center text-[20px] leading-[24px] tracking-[0.5px] text-black">
+            <div className="mt-6 sm:mt-8 text-center text-[14px] sm:text-[20px] sm:leading-[24px] tracking-[0.5px] text-black">
                 Don't have an account?{' '}
-                <button
-                    type="button"
-                    onClick={() => router.push('/registeration')}
-                    className="text-[#3A96AF] transition duration-200 hover:underline focus:outline-none"
-                >
-                    Create account
-                </button>
+                <Link href='/registeration' className="text-[#3A96AF] transition duration-200 hover:underline focus:outline-none">Create account</Link>
             </div>
         </div>
     );
