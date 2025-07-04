@@ -71,7 +71,7 @@ const Login: React.FC = () => {
             );
 
             if (response.success) {
-                alert('Login successful!');
+                router.push('/customer-home');
             } else {
                 setErrors({ submit: response.message || 'Login failed. Please try again.' });
             }
