@@ -13,7 +13,7 @@ interface FooterLink {
 }
 
 const usefulLinks: readonly FooterLink[] = [
-    { href: '/for-coach', label: 'For Coach' },
+    { href: '/for-coaches-mentor', label: 'For Coach' },
     { href: '/for-customer', label: 'For Customer' },
     { href: '/services', label: 'Services' },
 ];
