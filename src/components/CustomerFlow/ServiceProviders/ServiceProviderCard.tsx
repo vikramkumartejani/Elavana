@@ -2,6 +2,7 @@ import React from 'react';
 import { Star } from 'lucide-react';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
+import Image from 'next/image';
 
 interface ServiceProviderCardProps {
     provider: {
@@ -65,8 +66,8 @@ const ServiceProviderCard: React.FC<ServiceProviderCardProps> = ({ provider, loa
                 </h3>
                 {provider.rating ? (
                     <div className="flex items-center gap-1">
-                        <Star size={18} className="text-[#FFA500] fill-[#FFA500]" />
-                        <span className="text-[#FFA500] text-[15px] font-medium">{provider.rating.toFixed(1)}</span>
+                        <Image src='/assets/icons/star.svg' alt='star' width={14} height={14} />
+                        <span className="text-[#F99D26] text-[14px] leading-[18px] font-medium">{provider.rating.toFixed(1)}</span>
                     </div>
                 ) : (
                     <div className="flex items-center gap-1">
@@ -78,7 +79,7 @@ const ServiceProviderCard: React.FC<ServiceProviderCardProps> = ({ provider, loa
             {/* Title/Role */}
             <div className="mb-1">
                 {provider.title ? (
-                    <span className="text-[15px] text-[#3A96AF] font-medium leading-tight cursor-pointer hover:underline">
+                    <span className="text-[14px] leading-[18px] text-[#3A96AF] font-medium cursor-pointer hover:underline">
                         {provider.title}
                     </span>
                 ) : (
@@ -88,7 +89,7 @@ const ServiceProviderCard: React.FC<ServiceProviderCardProps> = ({ provider, loa
             {/* Description */}
             <div className="mb-3">
                 {provider.description ? (
-                    <p className="text-[#676D75] text-[13px] leading-[18px] tracking-[0.5px] line-clamp-2">
+                    <p className="text-[#252525] text-[12px] leading-[20px] font-normal tracking-[0.5px] line-clamp-2">
                         {provider.description}
                     </p>
                 ) : (
@@ -101,7 +102,7 @@ const ServiceProviderCard: React.FC<ServiceProviderCardProps> = ({ provider, loa
                     provider.tags.map((tag: string, idx: number) => (
                         <span
                             key={idx}
-                            className="bg-[#F8E6E0] text-[#D97E59] px-3 py-1 rounded-full text-[12px] font-medium"
+                            className="bg-[#D97E591F] text-[#D97E59] px-3 py-2 rounded-md text-[12px] leading-[16px] font-semibold"
                         >
                             {tag}
                         </span>
