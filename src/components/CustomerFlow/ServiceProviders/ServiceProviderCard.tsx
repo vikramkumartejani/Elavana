@@ -77,7 +77,7 @@ const ServiceProviderCard: React.FC<ServiceProviderCardProps> = ({ provider, loa
                 )}
             </div>
             {/* Title/Role */}
-            <div className="mb-1">
+            <div className="mb-2 h-[18px]">
                 {provider.title ? (
                     <span className="text-[14px] leading-[18px] text-[#3A96AF] font-medium cursor-pointer hover:underline">
                         {provider.title}
@@ -87,7 +87,7 @@ const ServiceProviderCard: React.FC<ServiceProviderCardProps> = ({ provider, loa
                 )}
             </div>
             {/* Description */}
-            <div className="mb-3">
+            <div className="mb-2">
                 {provider.description ? (
                     <p className="text-[#252525] text-[12px] leading-[20px] font-normal tracking-[0.5px] line-clamp-2">
                         {provider.description}
