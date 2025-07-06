@@ -88,11 +88,11 @@ const ServiceProviders: React.FC = () => {
     };
 
     return (
-        <div className="min-h-screen ">
+        <div className="min-h-screen">
             <Navbar />
 
             <div className='w-full md:px-8 px-5'>
-                <div className="max-w-[1280px] mx-auto py-8">
+                <div className="max-w-[1280px] mx-auto pt-8 pb-20 md:pb-[150px]">
                     {!showFilters ? (
                         <div className="">
                             {/* Search Bar */}
@@ -135,7 +135,7 @@ const ServiceProviders: React.FC = () => {
                             )}
                         </div>
                     ) : (
-                        <div className="flex items-start space-x-[20px] xl:">
+                        <div className="flex items-start gap-[20px] xl:gap-[30px]">
                             {/* Filter Sidebar */}
                             <FilterSidebar
                                 selectedCategory={selectedCategory}
@@ -145,6 +145,8 @@ const ServiceProviders: React.FC = () => {
                                 selectedDateFilter={selectedDateFilter}
                                 setSelectedDateFilter={setSelectedDateFilter}
                                 onClearFilters={clearAllFilters}
+                                showFilters={showFilters}
+                                setShowFilters={setShowFilters}
                             />
 
                             {/* Main Content */}
