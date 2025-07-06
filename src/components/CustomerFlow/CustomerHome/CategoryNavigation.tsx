@@ -44,13 +44,13 @@ const CategoryNavigation: React.FC<CategoryNavigationProps> = ({ selectedCategor
                     <button
                         key={category.id}
                         onClick={() => setSelectedCategory(category.id)}
-                        className={`flex flex-col items-center justify-center gap-2 rounded-lg transition-colors min-w-[140px] max-w-[140px] cursor-pointer ${selectedCategory === category.id
+                        className={`flex flex-col items-center justify-center gap-2 rounded-lg transition-colors min-w-[200px] max-w-[240px] cursor-pointer ${selectedCategory === category.id
                             ? 'text-[#3A96AF] font-semibold'
                             : 'text-[#252525]'
                             }`}
                     >
                         <Image src={category.icon} alt={category.name} width={70} height={70} />
-                        <span className="text-[20px] leading-[24px] tracking-[0.5px] font-normal text-center w-full">{category.name}</span>
+                        <span className="text-[20px] leading-[24px] tracking-[0.5px] font-normal text-center w-full whitespace-nowrap">{category.name}</span>
                     </button>
                 ))}
             </div>
