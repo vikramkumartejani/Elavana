@@ -37,35 +37,35 @@ const CustomerHome: React.FC = () => {
     useEffect(() => {
         setLoading(true);
         const timer = setTimeout(() => {
-            let filtered = servicesData;
+        let filtered = servicesData;
 
-            // Filter by search term
-            if (searchTerm) {
-                filtered = filtered.filter(service =>
-                    service.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                    service.instructor.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                    service.category.toLowerCase().includes(searchTerm.toLowerCase())
-                );
-            }
+        // Filter by search term
+        if (searchTerm) {
+            filtered = filtered.filter(service =>
+                service.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                service.instructor.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                service.category.toLowerCase().includes(searchTerm.toLowerCase())
+            );
+        }
 
-            // Filter by category
-            if (selectedCategory !== 'all') {
-                filtered = filtered.filter(service =>
-                    service.category.toLowerCase() === selectedCategory.toLowerCase()
-                );
-            }
+        // Filter by category
+        if (selectedCategory !== 'all') {
+            filtered = filtered.filter(service =>
+                service.category.toLowerCase() === selectedCategory.toLowerCase()
+            );
+        }
 
-            // Filter by price range
-            filtered = filtered.filter(service => filterByPriceRange(service, selectedPriceRange));
+        // Filter by price range
+        filtered = filtered.filter(service => filterByPriceRange(service, selectedPriceRange));
 
-            // Filter by date
-            filtered = filtered.filter(service => filterByDate(service, selectedDateFilter));
+        // Filter by date
+        filtered = filtered.filter(service => filterByDate(service, selectedDateFilter));
 
-            // Sort services
+        // Sort services
             filtered = sortServices(filtered, sortBy);
 
-            setFilteredServices(filtered);
-            setCurrentPage(1);
+        setFilteredServices(filtered);
+        setCurrentPage(1);
             setLoading(false);
         }, 800); // Simulate loading delay
         return () => clearTimeout(timer);
@@ -92,33 +92,33 @@ const CustomerHome: React.FC = () => {
             <Navbar />
 
             <div className='px-5 md:px-8 w-full'>
-                <div className="max-w-[1280px] mx-auto py-8">
-                    {!showFilters ? (
-                        // Normal layout without filters
-                        <div className="">
-                            {/* Search Bar */}
-                            <div className="max-w-[810px] mx-auto mb-8">
+            <div className="max-w-[1280px] mx-auto py-8">
+                {!showFilters ? (
+                    // Normal layout without filters
+                    <div className="">
+                        {/* Search Bar */}
+                        <div className="max-w-[810px] mx-auto mb-8">
                                 <SearchBar
                                     searchTerm={searchTerm}
                                     setSearchTerm={setSearchTerm}
                                     showFilters={showFilters}
                                     setShowFilters={setShowFilters}
                                 />
-                            </div>
+                        </div>
 
-                            {/* Category Navigation */}
+                        {/* Category Navigation */}
                             <CategoryNavigation
                                 selectedCategory={selectedCategory}
                                 setSelectedCategory={setSelectedCategory}
                             />
 
-                            {/* Available Services Header */}
+                        {/* Available Services Header */}
                             <ServicesHeader
                                 sortBy={sortBy}
                                 setSortBy={setSortBy}
                             />
 
-                            {/* Services Grid */}
+                        {/* Services Grid */}
                             {loading ? (
                                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                                     {Array.from({ length: itemsPerPage }).map((_, i) => (
@@ -127,31 +127,31 @@ const CustomerHome: React.FC = () => {
                                 </div>
                             ) : currentServices.length > 0 ? (
                                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                                    {currentServices.map(service => (
+                                {currentServices.map(service => (
                                         <ServiceCard key={service.id} service={service} loading={false} />
-                                    ))}
-                                </div>
-                            ) : (
+                                ))}
+                            </div>
+                        ) : (
                                 <NoResults onClearFilters={clearAllFilters} />
-                            )}
-                        </div>
-                    ) : (
-                        // Layout with filters
+                        )}
+                    </div>
+                ) : (
+                    // Layout with filters
                         <div className="flex items-start space-x-[20px] xl:space-x-[30px]">
-                            {/* Filter Sidebar */}
-                            <FilterSidebar
-                                selectedCategory={selectedCategory}
-                                setSelectedCategory={setSelectedCategory}
-                                selectedPriceRange={selectedPriceRange}
-                                setSelectedPriceRange={setSelectedPriceRange}
-                                selectedDateFilter={selectedDateFilter}
-                                setSelectedDateFilter={setSelectedDateFilter}
-                                onClearFilters={clearAllFilters}
-                            />
+                        {/* Filter Sidebar */}
+                        <FilterSidebar
+                            selectedCategory={selectedCategory}
+                            setSelectedCategory={setSelectedCategory}
+                            selectedPriceRange={selectedPriceRange}
+                            setSelectedPriceRange={setSelectedPriceRange}
+                            selectedDateFilter={selectedDateFilter}
+                            setSelectedDateFilter={setSelectedDateFilter}
+                            onClearFilters={clearAllFilters}
+                        />
 
-                            {/* Main Content */}
-                            <div className="flex-1 space-y-8">
-                                {/* Search Bar */}
+                        {/* Main Content */}
+                        <div className="flex-1 space-y-8">
+                            {/* Search Bar */}
                                 <SearchBar
                                     searchTerm={searchTerm}
                                     setSearchTerm={setSearchTerm}
@@ -159,7 +159,7 @@ const CustomerHome: React.FC = () => {
                                     setShowFilters={setShowFilters}
                                 />
 
-                                {/* Services Grid */}
+                            {/* Services Grid */}
                                 {loading ? (
                                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                                         {Array.from({ length: itemsPerPage }).map((_, i) => (
@@ -167,19 +167,19 @@ const CustomerHome: React.FC = () => {
                                         ))}
                                     </div>
                                 ) : currentServices.length > 0 ? (
-                                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                                        {currentServices.map(service => (
+                                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                    {currentServices.map(service => (
                                             <ServiceCard key={service.id} service={service} loading={false} />
-                                        ))}
-                                    </div>
-                                ) : (
+                                    ))}
+                                </div>
+                            ) : (
                                     <NoResults onClearFilters={clearAllFilters} />
-                                )}
-                            </div>
+                            )}
                         </div>
-                    )}
+                    </div>
+                )}
 
-                    {/* Pagination */}
+                {/* Pagination */}
                     <Pagination
                         currentPage={currentPage}
                         totalPages={totalPages}
