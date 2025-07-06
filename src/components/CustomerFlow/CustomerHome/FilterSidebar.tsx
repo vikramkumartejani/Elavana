@@ -43,7 +43,7 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
     };
 
     return (
-        <div className="min-w-[295px] max-w-[295px] border border-[#E8ECF4] rounded-[24px] px-4 py-[30px] h-fit sticky top-6">
+        <div className="min-w-[260px] xl:min-w-[295px] max-w-[260px] xl:max-w-[295px] border border-[#E8ECF4] rounded-[24px] px-4 py-[30px] h-fit sticky top-6">
             <div className="flex items-center justify-between mb-6">
                 <h3 className="text-[24px] leading-[28px] tracking-[0.5px] font-semibold text-[#252525]">Filter</h3>
                 <button

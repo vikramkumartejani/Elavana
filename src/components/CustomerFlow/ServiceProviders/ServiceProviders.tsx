@@ -135,7 +135,7 @@ const ServiceProviders: React.FC = () => {
                             )}
                         </div>
                     ) : (
-                        <div className="flex items-start space-x-8">
+                        <div className="flex items-start space-x-[20px] xl:">
                             {/* Filter Sidebar */}
                             <FilterSidebar
                                 selectedCategory={selectedCategory}

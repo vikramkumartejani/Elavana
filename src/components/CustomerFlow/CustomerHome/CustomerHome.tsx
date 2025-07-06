@@ -137,7 +137,7 @@ const CustomerHome: React.FC = () => {
                         </div>
                     ) : (
                         // Layout with filters
-                        <div className="flex items-start space-x-8">
+                        <div className="flex items-start space-x-[20px] xl:space-x-[30px]">
                             {/* Filter Sidebar */}
                             <FilterSidebar
                                 selectedCategory={selectedCategory}
