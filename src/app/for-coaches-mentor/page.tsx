@@ -1,4 +1,5 @@
 import Footer from '@/components/Footer'
+import Hero from '@/components/ForCoachesMentor/Hero'
 import StrategicPatnerships from '@/components/Home/StrategicPatnerships'
 import Navbar from '@/components/Navbar'
 import RippleButton from '@/components/ui/Button'
@@ -9,6 +10,7 @@ const ForCoachesMentor = () => {
     return (
         <div>
             <Navbar />
+            <Hero/>
             <div className="bg-[#F6FCFD] py-10 px-5 md:px-8">
                 <h1 className="text-[#2E2E2E] text-[24px] sm:text-[40px] sm:leading-[76px] font-semibold text-center">Strategic Patnerships</h1>
                 <div className="mt-3 flex items-center flex-wrap justify-center sm:justify-between gap-10 max-w-[1288px] mx-auto w-full px-4 pt-8 sm:py-8">

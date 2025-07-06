@@ -6,6 +6,16 @@ html {
   scroll-behavior: smooth;
 }
 
+.hide-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+
 /* Fonts */
 @font-face {
   font-family: 'DM Sans';
@@ -14,6 +24,7 @@ html {
   font-style: normal;
   font-display: swap;
 }
+
 @font-face {
   font-family: 'DM Sans';
   src: url('/fonts/dmSans/DMSans-Italic.ttf') format('truetype');
@@ -21,6 +32,7 @@ html {
   font-style: italic;
   font-display: swap;
 }
+
 @font-face {
   font-family: 'DM Sans';
   src: url('/fonts/dmSans/DMSans-Medium.ttf') format('truetype');
@@ -28,6 +40,7 @@ html {
   font-style: normal;
   font-display: swap;
 }
+
 @font-face {
   font-family: 'DM Sans';
   src: url('/fonts/dmSans/DMSans-MediumItalic.ttf') format('truetype');
@@ -35,18 +48,12 @@ html {
   font-style: italic;
   font-display: swap;
 }
+
 @font-face {
   font-family: 'DM Sans';
   src: url('/fonts/dmSans/DMSans-Bold.ttf') format('truetype');
   font-weight: 700;
   font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'DM Sans';
-  src: url('/fonts/dmSans/DMSans-BoldItalic.ttf') format('truetype');
-  font-weight: 700;
-  font-style: italic;
   font-display: swap;
 }
 
