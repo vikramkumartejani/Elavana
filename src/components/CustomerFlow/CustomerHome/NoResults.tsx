@@ -1,3 +1,4 @@
+import RippleButton from '@/components/ui/Button';
 import React from 'react';
 
 interface NoResultsProps {
@@ -11,12 +12,12 @@ const NoResults: React.FC<NoResultsProps> = ({ onClearFilters }) => (
         <p className="text-gray-600 text-center max-w-md">
             We couldn't find any services matching your search criteria. Try adjusting your filters or search terms.
         </p>
-        <button
+        <RippleButton
             onClick={onClearFilters}
-            className="mt-4 bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition-colors"
+            className="mt-4 bg-[#2A6676] text-white px-5 py-2 rounded-md cursor-pointer"
         >
             Clear All Filters
-        </button>
+        </RippleButton>
     </div>
 );
 

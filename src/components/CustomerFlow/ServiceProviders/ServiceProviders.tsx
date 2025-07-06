@@ -114,7 +114,8 @@ const ServiceProviders: React.FC = () => {
                             {/* Available Service Providers Header */}
                             <ServicesHeader
                                 sortBy={sortBy}
-                                setSortBy={setSortBy}
+                                setSortBy={(sort) => setSortBy(sort as SortOption)}
+                                title="Available Service Providers"
                             />
 
                             {/* Providers Grid */}

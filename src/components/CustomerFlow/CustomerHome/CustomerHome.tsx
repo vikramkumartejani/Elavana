@@ -115,7 +115,8 @@ const CustomerHome: React.FC = () => {
                             {/* Available Services Header */}
                             <ServicesHeader
                                 sortBy={sortBy}
-                                setSortBy={setSortBy}
+                                setSortBy={(sort) => setSortBy(sort as SortOption)}
+                                title="Available Services"
                             />
 
                             {/* Services Grid */}
