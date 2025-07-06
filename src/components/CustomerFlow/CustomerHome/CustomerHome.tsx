@@ -1,6 +1,6 @@
 "use client"
 import React, { useState, useEffect, JSX } from 'react';
-import { Search, Filter, Star, Users, Calendar, MapPin, Clock, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Search, Filter, Star, Users, Calendar, MapPin, Clock, ChevronLeft, ChevronRight, ChevronDown } from 'lucide-react';
 import Navbar from '../Navbar';
 import Footer from '../Footer';
 import RippleButton from '@/components/ui/Button';
@@ -19,6 +19,7 @@ interface Service {
     image: string;
     description: string;
     tags: string[];
+    datePosted: string;
 }
 
 interface Category {
@@ -28,6 +29,8 @@ interface Category {
 }
 
 type SortOption = 'popular' | 'rating' | 'price-low' | 'price-high';
+type PriceRange = 'all' | 'under-100' | '100-200' | '250-2500';
+type DateFilter = 'anytime' | 'today' | 'this-week' | 'this-month';
 
 // Mock data for services
 const servicesData: Service[] = [
@@ -36,104 +39,112 @@ const servicesData: Service[] = [
         title: "KESSRA Training",
         instructor: "Andre Muniz",
         category: "Coaching",
-        price: 30000,
+        price: 50,
         rating: 4.8,
         students: 245,
         duration: "8 weeks",
         image: "/assets/card-placeholder.png",
         description: "Complete training program with expert instructors to support your development.",
-        tags: ["Professional", "Certification"]
+        tags: ["Professional", "Certification"],
+        datePosted: "2025-07-01"
     },
     {
         id: 2,
         title: "UI/UX MasterClass",
         instructor: "Andre Muniz",
         category: "Design",
-        price: 30000,
+        price: 150,
         rating: 4.9,
         students: 189,
         duration: "6 weeks",
         image: "/assets/card-placeholder.png",
         description: "Master UI/UX design principles with hands-on projects and expert guidance.",
-        tags: ["Design", "UI/UX"]
+        tags: ["Design", "UI/UX"],
+        datePosted: "2025-07-02"
     },
     {
         id: 3,
         title: "Career Strategy Session",
         instructor: "Andre Muniz",
         category: "Event",
-        price: 30000,
+        price: 75,
         rating: 4.7,
         students: 156,
         duration: "2 hours",
         image: "/assets/card-placeholder.png",
         description: "Strategic planning session to advance your career with expert advice.",
-        tags: ["Career", "Strategy"]
+        tags: ["Career", "Strategy"],
+        datePosted: "2025-06-30"
     },
     {
         id: 4,
         title: "UX Conference",
         instructor: "Andre Muniz",
         category: "Conference",
-        price: 30000,
+        price: 300,
         rating: 4.8,
         students: 324,
         duration: "3 days",
         image: "/assets/card-placeholder.png",
         description: "Premium UX conference with industry experts and networking opportunities.",
-        tags: ["Conference", "UX"]
+        tags: ["Conference", "UX"],
+        datePosted: "2025-07-05"
     },
     {
         id: 5,
         title: "Food Festival",
         instructor: "Andre Muniz",
         category: "Event",
-        price: 30000,
+        price: 25,
         rating: 4.6,
         students: 289,
         duration: "1 day",
         image: "/assets/card-placeholder.png",
         description: "Culinary experience with expert chefs and food enthusiasts.",
-        tags: ["Food", "Festival"]
+        tags: ["Food", "Festival"],
+        datePosted: "2025-07-03"
     },
     {
         id: 6,
         title: "Web Development",
         instructor: "Andre Muniz",
         category: "Course",
-        price: 30000,
+        price: 450,
         rating: 4.9,
         students: 412,
         duration: "12 weeks",
         image: "/assets/card-placeholder.png",
         description: "Complete web development bootcamp with modern technologies.",
-        tags: ["Programming", "Web"]
+        tags: ["Programming", "Web"],
+        datePosted: "2025-07-04"
     },
     {
         id: 7,
         title: "Career Coaching",
         instructor: "Andre Muniz",
         category: "Coaching",
-        price: 30000,
+        price: 120,
         rating: 4.8,
         students: 178,
         duration: "4 weeks",
         image: "/assets/card-placeholder.png",
         description: "Personal career coaching to help you achieve your professional goals.",
-        tags: ["Career", "Coaching"]
+        tags: ["Career", "Coaching"],
+        datePosted: "2025-07-06"
     },
     {
         id: 8,
         title: "Content Writing",
         instructor: "Andre Muniz",
         category: "Writing",
-        price: 30000,
+        price: 85,
         rating: 4.7,
         students: 234,
         duration: "6 weeks",
         image: "/assets/card-placeholder.png",
         description: "Master content writing techniques with practical exercises.",
-        tags: ["Writing", "Content"]
+        tags: ["Writing", "Content"],
+        datePosted: "2025-07-01"
     }
 ];
 
@@ -144,9 +155,18 @@ const categories: Category[] = [
     { id: 'masterclass', name: 'Masterclass', icon: '/assets/icons/all-filters.svg' },
     { id: 'conference', name: 'Conference / Events', icon: '/assets/icons/all-filters.svg' },
     { id: 'products', name: 'Products', icon: '/assets/icons/all-filters.svg' },
-    { id: 'courses', name: 'Self-Paced Courses', icon: '/assets/icons/all-filters.svg' }
+    { id: 'courses', name: 'Self-Paced Courses', icon: '/assets/icons/all-filters.svg' },
+    { id: 'coaching', name: 'Coaching', icon: '/assets/icons/all-filters.svg' },
+    { id: 'design', name: 'Design', icon: '/assets/icons/all-filters.svg' },
+    { id: 'writing', name: 'Writing', icon: '/assets/icons/all-filters.svg' }
 ];
 
+const dateFilters = [
+    { id: 'anytime', name: 'Anytime' },
+    { id: 'today', name: 'Today' },
+    { id: 'this-week', name: 'This Week' },
+    { id: 'this-month', name: 'This Month' }
+];
 
 interface ServiceCardProps {
     service: Service;
@@ -171,7 +191,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service }) => (
         <p className="text-[#676D75] text-[12px] leading-[16px] tracking-[0.5px] mb-4 line-clamp-3">{service.description}</p>
 
         <div className="flex items-end justify-end w-full">
-            <span className="text-[20px] leading-[24px] tracking-[0.5px] font-bold text-[#D97E59]">$ {service.price.toLocaleString()}</span>
+            <span className="text-[20px] leading-[24px] tracking-[0.5px] font-bold text-[#D97E59]">${service.price}</span>
         </div>
     </div>
 );
@@ -179,82 +199,159 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service }) => (
 interface FilterSidebarProps {
     selectedCategory: string;
     setSelectedCategory: (category: string) => void;
-    priceRange: [number, number];
-    setPriceRange: (range: [number, number]) => void;
+    selectedPriceRange: PriceRange;
+    setSelectedPriceRange: (range: PriceRange) => void;
+    selectedDateFilter: DateFilter;
+    setSelectedDateFilter: (filter: DateFilter) => void;
     onClearFilters: () => void;
 }
 
 const FilterSidebar: React.FC<FilterSidebarProps> = ({
     selectedCategory,
     setSelectedCategory,
-    priceRange,
-    setPriceRange,
+    selectedPriceRange,
+    setSelectedPriceRange,
+    selectedDateFilter,
+    setSelectedDateFilter,
     onClearFilters
-}) => (
-    <div className="w-[295px] border border-[#E8ECF4] rounded-[24px] px-4 py-[30px] h-fit sticky top-6">
-        <div className="flex items-center justify-between mb-6">
-            <h3 className="text-[24px] leading-[28px] tracking-[0.5px] font-semibold text-[#252525]">Filter</h3>
-            <button
-                onClick={onClearFilters}
-                className="text-[12px] leading-[16px] tracking-[0.5px] font-medium hover:underline cursor-pointer text-[#ED0006]"
-            >
-                Clear all
-            </button>
-        </div>
+}) => {
+    const [categoryDropdownOpen, setCategoryDropdownOpen] = useState(false);
+    const [dateDropdownOpen, setDateDropdownOpen] = useState(false);
 
-        {/* Categories */}
-        <div className="mb-6">
-            <h4 className="font-medium text-gray-700 mb-3">Categories</h4>
-            <div className="space-y-2">
-                {categories.map(category => (
-                    <label key={category.id} className="flex items-center cursor-pointer">
-                        <input
-                            type="radio"
-                            name="category"
-                            value={category.id}
-                            checked={selectedCategory === category.id}
-                            onChange={(e) => setSelectedCategory(e.target.value)}
-                            className="mr-3"
-                        />
-                        <span className="text-sm text-gray-600">{category.name}</span>
-                    </label>
-                ))}
+    const getCategoryDisplayName = (categoryId: string) => {
+        const category = categories.find(cat => cat.id === categoryId);
+        return category ? category.name : 'All';
+    };
+
+    const getDateDisplayName = (dateId: DateFilter) => {
+        const dateFilter = dateFilters.find(filter => filter.id === dateId);
+        return dateFilter ? dateFilter.name : 'Anytime';
+    };
+
+    return (
+        <div className="min-w-[295px] max-w-[295px] border border-[#E8ECF4] rounded-[24px] px-4 py-[30px] h-fit sticky top-6">
+            <div className="flex items-center justify-between mb-6">
+                <h3 className="text-[24px] leading-[28px] tracking-[0.5px] font-semibold text-[#252525]">Filter</h3>
+                <button
+                    onClick={onClearFilters}
+                    className="text-[12px] leading-[16px] tracking-[0.5px] font-medium hover:underline cursor-pointer text-[#ED0006]"
+                >
+                    Clear all
+                </button>
             </div>
-        </div>
 
-        {/* Price Range */}
-        <div className="mb-6">
-            <h4 className="font-medium text-gray-700 mb-3">Price Range</h4>
-            <div className="space-y-3">
-                <div className="flex items-center space-x-2">
-                    <span className="text-sm text-gray-600">$</span>
-                    <input
-                        type="number"
-                        placeholder="0"
-                        value={priceRange[0]}
-                        onChange={(e) => setPriceRange([parseInt(e.target.value) || 0, priceRange[1]])}
-                        className="flex-1 px-3 py-2 border border-gray-300 rounded-md text-sm"
-                    />
-                    <span className="text-gray-500">to</span>
-                    <span className="text-sm text-gray-600">$</span>
-                    <input
-                        type="number"
-                        placeholder="50000"
-                        value={priceRange[1]}
-                        onChange={(e) => setPriceRange([priceRange[0], parseInt(e.target.value) || 50000])}
-                        className="flex-1 px-3 py-2 border border-gray-300 rounded-md text-sm"
-                    />
+            {/* Categories Dropdown */}
+            <div className="mb-6">
+                <h4 className="font-medium text-[16px] leading-[20px] text-[#333333] mb-3">Categories</h4>
+                <div className="relative">
+                    <button
+                        onClick={() => setCategoryDropdownOpen(!categoryDropdownOpen)}
+                        className="w-full flex items-center justify-between p-3 border border-[#E8ECF4] rounded-lg bg-white hover:border-[#D97E59] transition-colors"
+                    >
+                        <span className="text-[14px] text-[#252525]">{getCategoryDisplayName(selectedCategory)}</span>
+                        <ChevronDown className={`w-4 h-4 transition-transform ${categoryDropdownOpen ? 'rotate-180' : ''}`} />
+                    </button>
+                    
+                    {categoryDropdownOpen && (
+                        <div className="absolute top-full left-0 w-full mt-1 bg-white border border-[#E8ECF4] rounded-lg shadow-lg z-50 max-h-60 overflow-y-auto">
+                            {categories.map(category => (
+                                <button
+                                    key={category.id}
+                                    onClick={() => {
+                                        setSelectedCategory(category.id);
+                                        setCategoryDropdownOpen(false);
+                                    }}
+                                    className={`w-full text-left p-3 hover:bg-gray-50 transition-colors ${
+                                        selectedCategory === category.id ? 'bg-[#D97E591F] text-[#D97E59]' : 'text-[#252525]'
+                                    }`}
+                                >
+                                    <span className="text-[14px]">{category.name}</span>
+                                </button>
+                            ))}
+                        </div>
+                    )}
+                </div>
+            </div>
+
+            {/* Date Post Dropdown */}
+            <div className="mb-6">
+                <h4 className="font-medium text-[16px] leading-[20px] text-[#333333] mb-3">Date Post</h4>
+                <div className="relative">
+                    <button
+                        onClick={() => setDateDropdownOpen(!dateDropdownOpen)}
+                        className="w-full flex items-center justify-between p-3 border border-[#E8ECF4] rounded-lg bg-white hover:border-[#D97E59] transition-colors"
+                    >
+                        <span className="text-[14px] text-[#252525]">{getDateDisplayName(selectedDateFilter)}</span>
+                        <ChevronDown className={`w-4 h-4 transition-transform ${dateDropdownOpen ? 'rotate-180' : ''}`} />
+                    </button>
+                    
+                    {dateDropdownOpen && (
+                        <div className="absolute top-full left-0 w-full mt-1 bg-white border border-[#E8ECF4] rounded-lg shadow-lg z-50">
+                            {dateFilters.map(filter => (
+                                <button
+                                    key={filter.id}
+                                    onClick={() => {
+                                        setSelectedDateFilter(filter.id as DateFilter);
+                                        setDateDropdownOpen(false);
+                                    }}
+                                    className={`w-full text-left p-3 hover:bg-gray-50 transition-colors ${
+                                        selectedDateFilter === filter.id ? 'bg-[#D97E591F] text-[#D97E59]' : 'text-[#252525]'
+                                    }`}
+                                >
+                                    <span className="text-[14px]">{filter.name}</span>
+                                </button>
+                            ))}
+                        </div>
+                    )}
+                </div>
+            </div>
+
+            {/* Price Range Buttons */}
+            <div className="mb-6 w-full">
+                <h4 className="font-medium text-[16px] leading-[20px] text-[#333333] mb-3">Price Range</h4>
+                <div className='grid grid-cols-2 gap-3'>
+                    <button 
+                        onClick={() => setSelectedPriceRange('under-100')}
+                        className={`cursor-pointer border rounded-md py-3 px-4 text-[14px] leading-[18px] font-semibold tracking-[0.5px] transition-colors ${
+                            selectedPriceRange === 'under-100' 
+                                ? 'border-[#D97E59] bg-[#D97E591F] text-[#D97E59]' 
+                                : 'border-[#E8ECF4] bg-white text-[#252525] hover:border-[#D97E59]'
+                        }`}
+                    >
+                        Under $100
+                    </button>
+                    <button 
+                        onClick={() => setSelectedPriceRange('100-200')}
+                        className={`cursor-pointer border rounded-md py-3 px-4 text-[14px] leading-[18px] font-semibold tracking-[0.5px] transition-colors ${
+                            selectedPriceRange === '100-200' 
+                                ? 'border-[#D97E59] bg-[#D97E591F] text-[#D97E59]' 
+                                : 'border-[#E8ECF4] bg-white text-[#252525] hover:border-[#D97E59]'
+                        }`}
+                    >
+                        $100 to $200
+                    </button>
+                    <button 
+                        onClick={() => setSelectedPriceRange('250-2500')}
+                        className={`cursor-pointer border rounded-md py-3 px-4 text-[14px] leading-[18px] font-semibold tracking-[0.5px] transition-colors ${
+                            selectedPriceRange === '250-2500' 
+                                ? 'border-[#D97E59] bg-[#D97E591F] text-[#D97E59]' 
+                                : 'border-[#E8ECF4] bg-white text-[#252525] hover:border-[#D97E59]'
+                        }`}
+                    >
+                        $250 to $2500
+                    </button>
                 </div>
             </div>
         </div>
-    </div>
-);
+    );
+};
 
 const CustomerHome: React.FC = () => {
     const [showFilters, setShowFilters] = useState<boolean>(false);
     const [searchTerm, setSearchTerm] = useState<string>('');
     const [selectedCategory, setSelectedCategory] = useState<string>('all');
-    const [priceRange, setPriceRange] = useState<[number, number]>([0, 50000]);
+    const [selectedPriceRange, setSelectedPriceRange] = useState<PriceRange>('all');
+    const [selectedDateFilter, setSelectedDateFilter] = useState<DateFilter>('anytime');
     const [sortBy, setSortBy] = useState<SortOption>('popular');
     const [currentPage, setCurrentPage] = useState<number>(1);
     const [filteredServices, setFilteredServices] = useState<Service[]>(servicesData);
@@ -264,8 +361,42 @@ const CustomerHome: React.FC = () => {
     const clearAllFilters = (): void => {
         setSearchTerm('');
         setSelectedCategory('all');
-        setPriceRange([0, 50000]);
+        setSelectedPriceRange('all');
+        setSelectedDateFilter('anytime');
         setSortBy('popular');
+    };
+
+    const filterByPriceRange = (service: Service, priceRange: PriceRange): boolean => {
+        switch (priceRange) {
+            case 'under-100':
+                return service.price < 100;
+            case '100-200':
+                return service.price >= 100 && service.price <= 200;
+            case '250-2500':
+                return service.price >= 250 && service.price <= 2500;
+            case 'all':
+            default:
+                return true;
+        }
+    };
+
+    const filterByDate = (service: Service, dateFilter: DateFilter): boolean => {
+        const today = new Date('2025-07-06'); // Using your current date
+        const serviceDate = new Date(service.datePosted);
+        
+        switch (dateFilter) {
+            case 'today':
+                return serviceDate.toDateString() === today.toDateString();
+            case 'this-week':
+                const weekStart = new Date(today);
+                weekStart.setDate(today.getDate() - today.getDay());
+                return serviceDate >= weekStart && serviceDate <= today;
+            case 'this-month':
+                return serviceDate.getMonth() === today.getMonth() && serviceDate.getFullYear() === today.getFullYear();
+            case 'anytime':
+            default:
+                return true;
+        }
     };
 
     useEffect(() => {
@@ -288,9 +419,10 @@ const CustomerHome: React.FC = () => {
         }
 
         // Filter by price range
-        filtered = filtered.filter(service =>
-            service.price >= priceRange[0] && service.price <= priceRange[1]
-        );
+        filtered = filtered.filter(service => filterByPriceRange(service, selectedPriceRange));
+
+        // Filter by date
+        filtered = filtered.filter(service => filterByDate(service, selectedDateFilter));
 
         // Sort services
         switch (sortBy) {
@@ -311,7 +443,7 @@ const CustomerHome: React.FC = () => {
 
         setFilteredServices(filtered);
         setCurrentPage(1);
-    }, [searchTerm, selectedCategory, priceRange, sortBy]);
+    }, [searchTerm, selectedCategory, selectedPriceRange, selectedDateFilter, sortBy]);
 
     const totalPages = Math.ceil(filteredServices.length / itemsPerPage);
     const startIndex = (currentPage - 1) * itemsPerPage;
@@ -430,7 +562,7 @@ const CustomerHome: React.FC = () => {
                 <button
                     key={category.id}
                     onClick={() => setSelectedCategory(category.id)}
-                    className={`flex flex-col items-center space-y-3 rounded-lg transition-colors min-w-[116px] cursor-pointer ${selectedCategory === category.id
+                    className={`flex flex-col items-center space-y-3 rounded-lg transition-colors min-w-[116px] max-w-full cursor-pointer ${selectedCategory === category.id
                         ? 'text-[#3A96AF]'
                         : 'text-[#252525] '
                         }`}
@@ -522,8 +654,10 @@ const CustomerHome: React.FC = () => {
                         <FilterSidebar
                             selectedCategory={selectedCategory}
                             setSelectedCategory={setSelectedCategory}
-                            priceRange={priceRange}
-                            setPriceRange={setPriceRange}
+                            selectedPriceRange={selectedPriceRange}
+                            setSelectedPriceRange={setSelectedPriceRange}
+                            selectedDateFilter={selectedDateFilter}
+                            setSelectedDateFilter={setSelectedDateFilter}
                             onClearFilters={clearAllFilters}
                         />
 
