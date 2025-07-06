@@ -19,11 +19,11 @@ const Pagination: React.FC<PaginationProps> = ({
     if (totalPages <= 1) return null;
 
     return (
-        <div className="flex items-center justify-center space-x-2 mt-12">
+        <div className="flex items-center justify-center space-x-4 mt-6">
             <button
                 onClick={onPreviousPage}
                 disabled={currentPage === 1}
-                className="p-2 rounded-lg border border-gray-300 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="rounded w-10 h-10 flex items-center justify-center border border-[#E8ECF4] disabled:opacity-30 disabled:cursor-not-allowed"
             >
                 <ChevronLeft className="w-5 h-5" />
             </button>
@@ -33,12 +33,12 @@ const Pagination: React.FC<PaginationProps> = ({
                 <>
                     <button
                         onClick={() => onPageChange(1)}
-                        className="px-4 py-2 rounded-lg border border-gray-300 hover:bg-gray-50"
+                        className="h-10 w-10 rounded border border-[#E8ECF4] rounded border border-[#E8ECF4]"
                     >
                         1
                     </button>
                     {currentPage > 4 && (
-                        <span className="px-2 text-gray-500">...</span>
+                        <span className="w-10 h-10 text-[#252525] text-[16px] font-semibold flex items-center justify-center">...</span>
                     )}
                 </>
             )}
@@ -54,9 +54,9 @@ const Pagination: React.FC<PaginationProps> = ({
                     <button
                         key={pageNumber}
                         onClick={() => onPageChange(pageNumber)}
-                        className={`px-4 py-2 rounded-lg transition-colors ${currentPage === pageNumber
-                            ? 'bg-blue-500 text-white'
-                            : 'border border-gray-300 hover:bg-gray-50 text-gray-700'
+                        className={`h-10 w-10 flex items-center justify-center rounded text-[16px] leading-[21px] font-semibold transition-colors ${currentPage === pageNumber
+                            ? 'bg-[#3A96AF1F] border border-[#3A96AF] text-[#3A96AF]'
+                            : 'border border-[#E8ECF4] hover:bg-gray-50 text-[#252525]'
                             }`}
                     >
                         {pageNumber}
@@ -68,11 +68,11 @@ const Pagination: React.FC<PaginationProps> = ({
             {currentPage < totalPages - 2 && (
                 <>
                     {currentPage < totalPages - 3 && (
-                        <span className="px-2 text-gray-500">...</span>
+                        <span className="w-10 h-10 text-[#252525] text-[16px] font-semibold  flex items-center justify-center">...</span>
                     )}
                     <button
                         onClick={() => onPageChange(totalPages)}
-                        className="px-4 py-2 rounded-lg border border-gray-300 hover:bg-gray-50"
+                        className="h-10 w-10 rounded border border-[#E8ECF4] "
                     >
                         {totalPages}
                     </button>
@@ -82,7 +82,7 @@ const Pagination: React.FC<PaginationProps> = ({
             <button
                 onClick={onNextPage}
                 disabled={currentPage === totalPages}
-                className="p-2 rounded-lg border border-gray-300 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="rounded w-10 h-10 flex items-center justify-center border border-[#E8ECF4] disabled:opacity-50 disabled:cursor-not-allowed"
             >
                 <ChevronRight className="w-5 h-5" />
             </button>
