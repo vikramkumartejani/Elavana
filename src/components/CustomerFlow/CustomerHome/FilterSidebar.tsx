@@ -26,6 +26,22 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
         return dateFilter ? dateFilter.name : 'Anytime';
     };
 
+    const handleCategoryDropdownToggle = () => {
+        setCategoryDropdownOpen(!categoryDropdownOpen);
+        // Close date dropdown when opening category dropdown
+        if (!categoryDropdownOpen) {
+            setDateDropdownOpen(false);
+        }
+    };
+
+    const handleDateDropdownToggle = () => {
+        setDateDropdownOpen(!dateDropdownOpen);
+        // Close category dropdown when opening date dropdown
+        if (!dateDropdownOpen) {
+            setCategoryDropdownOpen(false);
+        }
+    };
+
     return (
         <div className="min-w-[295px] max-w-[295px] border border-[#E8ECF4] rounded-[24px] px-4 py-[30px] h-fit sticky top-6">
             <div className="flex items-center justify-between mb-6">
@@ -43,7 +59,7 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
                 <h4 className="font-medium text-[16px] leading-[20px] text-[#333333] mb-3">Categories</h4>
                 <div className="relative">
                     <button
-                        onClick={() => setCategoryDropdownOpen(!categoryDropdownOpen)}
+                        onClick={handleCategoryDropdownToggle}
                         className="w-full flex items-center justify-between p-3 border border-[#E8ECF4] rounded-lg bg-white hover:border-[#3A96AF] transition-colors"
                     >
                         <span className="text-[14px] text-[#252525]">{getCategoryDisplayName(selectedCategory)}</span>
@@ -75,7 +91,7 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
                 <h4 className="font-medium text-[16px] leading-[20px] text-[#333333] mb-3">Date Post</h4>
                 <div className="relative">
                     <button
-                        onClick={() => setDateDropdownOpen(!dateDropdownOpen)}
+                        onClick={handleDateDropdownToggle}
                         className="w-full flex items-center justify-between p-3 border border-[#E8ECF4] rounded-lg bg-white hover:border-[#3A96AF] transition-colors"
                     >
                         <span className="text-[14px] text-[#252525]">{getDateDisplayName(selectedDateFilter)}</span>

@@ -3,10 +3,12 @@ import { Service, Category } from './types';
 function generateServices(count: number): Service[] {
     const baseTitles = [
         'KESSRA Training', 'UI/UX MasterClass', 'Career Strategy Session', 'UX Conference',
-        'Food Festival', 'Web Development', 'Career Coaching', 'Content Writing'
+        'Food Festival', 'Web Development', 'Career Coaching', 'Content Writing',
+        'Business Consultation', 'Product Development Workshop', 'Marketing Masterclass'
     ];
     const baseCategories = [
-        'Coaching', 'Design', 'Event', 'Conference', 'Event', 'Course', 'Coaching', 'Writing'
+        'Coaching', 'Design', 'Event', 'Conference', 'Event', 'Course', 'Coaching', 'Writing',
+        'Consultation', 'Products', 'Masterclass'
     ];
     const baseDescriptions = [
         'Complete training program with expert instructors to support your development.',
@@ -16,28 +18,34 @@ function generateServices(count: number): Service[] {
         'Culinary experience with expert chefs and food enthusiasts.',
         'Complete web development bootcamp with modern technologies.',
         'Personal career coaching to help you achieve your professional goals.',
-        'Master content writing techniques with practical exercises.'
+        'Master content writing techniques with practical exercises.',
+        'Professional business consultation to grow your enterprise.',
+        'Learn product development from ideation to launch.',
+        'Advanced marketing strategies for digital success.'
     ];
     const baseTags = [
         ['Professional', 'Certification'], ['Design', 'UI/UX'], ['Career', 'Strategy'], ['Conference', 'UX'],
-        ['Food', 'Festival'], ['Programming', 'Web'], ['Career', 'Coaching'], ['Writing', 'Content']
+        ['Food', 'Festival'], ['Programming', 'Web'], ['Career', 'Coaching'], ['Writing', 'Content'],
+        ['Business', 'Consultation'], ['Product', 'Development'], ['Marketing', 'Digital']
     ];
     const baseDurations = [
-        '8 weeks', '6 weeks', '2 hours', '3 days', '1 day', '12 weeks', '4 weeks', '6 weeks'
+        '8 weeks', '6 weeks', '2 hours', '3 days', '1 day', '12 weeks', '4 weeks', '6 weeks',
+        '1 hour', '2 weeks', '4 weeks'
     ];
-    const basePrices = [50, 150, 75, 300, 25, 450, 120, 85];
-    const baseRatings = [4.8, 4.9, 4.7, 4.8, 4.6, 4.9, 4.8, 4.7];
-    const baseStudents = [245, 189, 156, 324, 289, 412, 178, 234];
+    const basePrices = [50, 150, 75, 300, 25, 450, 120, 85, 200, 350, 180];
+    const baseRatings = [4.8, 4.9, 4.7, 4.8, 4.6, 4.9, 4.8, 4.7, 4.5, 4.7, 4.6];
+    const baseStudents = [245, 189, 156, 324, 289, 412, 178, 234, 98, 156, 203];
     const baseDates = [
         '2025-07-01', '2025-07-02', '2025-06-30', '2025-07-05',
-        '2025-07-03', '2025-07-04', '2025-07-06', '2025-07-01'
+        '2025-07-03', '2025-07-04', '2025-07-06', '2025-07-01',
+        '2025-07-07', '2025-07-08', '2025-07-09'
     ];
     const instructor = 'Andre Muniz';
     const image = '/assets/card-placeholder.png';
 
     const services: Service[] = [];
     for (let i = 0; i < count; i++) {
-        const idx = i % 8;
+        const idx = i % 11;
         services.push({
             id: i + 1,
             title: `${baseTitles[idx]} ${i + 1}`,
@@ -50,7 +58,7 @@ function generateServices(count: number): Service[] {
             image,
             description: baseDescriptions[idx],
             tags: baseTags[idx],
-            datePosted: baseDates[idx % 8],
+            datePosted: baseDates[idx % 11],
         });
     }
     return services;
