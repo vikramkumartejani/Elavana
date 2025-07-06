@@ -62,8 +62,10 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
                         onClick={handleCategoryDropdownToggle}
                         className="w-full flex items-center justify-between p-3 border border-[#E8ECF4] rounded-lg bg-white hover:border-[#3A96AF] transition-colors"
                     >
-                        <span className="text-[14px] text-[#252525]">{getCategoryDisplayName(selectedCategory)}</span>
-                        <ChevronDown className={`w-4 h-4 transition-transform ${categoryDropdownOpen ? 'rotate-180' : ''}`} />
+                        <span className="text-[14px] leading-[20px] font-medium text-[#252525]">{getCategoryDisplayName(selectedCategory)}</span>
+                        <svg width="20" height="20" className={` transition-transform ${categoryDropdownOpen ? 'rotate-180' : ''}`} viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M16.5999 7.45834L11.1666 12.8917C10.5249 13.5333 9.4749 13.5333 8.83324 12.8917L3.3999 7.45834" stroke="#676D75" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
                     </button>
 
                     {categoryDropdownOpen && (
@@ -94,8 +96,10 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
                         onClick={handleDateDropdownToggle}
                         className="w-full flex items-center justify-between p-3 border border-[#E8ECF4] rounded-lg bg-white hover:border-[#3A96AF] transition-colors"
                     >
-                        <span className="text-[14px] text-[#252525]">{getDateDisplayName(selectedDateFilter)}</span>
-                        <ChevronDown className={`w-4 h-4 transition-transform ${dateDropdownOpen ? 'rotate-180' : ''}`} />
+                        <span className="text-[14px] leading-[20px] font-medium text-[#252525]">{getDateDisplayName(selectedDateFilter)}</span>
+                        <svg width="20" height="20" className={` transition-transform ${dateDropdownOpen ? 'rotate-180' : ''}`} viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M16.5999 7.45834L11.1666 12.8917C10.5249 13.5333 9.4749 13.5333 8.83324 12.8917L3.3999 7.45834" stroke="#676D75" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
                     </button>
 
                     {dateDropdownOpen && (

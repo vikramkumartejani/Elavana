@@ -26,7 +26,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ searchTerm, setSearchTerm, showFi
         </div>
         <RippleButton
             onClick={() => setShowFilters(!showFilters)}
-            className="border border-[#2A6676] bg-[#3A96AF] rounded-md h-[48px] flex items-center gap-2.5 px-5"
+            className="border border-[#2A6676] bg-[#3A96AF] rounded-md h-[48px] flex items-center gap-2.5 px-5 min-w-[116px]"
         >
             <span className='text-white text-[16px] leading-[24px] tracking-[0.5px] font-medium'>Filter</span>
             <Image src='/assets/icons/filter-icon.svg' alt='filter' width={24} height={24} />

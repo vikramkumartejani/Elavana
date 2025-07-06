@@ -29,14 +29,16 @@ const ServicesHeader: React.FC<ServicesHeaderProps> = ({ sortBy, setSortBy }) =>
                 <div className="relative">
                     <button
                         onClick={() => setSortDropdownOpen(!sortDropdownOpen)}
-                        className="flex items-center justify-between p-3 border border-[#E8ECF4] rounded-lg bg-white hover:border-[#3A96AF] transition-colors min-w-[200px]"
+                        className="flex items-center justify-between p-3 border border-[#E8ECF4] rounded-lg bg-white hover:border-[#3A96AF] transition-colors min-w-[180px]"
                     >
-                        <span className="text-[14px] text-[#252525]">{getSortDisplayName(sortBy)}</span>
-                        <ChevronDown className={`w-4 h-4 transition-transform ${sortDropdownOpen ? 'rotate-180' : ''}`} />
+                        <span className="text-[14px] leading-[20px] font-medium text-[#252525]">{getSortDisplayName(sortBy)}</span>
+                        <svg width="20" height="20" className={`transition-transform ${sortDropdownOpen ? 'rotate-180' : ''}`} viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M16.5999 7.45834L11.1666 12.8917C10.5249 13.5333 9.4749 13.5333 8.83324 12.8917L3.3999 7.45834" stroke="#252525" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
                     </button>
 
                     {sortDropdownOpen && (
-                        <div className="absolute top-full right-0 mt-1 bg-white border border-[#E8ECF4] rounded-lg shadow-lg z-50 min-w-[200px]">
+                        <div className="absolute top-full right-0 mt-1 bg-white border border-[#E8ECF4] rounded-lg shadow-lg z-50 min-w-[180px]">
                             {sortOptions.map(option => (
                                 <button
                                     key={option.id}
