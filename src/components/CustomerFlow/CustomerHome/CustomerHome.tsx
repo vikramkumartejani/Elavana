@@ -91,82 +91,42 @@ const CustomerHome: React.FC = () => {
         <div className="min-h-screen">
             <Navbar />
 
-            <div className="max-w-[1280px] mx-auto py-8">
-                {!showFilters ? (
-                    // Normal layout without filters
-                    <div className="">
-                        {/* Search Bar */}
-                        <div className="max-w-[810px] mx-auto mb-8">
-                            <SearchBar
-                                searchTerm={searchTerm}
-                                setSearchTerm={setSearchTerm}
-                                showFilters={showFilters}
-                                setShowFilters={setShowFilters}
-                            />
-                        </div>
-
-                        {/* Category Navigation */}
-                        <CategoryNavigation
-                            selectedCategory={selectedCategory}
-                            setSelectedCategory={setSelectedCategory}
-                        />
-
-                        {/* Available Services Header */}
-                        <ServicesHeader
-                            sortBy={sortBy}
-                            setSortBy={setSortBy}
-                        />
-
-                        {/* Services Grid */}
-                        {loading ? (
-                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                                {Array.from({ length: itemsPerPage }).map((_, i) => (
-                                    <ServiceCard key={i} service={{} as Service} loading={true} />
-                                ))}
-                            </div>
-                        ) : currentServices.length > 0 ? (
-                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                                {currentServices.map(service => (
-                                    <ServiceCard key={service.id} service={service} loading={false} />
-                                ))}
-                            </div>
-                        ) : (
-                            <NoResults onClearFilters={clearAllFilters} />
-                        )}
-                    </div>
-                ) : (
-                    // Layout with filters
-                    <div className="flex items-start space-x-8">
-                        {/* Filter Sidebar */}
-                        <FilterSidebar
-                            selectedCategory={selectedCategory}
-                            setSelectedCategory={setSelectedCategory}
-                            selectedPriceRange={selectedPriceRange}
-                            setSelectedPriceRange={setSelectedPriceRange}
-                            selectedDateFilter={selectedDateFilter}
-                            setSelectedDateFilter={setSelectedDateFilter}
-                            onClearFilters={clearAllFilters}
-                        />
-
-                        {/* Main Content */}
-                        <div className="flex-1 space-y-8">
+            <div className='px-5 md:px-8 w-full'>
+                <div className="max-w-[1280px] mx-auto py-8">
+                    {!showFilters ? (
+                        // Normal layout without filters
+                        <div className="">
                             {/* Search Bar */}
-                            <SearchBar
-                                searchTerm={searchTerm}
-                                setSearchTerm={setSearchTerm}
-                                showFilters={showFilters}
-                                setShowFilters={setShowFilters}
+                            <div className="max-w-[810px] mx-auto mb-8">
+                                <SearchBar
+                                    searchTerm={searchTerm}
+                                    setSearchTerm={setSearchTerm}
+                                    showFilters={showFilters}
+                                    setShowFilters={setShowFilters}
+                                />
+                            </div>
+
+                            {/* Category Navigation */}
+                            <CategoryNavigation
+                                selectedCategory={selectedCategory}
+                                setSelectedCategory={setSelectedCategory}
+                            />
+
+                            {/* Available Services Header */}
+                            <ServicesHeader
+                                sortBy={sortBy}
+                                setSortBy={setSortBy}
                             />
 
                             {/* Services Grid */}
                             {loading ? (
-                                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                                     {Array.from({ length: itemsPerPage }).map((_, i) => (
                                         <ServiceCard key={i} service={{} as Service} loading={true} />
                                     ))}
                                 </div>
                             ) : currentServices.length > 0 ? (
-                                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                                     {currentServices.map(service => (
                                         <ServiceCard key={service.id} service={service} loading={false} />
                                     ))}
@@ -175,17 +135,59 @@ const CustomerHome: React.FC = () => {
                                 <NoResults onClearFilters={clearAllFilters} />
                             )}
                         </div>
-                    </div>
-                )}
+                    ) : (
+                        // Layout with filters
+                        <div className="flex items-start space-x-8">
+                            {/* Filter Sidebar */}
+                            <FilterSidebar
+                                selectedCategory={selectedCategory}
+                                setSelectedCategory={setSelectedCategory}
+                                selectedPriceRange={selectedPriceRange}
+                                setSelectedPriceRange={setSelectedPriceRange}
+                                selectedDateFilter={selectedDateFilter}
+                                setSelectedDateFilter={setSelectedDateFilter}
+                                onClearFilters={clearAllFilters}
+                            />
 
-                {/* Pagination */}
-                <Pagination
-                    currentPage={currentPage}
-                    totalPages={totalPages}
-                    onPageChange={handlePageChange}
-                    onPreviousPage={handlePreviousPage}
-                    onNextPage={handleNextPage}
-                />
+                            {/* Main Content */}
+                            <div className="flex-1 space-y-8">
+                                {/* Search Bar */}
+                                <SearchBar
+                                    searchTerm={searchTerm}
+                                    setSearchTerm={setSearchTerm}
+                                    showFilters={showFilters}
+                                    setShowFilters={setShowFilters}
+                                />
+
+                                {/* Services Grid */}
+                                {loading ? (
+                                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                        {Array.from({ length: itemsPerPage }).map((_, i) => (
+                                            <ServiceCard key={i} service={{} as Service} loading={true} />
+                                        ))}
+                                    </div>
+                                ) : currentServices.length > 0 ? (
+                                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                        {currentServices.map(service => (
+                                            <ServiceCard key={service.id} service={service} loading={false} />
+                                        ))}
+                                    </div>
+                                ) : (
+                                    <NoResults onClearFilters={clearAllFilters} />
+                                )}
+                            </div>
+                        </div>
+                    )}
+
+                    {/* Pagination */}
+                    <Pagination
+                        currentPage={currentPage}
+                        totalPages={totalPages}
+                        onPageChange={handlePageChange}
+                        onPreviousPage={handlePreviousPage}
+                        onNextPage={handleNextPage}
+                    />
+                </div>
             </div>
 
             <Footer />

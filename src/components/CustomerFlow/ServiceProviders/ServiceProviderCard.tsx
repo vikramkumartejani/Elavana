@@ -12,7 +12,7 @@ const ServiceProviderCard: React.FC<ServiceProviderCardProps> = ({ provider, loa
     if (loading) {
         return (
             <div className="bg-white border border-[#E8ECF4] rounded-xl p-4 overflow-hidden flex flex-col">
-                <Skeleton height={180} className="rounded-xl mb-4" />
+                <Skeleton height={210} className="rounded-xl mb-4" />
                 <div className="flex items-center justify-between mb-1">
                     <Skeleton width={120} height={24} />
                     <div className="flex items-center gap-1">
@@ -34,16 +34,16 @@ const ServiceProviderCard: React.FC<ServiceProviderCardProps> = ({ provider, loa
     }
 
     return (
-        <div className="bg-white border border-[#E8ECF4] rounded-xl p-4 overflow-hidden hover:shadow-lg transition-shadow duration-300 flex flex-col">
+        <div className="bg-white border border-[#E8ECF4] rounded-xl p-3 overflow-hidden hover:shadow-lg transition-shadow duration-300 flex flex-col">
             {/* Provider Image */}
             {provider.image ? (
                 <img
                     src={provider.image}
                     alt={provider.title || provider.instructor || ''}
-                    className="rounded-xl w-full h-[180px] object-cover mb-4"
+                    className="rounded-xl w-full h-[210px] object-cover mb-4"
                 />
             ) : (
-                <Skeleton height={180} className="rounded-xl mb-4" />
+                <Skeleton height={210} className="rounded-xl mb-4" />
             )}
             {/* Name and Rating */}
             <div className="flex items-center justify-between mb-1">
