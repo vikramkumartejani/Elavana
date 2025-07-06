@@ -23,13 +23,13 @@ const ServicesHeader: React.FC<ServicesHeaderProps> = ({ sortBy, setSortBy }) =>
     };
 
     return (
-        <div className="flex items-center justify-between w-full mb-[31px]">
-            <h2 className="text-[24px] leading-[30px] font-medium text-[#252525]">Available Services</h2>
+        <div className="flex sm:items-center justify-between w-full mb-4 md:mb-[31px] sm:flex-row flex-col gap-2">
+            <h2 className="text-[18px] md:text-[24px] md:leading-[30px] font-medium text-[#252525]">Available Services</h2>
             <div className="flex items-center space-x-4">
-                <div className="relative">
+                <div className="relative sm:w-fit w-full">
                     <button
                         onClick={() => setSortDropdownOpen(!sortDropdownOpen)}
-                        className="flex items-center justify-between p-3 border border-[#E8ECF4] rounded-lg bg-white hover:border-[#3A96AF] transition-colors min-w-[180px]"
+                        className="flex items-center justify-between p-3 border border-[#E8ECF4] rounded-lg bg-white hover:border-[#3A96AF] transition-colors w-full sm:min-w-[180px]"
                     >
                         <span className="text-[14px] leading-[20px] font-medium text-[#252525]">{getSortDisplayName(sortBy)}</span>
                         <svg width="20" height="20" className={`transition-transform ${sortDropdownOpen ? 'rotate-180' : ''}`} viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -38,7 +38,7 @@ const ServicesHeader: React.FC<ServicesHeaderProps> = ({ sortBy, setSortBy }) =>
                     </button>
 
                     {sortDropdownOpen && (
-                        <div className="absolute top-full right-0 mt-1 bg-white border border-[#E8ECF4] rounded-lg shadow-lg z-50 min-w-[180px]">
+                        <div className="absolute top-full right-0 mt-1 bg-white border border-[#E8ECF4] rounded-lg shadow-lg z-50 w-full sm:min-w-[180px]">
                             {sortOptions.map(option => (
                                 <button
                                     key={option.id}

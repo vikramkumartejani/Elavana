@@ -21,7 +21,7 @@ const CategoryNavigation: React.FC<CategoryNavigationProps> = ({ selectedCategor
     };
 
     return (
-        <div className="flex items-center justify-center w-full mb-[31px]">
+        <div className="flex items-center justify-center w-full mb-4 md:mb-[31px]">
             {/* Left Arrow */}
             <button
                 onClick={() => scroll('left')}

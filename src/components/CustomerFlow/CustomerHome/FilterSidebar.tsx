@@ -1,17 +1,24 @@
 import React, { useState } from 'react';
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown, X } from 'lucide-react';
 import { FilterSidebarProps, PriceRange, DateFilter } from './types';
 import { categories, dateFilters } from './data';
 import PriceRangeButton from './PriceRangeButton';
 
-const FilterSidebar: React.FC<FilterSidebarProps> = ({
+interface FilterSidebarModalProps extends FilterSidebarProps {
+    showFilters: boolean;
+    setShowFilters: (show: boolean) => void;
+}
+
+const FilterSidebar: React.FC<FilterSidebarModalProps> = ({
     selectedCategory,
     setSelectedCategory,
     selectedPriceRange,
     setSelectedPriceRange,
     selectedDateFilter,
     setSelectedDateFilter,
-    onClearFilters
+    onClearFilters,
+    showFilters,
+    setShowFilters
 }) => {
     const [categoryDropdownOpen, setCategoryDropdownOpen] = useState(false);
     const [dateDropdownOpen, setDateDropdownOpen] = useState(false);
@@ -28,7 +35,6 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
 
     const handleCategoryDropdownToggle = () => {
         setCategoryDropdownOpen(!categoryDropdownOpen);
-        // Close date dropdown when opening category dropdown
         if (!categoryDropdownOpen) {
             setDateDropdownOpen(false);
         }
@@ -36,24 +42,31 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
 
     const handleDateDropdownToggle = () => {
         setDateDropdownOpen(!dateDropdownOpen);
-        // Close category dropdown when opening date dropdown
         if (!dateDropdownOpen) {
             setCategoryDropdownOpen(false);
         }
     };
 
-    return (
-        <div className="min-w-[260px] xl:min-w-[295px] max-w-[260px] xl:max-w-[295px] border border-[#E8ECF4] rounded-[24px] px-4 py-[30px] h-fit sticky top-6">
+    const handleClearFilters = () => {
+        onClearFilters();
+        setShowFilters(false);
+    };
+
+    const handleCloseModal = () => {
+        setShowFilters(false);
+    };
+
+    const FilterContent = () => (
+        <>
             <div className="flex items-center justify-between mb-6">
                 <h3 className="text-[24px] leading-[28px] tracking-[0.5px] font-semibold text-[#252525]">Filter</h3>
                 <button
-                    onClick={onClearFilters}
+                    onClick={handleClearFilters}
                     className="text-[12px] leading-[16px] tracking-[0.5px] font-medium hover:underline cursor-pointer text-[#ED0006]"
                 >
                     Clear all
                 </button>
             </div>
-
             {/* Categories Dropdown */}
             <div className="mb-6">
                 <h4 className="font-medium text-[16px] leading-[20px] text-[#333333] mb-3">Categories</h4>
@@ -67,7 +80,6 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
                             <path d="M16.5999 7.45834L11.1666 12.8917C10.5249 13.5333 9.4749 13.5333 8.83324 12.8917L3.3999 7.45834" stroke="#676D75" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
                     </button>
-
                     {categoryDropdownOpen && (
                         <div className="absolute top-full left-0 w-full mt-1 bg-white border border-[#E8ECF4] rounded-lg shadow-lg z-50 max-h-60 overflow-y-auto">
                             {categories.map(category => (
@@ -87,7 +99,6 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
                     )}
                 </div>
             </div>
-
             {/* Date Post Dropdown */}
             <div className="mb-6">
                 <h4 className="font-medium text-[16px] leading-[20px] text-[#333333] mb-3">Date Post</h4>
@@ -101,7 +112,6 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
                             <path d="M16.5999 7.45834L11.1666 12.8917C10.5249 13.5333 9.4749 13.5333 8.83324 12.8917L3.3999 7.45834" stroke="#676D75" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
                     </button>
-
                     {dateDropdownOpen && (
                         <div className="absolute top-full left-0 w-full mt-1 bg-white border border-[#E8ECF4] rounded-lg shadow-lg z-50">
                             {dateFilters.map(filter => (
@@ -121,7 +131,6 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
                     )}
                 </div>
             </div>
-
             {/* Price Range Buttons */}
             <div className="mb-6 w-full">
                 <h4 className="font-medium text-[16px] leading-[20px] text-[#333333] mb-3">Price Range</h4>
@@ -143,7 +152,26 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
                     />
                 </div>
             </div>
-        </div>
+        </>
+    );
+
+    return (
+        <>
+            {/* Desktop Version */}
+            <div className="hidden lg:block min-w-[260px] xl:min-w-[295px] max-w-[260px] xl:max-w-[295px] border border-[#E8ECF4] rounded-[24px] px-4 py-[30px] h-fit sticky top-6">
+                <FilterContent />
+            </div>
+            {/* Mobile/Tablet Modal */}
+            {showFilters && (
+                <div className="lg:hidden fixed inset-0 bg-black/40 z-50 flex items-center justify-center p-4">
+                    <div className="bg-white rounded-[16px] w-full max-w-[400px] max-h-[95vh] overflow-y-auto">
+                        <div className="p-5">
+                            <FilterContent />
+                        </div>
+                    </div>
+                </div>
+            )}
+        </>
     );
 };
 

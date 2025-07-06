@@ -97,7 +97,7 @@ const CustomerHome: React.FC = () => {
                     // Normal layout without filters
                     <div className="">
                         {/* Search Bar */}
-                        <div className="max-w-[810px] mx-auto mb-8">
+                        <div className="max-w-[810px] mx-auto mb-4 md:mb-8">
                                 <SearchBar
                                     searchTerm={searchTerm}
                                     setSearchTerm={setSearchTerm}
@@ -137,7 +137,7 @@ const CustomerHome: React.FC = () => {
                     </div>
                 ) : (
                     // Layout with filters
-                        <div className="flex items-start space-x-[20px] xl:space-x-[30px]">
+                        <div className="flex items-start gap-[20px] xl:gap-[30px]">
                         {/* Filter Sidebar */}
                         <FilterSidebar
                             selectedCategory={selectedCategory}
@@ -147,6 +147,8 @@ const CustomerHome: React.FC = () => {
                             selectedDateFilter={selectedDateFilter}
                             setSelectedDateFilter={setSelectedDateFilter}
                             onClearFilters={clearAllFilters}
+                            showFilters={showFilters}
+                            setShowFilters={setShowFilters}
                         />
 
                         {/* Main Content */}
