@@ -97,7 +97,7 @@ const CustomerHome: React.FC = () => {
                     // Normal layout without filters
                     <div className="">
                         {/* Search Bar */}
-                        <div className="max-w-[810px] mx-auto mb-4 md:mb-8">
+                        <div className="max-w-[810px] mx-auto mb-6 md:mb-8">
                                 <SearchBar
                                     searchTerm={searchTerm}
                                     setSearchTerm={setSearchTerm}
