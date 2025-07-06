@@ -1,5 +1,5 @@
 "use client"
-import React, { useState, useEffect, JSX } from 'react';
+import React, { useState, useEffect, useRef, JSX } from 'react';
 import { Search, Filter, Star, Users, Calendar, MapPin, Clock, ChevronLeft, ChevronRight, ChevronDown } from 'lucide-react';
 import Navbar from '../Navbar';
 import Footer from '../Footer';
@@ -251,7 +251,7 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
                         <span className="text-[14px] text-[#252525]">{getCategoryDisplayName(selectedCategory)}</span>
                         <ChevronDown className={`w-4 h-4 transition-transform ${categoryDropdownOpen ? 'rotate-180' : ''}`} />
                     </button>
-                    
+
                     {categoryDropdownOpen && (
                         <div className="absolute top-full left-0 w-full mt-1 bg-white border border-[#E8ECF4] rounded-lg shadow-lg z-50 max-h-60 overflow-y-auto">
                             {categories.map(category => (
@@ -261,9 +261,8 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
                                         setSelectedCategory(category.id);
                                         setCategoryDropdownOpen(false);
                                     }}
-                                    className={`w-full text-left p-3 hover:bg-gray-50 transition-colors ${
-                                        selectedCategory === category.id ? 'bg-[#D97E591F] text-[#D97E59]' : 'text-[#252525]'
-                                    }`}
+                                    className={`w-full text-left p-3 hover:bg-gray-50 transition-colors ${selectedCategory === category.id ? 'bg-[#D97E591F] text-[#D97E59]' : 'text-[#252525]'
+                                        }`}
                                 >
                                     <span className="text-[14px]">{category.name}</span>
                                 </button>
@@ -284,7 +283,7 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
                         <span className="text-[14px] text-[#252525]">{getDateDisplayName(selectedDateFilter)}</span>
                         <ChevronDown className={`w-4 h-4 transition-transform ${dateDropdownOpen ? 'rotate-180' : ''}`} />
                     </button>
-                    
+
                     {dateDropdownOpen && (
                         <div className="absolute top-full left-0 w-full mt-1 bg-white border border-[#E8ECF4] rounded-lg shadow-lg z-50">
                             {dateFilters.map(filter => (
@@ -294,9 +293,8 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
                                         setSelectedDateFilter(filter.id as DateFilter);
                                         setDateDropdownOpen(false);
                                     }}
-                                    className={`w-full text-left p-3 hover:bg-gray-50 transition-colors ${
-                                        selectedDateFilter === filter.id ? 'bg-[#D97E591F] text-[#D97E59]' : 'text-[#252525]'
-                                    }`}
+                                    className={`w-full text-left p-3 hover:bg-gray-50 transition-colors ${selectedDateFilter === filter.id ? 'bg-[#D97E591F] text-[#D97E59]' : 'text-[#252525]'
+                                        }`}
                                 >
                                     <span className="text-[14px]">{filter.name}</span>
                                 </button>
@@ -310,33 +308,30 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
             <div className="mb-6 w-full">
                 <h4 className="font-medium text-[16px] leading-[20px] text-[#333333] mb-3">Price Range</h4>
                 <div className='grid grid-cols-2 gap-3'>
-                    <button 
+                    <button
                         onClick={() => setSelectedPriceRange('under-100')}
-                        className={`cursor-pointer border rounded-md py-3 px-4 text-[14px] leading-[18px] font-semibold tracking-[0.5px] transition-colors ${
-                            selectedPriceRange === 'under-100' 
-                                ? 'border-[#D97E59] bg-[#D97E591F] text-[#D97E59]' 
-                                : 'border-[#E8ECF4] bg-white text-[#252525] hover:border-[#D97E59]'
-                        }`}
+                        className={`cursor-pointer border rounded-md py-3 px-4 text-[14px] leading-[18px] font-semibold tracking-[0.5px] transition-colors ${selectedPriceRange === 'under-100'
+                            ? 'border-[#D97E59] bg-[#D97E591F] text-[#D97E59]'
+                            : 'border-[#E8ECF4] bg-white text-[#252525] hover:border-[#D97E59]'
+                            }`}
                     >
                         Under $100
                     </button>
-                    <button 
+                    <button
                         onClick={() => setSelectedPriceRange('100-200')}
-                        className={`cursor-pointer border rounded-md py-3 px-4 text-[14px] leading-[18px] font-semibold tracking-[0.5px] transition-colors ${
-                            selectedPriceRange === '100-200' 
-                                ? 'border-[#D97E59] bg-[#D97E591F] text-[#D97E59]' 
-                                : 'border-[#E8ECF4] bg-white text-[#252525] hover:border-[#D97E59]'
-                        }`}
+                        className={`cursor-pointer border rounded-md py-3 px-4 text-[14px] leading-[18px] font-semibold tracking-[0.5px] transition-colors ${selectedPriceRange === '100-200'
+                            ? 'border-[#D97E59] bg-[#D97E591F] text-[#D97E59]'
+                            : 'border-[#E8ECF4] bg-white text-[#252525] hover:border-[#D97E59]'
+                            }`}
                     >
                         $100 to $200
                     </button>
-                    <button 
+                    <button
                         onClick={() => setSelectedPriceRange('250-2500')}
-                        className={`cursor-pointer border rounded-md py-3 px-4 text-[14px] leading-[18px] font-semibold tracking-[0.5px] transition-colors ${
-                            selectedPriceRange === '250-2500' 
-                                ? 'border-[#D97E59] bg-[#D97E591F] text-[#D97E59]' 
-                                : 'border-[#E8ECF4] bg-white text-[#252525] hover:border-[#D97E59]'
-                        }`}
+                        className={`cursor-pointer border rounded-md py-3 px-4 text-[14px] leading-[18px] font-semibold tracking-[0.5px] transition-colors ${selectedPriceRange === '250-2500'
+                            ? 'border-[#D97E59] bg-[#D97E591F] text-[#D97E59]'
+                            : 'border-[#E8ECF4] bg-white text-[#252525] hover:border-[#D97E59]'
+                            }`}
                     >
                         $250 to $2500
                     </button>
@@ -383,7 +378,7 @@ const CustomerHome: React.FC = () => {
     const filterByDate = (service: Service, dateFilter: DateFilter): boolean => {
         const today = new Date('2025-07-06'); // Using your current date
         const serviceDate = new Date(service.datePosted);
-        
+
         switch (dateFilter) {
             case 'today':
                 return serviceDate.toDateString() === today.toDateString();
@@ -556,23 +551,63 @@ const CustomerHome: React.FC = () => {
         </div>
     );
 
-    const renderCategoryNavigation = (): JSX.Element => (
-        <div className="flex items-center justify-center gap-[30px] overflow-x-auto w-full text-nowrap h-full mb-[31px] hide-scrollbar">
-            {categories.map(category => (
+    const renderCategoryNavigation = (): JSX.Element => {
+        const scrollRef = useRef<HTMLDivElement>(null);
+
+        const scroll = (direction: 'left' | 'right') => {
+            if (scrollRef.current) {
+                const amount = 260;
+                scrollRef.current.scrollBy({
+                    left: direction === 'left' ? -amount : amount,
+                    behavior: 'smooth',
+                });
+            }
+        };
+
+        return (
+            <div className="flex items-center justify-center w-full mb-[31px]">
+                {/* Left Arrow */}
                 <button
-                    key={category.id}
-                    onClick={() => setSelectedCategory(category.id)}
-                    className={`flex flex-col items-center space-y-3 rounded-lg transition-colors min-w-[116px] max-w-full cursor-pointer ${selectedCategory === category.id
-                        ? 'text-[#3A96AF]'
-                        : 'text-[#252525] '
-                        }`}
+                    onClick={() => scroll('left')}
+                    className="flex items-center justify-center w-8 h-8 rounded-full border border-gray-300 bg-white hover:bg-gray-100 mr-4"
+                    aria-label="Scroll left"
+                    type="button"
                 >
-                    <Image src={category.icon} alt={category.name} width={70} height={70} />
-                    <span className=" text-[20px] leading-[24px] tracking-[0.5px] font-normal">{category.name}</span>
+                    <ChevronLeft className="w-5 h-5" />
                 </button>
-            ))}
-        </div>
-    );
+
+                {/* Scrollable Categories */}
+                <div
+                    ref={scrollRef}
+                    className="flex items-center gap-[30px] max-w-[1280px] overflow-x-auto h-full"
+                >
+                    {categories.map(category => (
+                        <button
+                            key={category.id}
+                            onClick={() => setSelectedCategory(category.id)}
+                            className={`flex flex-col items-center justify-center gap-2 rounded-lg transition-colors min-w-[140px] max-w-[140px] cursor-pointer ${selectedCategory === category.id
+                                ? 'text-[#3A96AF] font-semibold'
+                                : 'text-[#252525]'
+                                }`}
+                        >
+                            <Image src={category.icon} alt={category.name} width={60} height={62} />
+                            <span className="text-[20px] leading-[24px] tracking-[0.5px] font-normal text-center w-full">{category.name}</span>
+                        </button>
+                    ))}
+                </div>
+
+                {/* Right Arrow */}
+                <button
+                    onClick={() => scroll('right')}
+                    className="flex items-center justify-center w-8 h-8 rounded-full border border-gray-300 bg-white hover:bg-gray-100 ml-4"
+                    aria-label="Scroll right"
+                    type="button"
+                >
+                    <ChevronRight className="w-5 h-5" />
+                </button>
+            </div>
+        );
+    };
 
     const renderServicesHeader = (): JSX.Element => (
         <div className="flex items-center justify-between w-full mb-[31px]">
