@@ -38,7 +38,7 @@ const CategoryNavigation: React.FC<CategoryNavigationProps> = ({ selectedCategor
             {/* Scrollable Categories */}
             <div
                 ref={categoryScrollRef}
-                className="flex items-center gap-[30px] w-full overflow-x-auto h-full"
+                className="flex items-center gap-[30px] w-full overflow-x-auto hide-scrollbar h-full"
             >
                 {categories.map(category => (
                     <button
@@ -49,7 +49,7 @@ const CategoryNavigation: React.FC<CategoryNavigationProps> = ({ selectedCategor
                             : 'text-[#252525]'
                             }`}
                     >
-                        <Image src={category.icon} alt={category.name} width={60} height={62} />
+                        <Image src={category.icon} alt={category.name} width={70} height={70} />
                         <span className="text-[20px] leading-[24px] tracking-[0.5px] font-normal text-center w-full">{category.name}</span>
                     </button>
                 ))}
