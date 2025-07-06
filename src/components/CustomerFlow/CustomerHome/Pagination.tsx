@@ -56,7 +56,7 @@ const Pagination: React.FC<PaginationProps> = ({
 
             {/* Ellipsis after first page */}
             {startPage > 2 && (
-                <span className="w-8 h-8 md:w-10 md:h-10 md:block hidden text-[#252525] text-[16px] font-semibold flex items-center justify-center">...</span>
+                <span className="w-8 h-8 md:w-10 md:h-10 md:flex hidden text-[#252525] text-[16px] font-semibold items-center justify-center">...</span>
             )}
 
             {/* Page range */}
