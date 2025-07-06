@@ -8,10 +8,21 @@ import CategoryNavigation from '../CustomerHome/CategoryNavigation';
 import ServicesHeader from '../CustomerHome/ServicesHeader';
 import Pagination from '../CustomerHome/Pagination';
 import NoResults from '../CustomerHome/NoResults';
-import { servicesData, categories } from '../CustomerHome/data';
+import { serviceProvidersData, categories } from '../CustomerHome/data';
 import { Service, SortOption, PriceRange, DateFilter } from '../CustomerHome/types';
 import { filterByPriceRange, filterByDate, sortServices } from '../CustomerHome/utils';
 import ServiceProviderCard from './ServiceProviderCard';
+
+interface ServiceProvider {
+    id: number;
+    name: string;
+    title: string;
+    rating: number;
+    image: string;
+    description: string;
+    tags: string[];
+    category: string;
+}
 
 const ServiceProviders: React.FC = () => {
     const [showFilters, setShowFilters] = useState<boolean>(false);
@@ -21,7 +32,7 @@ const ServiceProviders: React.FC = () => {
     const [selectedDateFilter, setSelectedDateFilter] = useState<DateFilter>('anytime');
     const [sortBy, setSortBy] = useState<SortOption>('popular');
     const [currentPage, setCurrentPage] = useState<number>(1);
-    const [filteredProviders, setFilteredProviders] = useState<Service[]>(servicesData);
+    const [filteredProviders, setFilteredProviders] = useState<ServiceProvider[]>(serviceProvidersData);
     const [loading, setLoading] = useState<boolean>(false);
 
     const itemsPerPage = 8;
@@ -37,14 +48,15 @@ const ServiceProviders: React.FC = () => {
     useEffect(() => {
         setLoading(true);
         const timer = setTimeout(() => {
-            let filtered = servicesData;
+            let filtered = serviceProvidersData;
 
             // Filter by search term
             if (searchTerm) {
                 filtered = filtered.filter(provider =>
+                    provider.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
                     provider.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                    provider.instructor.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                    provider.category.toLowerCase().includes(searchTerm.toLowerCase())
+                    provider.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                    provider.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()))
                 );
             }
 
@@ -55,14 +67,19 @@ const ServiceProviders: React.FC = () => {
                 );
             }
 
-            // Filter by price range
-            filtered = filtered.filter(provider => filterByPriceRange(provider, selectedPriceRange));
-
-            // Filter by date
-            filtered = filtered.filter(provider => filterByDate(provider, selectedDateFilter));
-
-            // Sort providers
-            filtered = sortServices(filtered, sortBy);
+            // For service providers, we'll skip price and date filtering since they don't have those fields
+            // But we can implement custom sorting
+            if (sortBy === 'popular') {
+                filtered = filtered.sort((a, b) => b.rating - a.rating);
+            } else if (sortBy === 'rating') {
+                filtered = filtered.sort((a, b) => b.rating - a.rating);
+            } else if (sortBy === 'price-low') {
+                // Since service providers don't have price, we'll sort by name
+                filtered = filtered.sort((a, b) => a.name.localeCompare(b.name));
+            } else if (sortBy === 'price-high') {
+                // Since service providers don't have price, we'll sort by name reverse
+                filtered = filtered.sort((a, b) => b.name.localeCompare(a.name));
+            }
 
             setFilteredProviders(filtered);
             setCurrentPage(1);
@@ -122,7 +139,7 @@ const ServiceProviders: React.FC = () => {
                             {loading ? (
                                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-5">
                                     {Array.from({ length: itemsPerPage }).map((_, i) => (
-                                        <ServiceProviderCard key={i} provider={{}} />
+                                        <ServiceProviderCard key={i} provider={serviceProvidersData[0]} loading={true} />
                                     ))}
                                 </div>
                             ) : currentProviders.length > 0 ? (
@@ -164,7 +181,7 @@ const ServiceProviders: React.FC = () => {
                                 {loading ? (
                                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                                         {Array.from({ length: itemsPerPage }).map((_, i) => (
-                                            <ServiceProviderCard key={i} provider={{}} />
+                                            <ServiceProviderCard key={i} provider={serviceProvidersData[0]} loading={true} />
                                         ))}
                                     </div>
                                 ) : currentProviders.length > 0 ? (

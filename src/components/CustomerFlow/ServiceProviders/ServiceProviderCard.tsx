@@ -4,7 +4,16 @@ import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 
 interface ServiceProviderCardProps {
-    provider: any; // Replace 'any' with a proper type if you have one
+    provider: {
+        id: number;
+        name: string;
+        title: string;
+        rating: number;
+        image: string;
+        description: string;
+        tags: string[];
+        category: string;
+    }; 
     loading?: boolean;
 }
 
@@ -39,7 +48,7 @@ const ServiceProviderCard: React.FC<ServiceProviderCardProps> = ({ provider, loa
             {provider.image ? (
                 <img
                     src={provider.image}
-                    alt={provider.title || provider.instructor || ''}
+                    alt={provider.name || ''}
                     className="rounded-xl w-full h-[210px] object-cover mb-4"
                 />
             ) : (
@@ -48,8 +57,8 @@ const ServiceProviderCard: React.FC<ServiceProviderCardProps> = ({ provider, loa
             {/* Name and Rating */}
             <div className="flex items-center justify-between mb-1">
                 <h3 className="font-semibold text-[18px] leading-[28px] tracking-[0.5px] text-[#252525] line-clamp-1">
-                    {provider.instructor || provider.title ? (
-                        provider.instructor || provider.title
+                    {provider.name ? (
+                        provider.name
                     ) : (
                         <Skeleton width={120} height={24} />
                     )}
