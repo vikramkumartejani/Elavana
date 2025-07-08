@@ -1,12 +1,31 @@
 'use client'
+import { FC } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Navbar from '../Navbar';
 import Footer from '../Footer';
 import RippleButton from '@/components/ui/Button';
 import Image from 'next/image';
-import FullStar from '@/SvgIcons/FullStar';
 
-const mockOrder = {
+interface ServiceProvider {
+    name: string;
+    role: string;
+    avatar: string;
+}
+
+interface OrderBy {
+    name: string;
+    role: string;
+    avatar: string;
+}
+
+interface MockOrder {
+    serviceProvider: ServiceProvider;
+    orderBy: OrderBy;
+    reviews: number;
+    image: string;
+}
+
+const mockOrder: MockOrder = {
     serviceProvider: {
         name: 'Amy Watson',
         role: 'Certified Career Coach',
@@ -21,7 +40,7 @@ const mockOrder = {
     image: '/assets/card-image.png',
 };
 
-const Payment = () => {
+const Payment: FC = () => {
     const searchParams = useSearchParams();
     const price = Number(searchParams.get('price')) || 0;
     const quantity = Number(searchParams.get('quantity')) || 1;
