@@ -18,7 +18,7 @@ const RatingBarChart: React.FC = () => {
     const maxValue = Math.max(...data.map(item => item.value));
 
     return (
-        <div className="border border-[#E8ECF4] bg-white rounded-xl py-4 px-6 w-full">
+        <div className="border border-[#E8ECF4] bg-white rounded-xl py-4 px-4 sm:px-6 w-full">
             <div className="space-y-2">
                 {data.map((item, index) => (
                     <div key={index} className="flex items-center justify-between gap-3">
@@ -42,7 +42,7 @@ const RatingBarChart: React.FC = () => {
                         </div>
 
                         {/* Value */}
-                        <div className="w-8 text-right">
+                        <div className="w-8 text-left">
                             <span className="text-[#252525] text-[10px] leading-[15px] font-medium poppins">
                                 {item.value}
                             </span>
