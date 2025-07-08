@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import { ServiceCardProps } from './types';
+import Link from 'next/link';
 
 interface ServiceCardPropsWithLoading extends ServiceCardProps {
     loading?: boolean;
@@ -36,7 +37,7 @@ const ServiceCard: React.FC<ServiceCardPropsWithLoading> = ({ service, loading =
     }
 
     return (
-        <div className="bg-white border border-[#E8ECF4] rounded-xl p-3 overflow-hidden hover:shadow-lg transition-shadow duration-300">
+        <Link href='/service-details' className="bg-white border border-[#E8ECF4] rounded-xl p-3 overflow-hidden hover:shadow-lg transition-shadow duration-300">
             <Image src='/assets/card-placeholder.png' alt='image' width={281} height={210} className='rounded-xl mb-4 w-full h-[210px] object-cover' />
 
             <div className='flex items-center justify-between gap-3'>
@@ -56,7 +57,7 @@ const ServiceCard: React.FC<ServiceCardPropsWithLoading> = ({ service, loading =
             <div className="flex items-end justify-end w-full">
                 <span className="text-[20px] leading-[24px] tracking-[0.5px] font-bold text-[#D97E59]">${service.price}</span>
             </div>
-        </div>
+        </Link>
     );
 };
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { ChevronDown, X } from 'lucide-react';
 import { FilterSidebarProps, PriceRange, DateFilter } from './types';
 import { categories, dateFilters } from './data';
@@ -22,6 +22,20 @@ const FilterSidebar: React.FC<FilterSidebarModalProps> = ({
 }) => {
     const [categoryDropdownOpen, setCategoryDropdownOpen] = useState(false);
     const [dateDropdownOpen, setDateDropdownOpen] = useState(false);
+    const modalRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        if (!showFilters) return;
+        function handleClickOutside(event: MouseEvent) {
+            if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
+                setShowFilters(false);
+            }
+        }
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [showFilters, setShowFilters]);
 
     const getCategoryDisplayName = (categoryId: string) => {
         const category = categories.find(cat => cat.id === categoryId);
@@ -164,7 +178,7 @@ const FilterSidebar: React.FC<FilterSidebarModalProps> = ({
             {/* Mobile/Tablet Modal */}
             {showFilters && (
                 <div className="lg:hidden fixed inset-0 bg-black/40 z-50 flex items-center justify-center p-4">
-                    <div className="bg-white rounded-[16px] w-full max-w-[400px] max-h-[95vh] overflow-y-auto">
+                    <div ref={modalRef} className="bg-white rounded-[16px] w-full max-w-[400px] max-h-[95vh] overflow-y-auto">
                         <div className="p-5">
                             <FilterContent />
                         </div>
