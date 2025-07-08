@@ -61,68 +61,59 @@ const PaymentFailedModal: FC<PaymentFailedModalProps> = ({
   return (
     <div className="fixed inset-0 bg-black/20 backdrop-blur-xs bg-opacity-50 flex items-center justify-center z-50 px-4">
       <div className="bg-white rounded-2xl max-w-md w-full p-8 flex flex-col items-center">
-        <div className="w-16 h-16 rounded-full bg-[#FEE2E2] flex items-center justify-center mb-4">
-          <div className="w-10 h-10 rounded-full bg-[#EF4444] flex items-center justify-center">
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12L19 6.41Z"
-                fill="white"
-              />
-            </svg>
-          </div>
-        </div>
+        <Image
+          src="/assets/icons/cancel.svg"
+          alt="Success"
+          width={120}
+          height={120}
+          className="object-contain mb-4"
+        />
 
-        <h2 className="text-[#EF4444] text-[20px] leading-[24px] font-semibold mb-1">
+        <h2 className="text-[#E21B1B] text-[24px] leading-[28px] font-semibold mb-1">
           Payment Failed
         </h2>
-        <p className="text-[#64748B] text-[14px] leading-[20px] mb-6">
+        <p className="text-[#64748B] text-[16px] leading-[20px] mb-6">
           Oops! Something went wrong with your Payment.
         </p>
 
         <div className="w-full space-y-4 mb-6">
           <div className="flex justify-between">
-            <span className="text-[#64748B] text-[14px] leading-[20px]">
+            <span className="text-[#64748B] text-[16px] leading-[20px]">
               Transaction ID
             </span>
-            <span className="text-[#252525] text-[14px] leading-[20px] font-medium">
+            <span className="text-[#252525] text-[16px] leading-[20px] font-medium">
               {transactionId}
             </span>
           </div>
           <div className="flex justify-between">
-            <span className="text-[#64748B] text-[14px] leading-[20px]">
+            <span className="text-[#64748B] text-[16px] leading-[20px]">
               Date
             </span>
-            <span className="text-[#252525] text-[14px] leading-[20px] font-medium">
+            <span className="text-[#252525] text-[16px] leading-[20px] font-medium">
               {date}
             </span>
           </div>
           <div className="flex justify-between">
-            <span className="text-[#64748B] text-[14px] leading-[20px]">
+            <span className="text-[#64748B] text-[16px] leading-[20px]">
               Time
             </span>
-            <span className="text-[#252525] text-[14px] leading-[20px] font-medium">
+            <span className="text-[#252525] text-[16px] leading-[20px] font-medium">
               {time}
             </span>
           </div>
           <div className="flex justify-between">
-            <span className="text-[#64748B] text-[14px] leading-[20px]">
+            <span className="text-[#64748B] text-[16px] leading-[20px]">
               Payment Method
             </span>
-            <span className="text-[#252525] text-[14px] leading-[20px] font-medium">
+            <span className="text-[#252525] text-[16px] leading-[20px] font-medium">
               {paymentMethod}
             </span>
           </div>
           <div className="flex justify-between">
-            <span className="text-[#64748B] text-[14px] leading-[20px]">
+            <span className="text-[#64748B] text-[16px] leading-[20px]">
               Amount Paid
             </span>
-            <span className="text-[#EF4444] text-[14px] leading-[20px] font-medium">
+            <span className="text-[#E21B1B] text-[16px] leading-[20px] font-medium">
               $ {amount.toFixed(1)} (Failed)
             </span>
           </div>
@@ -131,7 +122,7 @@ const PaymentFailedModal: FC<PaymentFailedModalProps> = ({
         <div className="w-full space-y-3">
           <button
             onClick={onResendRequest}
-            className="w-full py-3 border border-[#E8ECF4] rounded-lg text-[#252525] text-[16px] leading-[20px] font-medium"
+            className="w-full py-3 border border-[#3A96AF] rounded-[8px] text-[#3A96AF] text-[16px] leading-[20px] font-medium"
           >
             Resend Payment Request
           </button>
@@ -174,68 +165,59 @@ const PaymentSuccessModal: FC<PaymentSuccessModalProps> = ({
   return (
     <div className="fixed inset-0 bg-black/20 backdrop-blur-xs bg-opacity-50 flex items-center justify-center z-50 px-4">
       <div className="bg-white rounded-2xl max-w-md w-full p-8 flex flex-col items-center">
-        <div className="w-16 h-16 rounded-full bg-[#ECFDF5] flex items-center justify-center mb-4">
-          <div className="w-10 h-10 rounded-full bg-[#10B981] flex items-center justify-center">
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M9 16.2L4.8 12L3.4 13.4L9 19L21 7L19.6 5.6L9 16.2Z"
-                fill="white"
-              />
-            </svg>
-          </div>
-        </div>
+        <Image
+          src="/assets/icons/success.svg"
+          alt="Success"
+          width={97}
+          height={97}
+          className="object-contain mb-4"
+        />
 
-        <h2 className="text-[#10B981] text-[20px] leading-[24px] font-semibold mb-1">
+        <h2 className="text-[#14A65B] text-[24px] leading-[28px] font-semibold mb-1">
           Payment Successful
         </h2>
-        <p className="text-[#64748B] text-[14px] leading-[20px] mb-6">
+        <p className="text-[#252525] text-[16px] leading-[20px] mb-6">
           Your payment has been done successfully
         </p>
 
-        <div className="w-full space-y-4 mb-6">
+        <div className="w-full space-y-[12px] mb-6">
           <div className="flex justify-between">
-            <span className="text-[#64748B] text-[14px] leading-[20px]">
+            <span className="text-[#64748B] text-[16px] leading-[20px]">
               Transaction ID
             </span>
-            <span className="text-[#252525] text-[14px] leading-[20px] font-medium">
+            <span className="text-[#252525] text-[16px] leading-[20px] font-medium">
               {transactionId}
             </span>
           </div>
           <div className="flex justify-between">
-            <span className="text-[#64748B] text-[14px] leading-[20px]">
+            <span className="text-[#64748B] text-[16px] leading-[20px]">
               Date
             </span>
-            <span className="text-[#252525] text-[14px] leading-[20px] font-medium">
+            <span className="text-[#252525] text-[16px] leading-[20px] font-medium">
               {date}
             </span>
           </div>
           <div className="flex justify-between">
-            <span className="text-[#64748B] text-[14px] leading-[20px]">
+            <span className="text-[#64748B] text-[16px] leading-[20px]">
               Time
             </span>
-            <span className="text-[#252525] text-[14px] leading-[20px] font-medium">
+            <span className="text-[#252525] text-[16px] leading-[20px] font-medium">
               {time}
             </span>
           </div>
           <div className="flex justify-between">
-            <span className="text-[#64748B] text-[14px] leading-[20px]">
+            <span className="text-[#64748B] text-[16px] leading-[20px]">
               Payment Method
             </span>
-            <span className="text-[#252525] text-[14px] leading-[20px] font-medium">
+            <span className="text-[#252525] text-[16px] leading-[20px] font-medium">
               {paymentMethod}
             </span>
           </div>
           <div className="flex justify-between">
-            <span className="text-[#64748B] text-[14px] leading-[20px]">
+            <span className="text-[#64748B] text-[16px] leading-[20px]">
               Amount Paid
             </span>
-            <span className="text-[#252525] text-[14px] leading-[20px] font-medium">
+            <span className="text-[#252525] text-[16px] leading-[20px] font-medium">
               $ {amount.toFixed(1)}
             </span>
           </div>
@@ -244,7 +226,7 @@ const PaymentSuccessModal: FC<PaymentSuccessModalProps> = ({
         <div className="w-full space-y-3">
           <button
             onClick={handleViewDetails}
-            className="w-full py-3 border border-[#E8ECF4] rounded-lg text-[#252525] text-[16px] leading-[20px] font-medium"
+            className="w-full  border border-[#3A96AF] rounded-[8px] py-[12px] text-[#3A96AF] text-[16px] leading-[20px] font-medium"
           >
             View Details
           </button>
