@@ -12,6 +12,7 @@ import WhatIsIncluded from '../WhatIsIncluded';
 import ReviewModal from './ReviewModal'
 import SocialLinks from '../SocialLinks';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 interface ServiceDetailsProps {
     service: Service;
@@ -22,6 +23,7 @@ const ServiceDetails: React.FC<ServiceDetailsProps> = ({ service }) => {
     const [reviewOpen, setReviewOpen] = useState(false)
     const minQuantity = 1;
     const maxQuantity = 5;
+    const router = useRouter();
 
     const sessions = [
         { day: 'FRI', date: '16 May' },
@@ -203,7 +205,14 @@ const ServiceDetails: React.FC<ServiceDetailsProps> = ({ service }) => {
                                         <span className="text-[#252525] text-[14px] sm:text-[16px] leading-[18px] sm:leading-[20px] font-medium">$ {(quantity * service.price).toFixed(1)}</span>
                                     </div>
                                 </div>
-                                <RippleButton className='w-full bg-[#3A96AF] h-[40px] sm:h-[44px] rounded-md text-[#FFFFFF] text-[14px] sm:text-[16px] leading-[18px] sm:leading-[20px] font-medium tracking-[0.5px]'>Proceed to checkout</RippleButton>
+                                <RippleButton
+                                    className='w-full bg-[#3A96AF] h-[40px] sm:h-[44px] rounded-md text-[#FFFFFF] text-[14px] sm:text-[16px] leading-[18px] sm:leading-[20px] font-medium tracking-[0.5px]'
+                                    onClick={() => {
+                                        router.push(`/payment-page?price=${service.price}&quantity=${quantity}&title=${encodeURIComponent(service.title)}`);
+                                    }}
+                                >
+                                    Proceed to checkout
+                                </RippleButton>
                             </div>
                         </div>
                     </div>
