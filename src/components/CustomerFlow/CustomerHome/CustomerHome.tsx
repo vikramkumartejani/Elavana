@@ -3,15 +3,15 @@ import React, { useState, useEffect } from 'react';
 import Navbar from '../Navbar';
 import Footer from '../Footer';
 import ServiceCard from './ServiceCard';
-import FilterSidebar from './FilterSidebar';
-import SearchBar from './SearchBar';
-import CategoryNavigation from './CategoryNavigation';
-import ServicesHeader from './ServicesHeader';
-import Pagination from './Pagination';
-import NoResults from './NoResults';
-import { servicesData } from './data';
-import { Service, SortOption, PriceRange, DateFilter } from './types';
-import { filterByPriceRange, filterByDate, sortServices } from './utils';
+import FilterSidebar from '../FilterSidebar';
+import SearchBar from '../SearchBar';
+import CategoryNavigation from '../CategoryNavigation';
+import ServicesHeader from '../ServicesHeader';
+import Pagination from '../Pagination';
+import NoResults from '../NoResults';
+import { servicesData } from '../data';
+import { Service, SortOption, PriceRange, DateFilter } from '../types';
+import { filterByPriceRange, filterByDate, sortServices } from '../utils';
 
 const CustomerHome: React.FC = () => {
     const [showFilters, setShowFilters] = useState<boolean>(false);

@@ -1,6 +1,6 @@
 "use client"
 import React, { useState } from 'react';
-import { Service } from '../CustomerHome/types';
+import { Service } from '../types';
 import Navbar from '../Navbar';
 import Footer from '../Footer';
 import Image from 'next/image';

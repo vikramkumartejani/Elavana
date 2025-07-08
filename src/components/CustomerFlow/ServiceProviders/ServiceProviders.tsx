@@ -2,15 +2,15 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from '../Navbar';
 import Footer from '../Footer';
-import FilterSidebar from '../CustomerHome/FilterSidebar';
-import SearchBar from '../CustomerHome/SearchBar';
-import CategoryNavigation from '../CustomerHome/CategoryNavigation';
-import ServicesHeader from '../CustomerHome/ServicesHeader';
-import Pagination from '../CustomerHome/Pagination';
-import NoResults from '../CustomerHome/NoResults';
-import { serviceProvidersData, categories } from '../CustomerHome/data';
-import { Service, SortOption, PriceRange, DateFilter } from '../CustomerHome/types';
-import { filterByPriceRange, filterByDate, sortServices } from '../CustomerHome/utils';
+import FilterSidebar from '../FilterSidebar';
+import SearchBar from '../SearchBar';
+import CategoryNavigation from '../CategoryNavigation';
+import ServicesHeader from '../ServicesHeader';
+import Pagination from '../Pagination';
+import NoResults from '../NoResults';
+import { serviceProvidersData, categories } from '../data';
+import { Service, SortOption, PriceRange, DateFilter } from '../types';
+import { filterByPriceRange, filterByDate, sortServices } from '../utils';
 import ServiceProviderCard from './ServiceProviderCard';
 
 interface ServiceProvider {

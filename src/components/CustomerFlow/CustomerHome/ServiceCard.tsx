@@ -2,7 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
-import { ServiceCardProps } from './types';
+import { ServiceCardProps } from '../types';
 import Link from 'next/link';
 
 interface ServiceCardPropsWithLoading extends ServiceCardProps {

@@ -1,7 +1,7 @@
-import { servicesData } from '@/components/CustomerFlow/CustomerHome/data';
+import { servicesData } from '@/components/CustomerFlow/data';
 import ServiceDetails from '@/components/CustomerFlow/ServiceDetails/ServiceDetails';
 import { notFound } from 'next/navigation';
-import { Service } from '@/components/CustomerFlow/CustomerHome/types';
+import { Service } from '@/components/CustomerFlow/types';
 
 interface ServiceDetailsPageProps {
     searchParams: { id?: string };

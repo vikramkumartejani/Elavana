@@ -1,8 +1,8 @@
 // Main component
-export { default as CustomerHome } from './CustomerHome';
+export { default as CustomerHome } from './CustomerHome/CustomerHome';
 
 // Sub-components
-export { default as ServiceCard } from './ServiceCard';
+export { default as ServiceCard } from './CustomerHome/ServiceCard';
 export { default as FilterSidebar } from './FilterSidebar';
 export { default as SearchBar } from './SearchBar';
 export { default as CategoryNavigation } from './CategoryNavigation';
