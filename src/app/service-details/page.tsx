@@ -3,10 +3,6 @@ import ServiceDetails from '@/components/CustomerFlow/ServiceDetails/ServiceDeta
 import { notFound } from 'next/navigation';
 import { Service } from '@/components/CustomerFlow/types';
 
-interface ServiceDetailsPageProps {
-    searchParams: { id?: string };
-}
-
 export default async function ServiceDetailsPage({ searchParams }: { searchParams: Promise<{ [key: string]: string | string[] | undefined }> }) {
     const params = await searchParams;
     const { id } = params;

@@ -22,7 +22,6 @@ const RatingBarChart: React.FC = () => {
             <div className="space-y-2">
                 {data.map((item, index) => (
                     <div key={index} className="flex items-center justify-between gap-3">
-                        {/* Label */}
                         <div className="w-[62px] text-left">
                             <span className="text-[#252525] text-[14px] leading-[21px] font-medium">
                                 {item.label}

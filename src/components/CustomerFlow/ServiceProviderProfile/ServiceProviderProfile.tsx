@@ -5,6 +5,12 @@ import Footer from '../Footer'
 import Image from 'next/image'
 import ReviewModal from '../ServiceDetails/ReviewModal'
 import RatingBarChart from './RatingBarChart'
+import Gmail from '@/SvgIcons/Gmail'
+import Link from 'next/link'
+import Briefcase from '@/SvgIcons/Briefcase'
+import MedalStar from '@/SvgIcons/MedalStar'
+import Location from '@/SvgIcons/Location'
+import Call from '@/SvgIcons/Call'
 
 const ServiceProviderProfile = () => {
     const [reviewOpen, setReviewOpen] = useState(false)
@@ -19,16 +25,71 @@ const ServiceProviderProfile = () => {
                             <Image src='/assets/service-provider-profile.png' alt='card-image' width={180} height={180} className='rounded-full h-[180x] w-[180px] object-cover' />
                         </div>
 
-                        <div className='mb-10 flex items-start flex-row justify-between gap-4'>
-                            <div>
-                                <h1>vkmd</h1>
+                        <div className='mb-10 mt-8 flex items-start flex-row justify-between gap-4'>
+                            <div className='max-w-[588px] w-full'>
+                                <div className='flex items-center gap-2 justify-between'>
+                                    <div className='flex items-center gap-3'>
+                                        <Gmail />
+                                        <Link href='alicemwnde@gmail.com' className='text-[#252525] text-[16px] leading-[20px] font-medium poppins underline'>Alice Mwnde@gmail.com</Link>
+                                    </div>
+                                    <div className='flex items-center gap-3'>
+                                        <Location />
+                                        <Link href='alicemwnde@gmail.com' className='text-[#252525] text-[16px] leading-[20px] font-medium poppins underline'>New York, USA</Link>
+                                    </div>
+                                    <div className='flex items-center gap-3'>
+                                        <Call />
+                                        <Link href='alicemwnde@gmail.com' className='text-[#252525] text-[16px] leading-[20px] font-medium poppins underline'>+11 45678 900</Link>
+                                    </div>
+                                </div>
+
+                                <div className='my-8'>
+                                    <h2 className='text-[#252525] text-[20px] leading-[28px] font-semibold tracking-[0.5px] mb-3'>About Me</h2>
+                                    <p className='text-[#676D75] text-[18px] leading-[28px] font-normal tracking-[0.5px]'>Alice Mwende is a passionate and certified life coach who specializes in helping women navigate significant personal and professional life changes. With over 5 years of coaching experience, Alice combines empathetic listening with practical strategies to help her clients overcome limiting beliefs and take bold, intentional steps forward.</p>
+                                </div>
+
+                                <div className='my-8'>
+                                    <h2 className='text-[#252525] text-[20px] leading-[28px] font-semibold tracking-[0.5px] mb-3'>Areas of Experties</h2>
+                                    <div className='flex items-center gap-3'>
+                                        <button className='border border-[#D97E59] bg-[#D97E591F] rounded-lg h-[36px] text-[#D97E59] text-[16px] leading-[20px] font-normal px-4'>Design</button>
+                                        <button className='border border-[#D97E59] bg-[#D97E591F] rounded-lg h-[36px] text-[#D97E59] text-[16px] leading-[20px] font-normal px-4'>Product</button>
+                                        <button className='border border-[#D97E59] bg-[#D97E591F] rounded-lg h-[36px] text-[#D97E59] text-[16px] leading-[20px] font-normal px-4'>UX Research</button>
+                                        <button className='border border-[#D97E59] bg-[#D97E591F] rounded-lg h-[36px] text-[#D97E59] text-[16px] leading-[20px] font-normal px-4'>Marketings</button>
+                                    </div>
+                                </div>
+
+                                <div className='my-8'>
+                                    <h2 className='text-[#252525] text-[20px] leading-[28px] font-semibold tracking-[0.5px] mb-3'>Experience</h2>
+                                    <div className='flex items-center gap-3'>
+                                        <Briefcase />
+                                        <h3 className='text-[#252525] text-[16px] leading-[20px] font-normal poppinss'>3 year of experience in Design industry</h3>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <h2 className='text-[#252525] text-[20px] leading-[28px] font-semibold tracking-[0.5px] mb-3'>Certificates & Skills</h2>
+                                    <div className='space-y-3'>
+                                        <div className='flex items-center gap-3'>
+                                            <MedalStar />
+                                            <h2 className='text-[#252525] text-[16px] leading-[20px] font-normal poppins'>ICF Certified Coach</h2>
+                                        </div>
+                                        <div className='flex items-center gap-3'>
+                                            <MedalStar />
+                                            <h2 className='text-[#252525] text-[16px] leading-[20px] font-normal poppins'>Certified Professional Life Coach</h2>
+                                        </div>
+                                        <div className='flex items-center gap-3'>
+                                            <MedalStar />
+                                            <h2 className='text-[#252525] text-[16px] leading-[20px] font-normal poppins'>Emotional Intelligence & Leadership Training</h2>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
+
                             {/* Review Card */}
                             <div className='max-w-[512px] w-full'>
-                                <h1 className='text-[#252525] text-[28px] leading-[32px] tracking-[0.5px] font-semibold poppinss'>Review</h1>
+                                <h1 className='text-[#252525] text-[28px] leading-[32px] tracking-[0.5px] font-semibold'>Review</h1>
                                 <div className="flex items-center gap-1 sm:gap-2 my-4 sm:my-6">
                                     <span className="text-[20px] sm:text-[24px] leading-[28px] sm:leading-[36px] font-semibold text-[#252525] poppins">4.5</span>
-                                    <div className="flex items-center gap-1 -mt-0.5 sm:-mt-2">
+                                    <div className="flex items-center gap-1">
                                         <Image src='/assets/icons/star-icons.svg' alt='star' width={32} height={32} className='sm:w-8 w-5' />
                                         <Image src='/assets/icons/star-icons.svg' alt='star' width={32} height={32} className='sm:w-8 w-5' />
                                         <Image src='/assets/icons/star-icons.svg' alt='star' width={32} height={32} className='sm:w-8 w-5' />
@@ -38,7 +99,7 @@ const ServiceProviderProfile = () => {
                                     <span className="text-[#676D75] leading-[24px] text-[16px] font-normal poppins">(288)</span>
                                 </div>
 
-                                <RatingBarChart/>
+                                <RatingBarChart />
 
                                 <div className='bg-[#E8ECF4] h-[3px] w-full my-6' />
 
