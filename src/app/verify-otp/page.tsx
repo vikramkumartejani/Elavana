@@ -3,7 +3,6 @@ import React, { useState, useEffect, Suspense } from "react";
 import RippleButton from "@/components/ui/Button";
 import { useRouter, useSearchParams } from "next/navigation";
 
-// Force dynamic rendering (no static export)
 export const dynamic = "force-dynamic";
 
 const RESEND_OTP_TIME = 30; // seconds
@@ -34,7 +33,6 @@ function VerifyOtpForm() {
             return;
         }
         setIsSubmitting(true);
-        // Simulate API call
         setTimeout(() => {
             setIsSubmitting(false);
             setSuccess(true);
@@ -46,7 +44,6 @@ function VerifyOtpForm() {
         setResendTimer(RESEND_OTP_TIME);
         setResendSuccess(true);
         setTimeout(() => setResendSuccess(false), 2000);
-        // Simulate API call to resend OTP here
     };
 
     return (

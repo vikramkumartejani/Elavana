@@ -8,9 +8,8 @@ import CategoryNavigation from '../CategoryNavigation';
 import ServicesHeader from '../ServicesHeader';
 import Pagination from '../Pagination';
 import NoResults from '../NoResults';
-import { serviceProvidersData, categories } from '../data';
-import { Service, SortOption, PriceRange, DateFilter } from '../types';
-import { filterByPriceRange, filterByDate, sortServices } from '../utils';
+import { serviceProvidersData } from '../data';
+import { SortOption, PriceRange, DateFilter } from '../types';
 import ServiceProviderCard from './ServiceProviderCard';
 
 interface ServiceProvider {
@@ -50,7 +49,6 @@ const ServiceProviders: React.FC = () => {
         const timer = setTimeout(() => {
             let filtered = serviceProvidersData;
 
-            // Filter by search term
             if (searchTerm) {
                 filtered = filtered.filter(provider =>
                     provider.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -60,31 +58,26 @@ const ServiceProviders: React.FC = () => {
                 );
             }
 
-            // Filter by category
             if (selectedCategory !== 'all') {
                 filtered = filtered.filter(provider =>
                     provider.category.toLowerCase() === selectedCategory.toLowerCase()
                 );
             }
 
-            // For service providers, we'll skip price and date filtering since they don't have those fields
-            // But we can implement custom sorting
             if (sortBy === 'popular') {
                 filtered = filtered.sort((a, b) => b.rating - a.rating);
             } else if (sortBy === 'rating') {
                 filtered = filtered.sort((a, b) => b.rating - a.rating);
             } else if (sortBy === 'price-low') {
-                // Since service providers don't have price, we'll sort by name
                 filtered = filtered.sort((a, b) => a.name.localeCompare(b.name));
             } else if (sortBy === 'price-high') {
-                // Since service providers don't have price, we'll sort by name reverse
                 filtered = filtered.sort((a, b) => b.name.localeCompare(a.name));
             }
 
             setFilteredProviders(filtered);
             setCurrentPage(1);
             setLoading(false);
-        }, 800); // Simulate loading delay
+        }, 800);  
         return () => clearTimeout(timer);
     }, [searchTerm, selectedCategory, selectedPriceRange, selectedDateFilter, sortBy]);
 

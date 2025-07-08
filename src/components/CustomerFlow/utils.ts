@@ -15,7 +15,7 @@ export const filterByPriceRange = (service: Service, priceRange: PriceRange): bo
 };
 
 export const filterByDate = (service: Service, dateFilter: DateFilter): boolean => {
-    const today = new Date('2025-07-06'); // Using your current date
+    const today = new Date('2025-07-06');  
     const serviceDate = new Date(service.datePosted);
 
     switch (dateFilter) {

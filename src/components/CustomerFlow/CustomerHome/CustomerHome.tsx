@@ -39,7 +39,6 @@ const CustomerHome: React.FC = () => {
         const timer = setTimeout(() => {
             let filtered = servicesData;
 
-            // Filter by search term
             if (searchTerm) {
                 filtered = filtered.filter(service =>
                     service.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -48,26 +47,22 @@ const CustomerHome: React.FC = () => {
                 );
             }
 
-            // Filter by category
             if (selectedCategory !== 'all') {
                 filtered = filtered.filter(service =>
                     service.category.toLowerCase() === selectedCategory.toLowerCase()
                 );
             }
 
-            // Filter by price range
             filtered = filtered.filter(service => filterByPriceRange(service, selectedPriceRange));
 
-            // Filter by date
             filtered = filtered.filter(service => filterByDate(service, selectedDateFilter));
 
-            // Sort services
             filtered = sortServices(filtered, sortBy);
 
             setFilteredServices(filtered);
             setCurrentPage(1);
             setLoading(false);
-        }, 800); // Simulate loading delay
+        }, 800); 
         return () => clearTimeout(timer);
     }, [searchTerm, selectedCategory, selectedPriceRange, selectedDateFilter, sortBy]);
 

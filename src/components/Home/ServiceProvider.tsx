@@ -132,7 +132,6 @@ const ServiceProviderSlider: React.FC = () => {
                     {serviceProviderCards.map((provider) => (
                         <SwiperSlide key={provider.id} className="h-auto">
                             <div className="bg-white rounded-xl w-full border border-[#E8ECF4] flex flex-col p-3 h-full">
-                                {/* Image Container - Fixed aspect ratio */}
                                 <div className="w-full h-[210px] aspect-[16/9] rounded-xl overflow-hidden bg-[#F6F6F6] flex-shrink-0">
                                     <Image
                                         src={provider.image}
@@ -143,9 +142,7 @@ const ServiceProviderSlider: React.FC = () => {
                                     />
                                 </div>
                                 
-                                {/* Content Container - Flexible height */}
                                 <div className="flex flex-col pt-4 flex-1 min-h-0">
-                                    {/* Header with name and rating */}
                                     <div className='flex items-start gap-3 justify-between w-full mb-2'>
                                         <h2 className="text-[#252525] text-[18px] leading-[28px] tracking-[0.5px] font-semibold text-left flex-1 min-w-0">
                                             {provider.name}
@@ -158,7 +155,6 @@ const ServiceProviderSlider: React.FC = () => {
                                         </div>
                                     </div>
                                     
-                                    {/* Title link */}
                                     <Link
                                         href="#"
                                         className="text-[#3A96AF] text-[14px] leading-[18px] font-semibold text-left block mb-2 hover:underline"
@@ -167,12 +163,10 @@ const ServiceProviderSlider: React.FC = () => {
                                         {provider.title}
                                     </Link>
                                     
-                                    {/* Description */}
                                     <p className="text-[#252525] text-[12px] leading-[20px] tracking-[0.5px] font-normal text-left mb-3 flex-1">
                                         {provider.description}
                                     </p>
                                     
-                                    {/* Tags - Always at bottom */}
                                     <div className="flex flex-wrap gap-2 mt-auto">
                                         {provider.tags.map((tag, idx) => (
                                             <span
@@ -189,17 +183,14 @@ const ServiceProviderSlider: React.FC = () => {
                     ))}
                 </Swiper>
 
-                {/* Navigation and Pagination BELOW Swiper */}
                 <div className='flex flex-col items-center justify-center w-full gap-3 sm:gap-5 mt-6'>
                     <div className='flex items-center justify-center gap-3 sm:gap-x-5 gap-y-0'>
                         <button className='custom-swiper-prev cursor-pointer' aria-label='Previous'>
-                            {/* Enabled arrow */}
                             <span className='arrow-enabled'>
                                 <svg className='rotate-180' width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
                                     <path d='M5.00015 12H18.0002M13.0002 6L18.293 11.2929C18.6836 11.6834 18.6836 12.3166 18.293 12.7071L13.0002 18' stroke='#3A96AF' strokeWidth='2' strokeLinecap='round' />
                                 </svg>
                             </span>
-                            {/* Disabled arrow */}
                             <span className='arrow-disabled'>
                                 <svg className='rotate-180' width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
                                     <path d='M5.00015 12H18.0002M13.0002 6L18.293 11.2929C18.6836 11.6834 18.6836 12.3166 18.293 12.7071L13.0002 18' stroke='#B8C9C4' strokeWidth='2' strokeLinecap='round' />
@@ -208,13 +199,11 @@ const ServiceProviderSlider: React.FC = () => {
                         </button>
                         <div className='custom-swiper-pagination flex items-center gap-3 sm:!gap-5'></div>
                         <button className='custom-swiper-next cursor-pointer' aria-label='Next'>
-                            {/* Enabled arrow */}
                             <span className='arrow-enabled'>
                                 <svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
                                     <path d='M5.00015 12H18.0002M13.0002 6L18.293 11.2929C18.6836 11.6834 18.6836 12.3166 18.293 12.7071L13.0002 18' stroke='#3A96AF' strokeWidth='2' strokeLinecap='round' />
                                 </svg>
                             </span>
-                            {/* Disabled arrow */}
                             <span className='arrow-disabled'>
                                 <svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
                                     <path d='M5.00015 12H18.0002M13.0002 6L18.293 11.2929C18.6836 11.6834 18.6836 12.3166 18.293 12.7071L13.0002 18' stroke='#B8C9C4' strokeWidth='2' strokeLinecap='round' />

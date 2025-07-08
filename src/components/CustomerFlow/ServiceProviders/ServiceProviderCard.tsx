@@ -1,5 +1,4 @@
 import React from 'react';
-import { Star } from 'lucide-react';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import Image from 'next/image';
@@ -46,7 +45,6 @@ const ServiceProviderCard: React.FC<ServiceProviderCardProps> = ({ provider, loa
 
     return (
         <Link href='/service-provider-profile' className="bg-white border border-[#E8ECF4] rounded-xl p-3 overflow-hidden hover:shadow-lg transition-shadow duration-300 flex flex-col">
-            {/* Provider Image */}
             {provider.image ? (
                 <img
                     src={provider.image}
@@ -56,7 +54,6 @@ const ServiceProviderCard: React.FC<ServiceProviderCardProps> = ({ provider, loa
             ) : (
                 <Skeleton height={210} className="rounded-xl mb-4" />
             )}
-            {/* Name and Rating */}
             <div className="flex items-center justify-between mb-1">
                 <h3 className="font-semibold text-[18px] leading-[28px] tracking-[0.5px] text-[#252525] line-clamp-1">
                     {provider.name ? (
@@ -77,7 +74,6 @@ const ServiceProviderCard: React.FC<ServiceProviderCardProps> = ({ provider, loa
                     </div>
                 )}
             </div>
-            {/* Title/Role */}
             <div className="mb-2 h-[18px]">
                 {provider.title ? (
                     <span className="text-[14px] leading-[18px] text-[#3A96AF] font-medium cursor-pointer hover:underline">
@@ -87,7 +83,6 @@ const ServiceProviderCard: React.FC<ServiceProviderCardProps> = ({ provider, loa
                     <Skeleton width={100} height={18} />
                 )}
             </div>
-            {/* Description */}
             <div className="mb-2">
                 {provider.description ? (
                     <p className="text-[#252525] text-[12px] leading-[20px] font-normal tracking-[0.5px] line-clamp-2">
@@ -97,7 +92,6 @@ const ServiceProviderCard: React.FC<ServiceProviderCardProps> = ({ provider, loa
                     <Skeleton count={2} height={14} />
                 )}
             </div>
-            {/* Category Tags */}
             <div className="flex flex-wrap gap-2 mt-auto">
                 {provider.tags && provider.tags.length > 0 ? (
                     provider.tags.map((tag: string, idx: number) => (

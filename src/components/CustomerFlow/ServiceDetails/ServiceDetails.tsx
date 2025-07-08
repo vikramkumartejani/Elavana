@@ -23,7 +23,6 @@ const ServiceDetails: React.FC<ServiceDetailsProps> = ({ service }) => {
     const minQuantity = 1;
     const maxQuantity = 5;
 
-    // Add state for active session and time slot
     const sessions = [
         { day: 'FRI', date: '16 May' },
         { day: 'SAT', date: '17 May' },

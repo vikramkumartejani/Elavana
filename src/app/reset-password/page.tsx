@@ -4,7 +4,6 @@ import RippleButton from "@/components/ui/Button";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 
-// Force dynamic rendering (no static export)
 export const dynamic = "force-dynamic";
 
 function ResetPasswordForm() {
@@ -29,7 +28,6 @@ function ResetPasswordForm() {
             return;
         }
         setIsSubmitting(true);
-        // Simulate API call
         setTimeout(() => {
             setIsSubmitting(false);
             setSuccess(true);

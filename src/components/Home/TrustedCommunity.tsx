@@ -45,14 +45,13 @@ const testimonials: Testimonial[] = [
         content: 'Ive had the pleasure of being mentored by Kiril who is not only deeply knowledgeable in data analytics but also possesses a keen ability to listen and comprehend intricate business challenges. His approach is thoughtful and considerate. I genuinely appreciate his guidance and am thankful for the insights he has shared.'
     },
 ];
-const SLIDER_SIDE_PADDING = 24; // px, matches px-[24px] below
+const SLIDER_SIDE_PADDING = 24;  
 interface ArrowButtonProps {
     direction: 'left' | 'right';
     disabled: boolean;
     onClick: () => void;
 }
 const TrustedCommunity: React.FC = () => {
-    // Responsive breakpoints for Swiper
     const getSlidesPerView = () => {
         if (typeof window !== 'undefined') {
             const width = window.innerWidth;
@@ -112,17 +111,14 @@ const TrustedCommunity: React.FC = () => {
                         </SwiperSlide>
                     ))}
                 </Swiper>
-                {/* Navigation and Pagination BELOW Swiper */}
                 <div className='flex flex-col items-center justify-center w-full gap-3 sm:gap-5 mt-4'>
                     <div className='flex items-center justify-center gap-3 sm:gap-x-5 gap-y-0'>
                         <button className='trusted-swiper-prev cursor-pointer' aria-label='Previous'>
-                            {/* Enabled arrow */}
                             <span className='arrow-enabled'>
                                 <svg className='rotate-180' width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
                                     <path d='M5.00015 12H18.0002M13.0002 6L18.293 11.2929C18.6836 11.6834 18.6836 12.3166 18.293 12.7071L13.0002 18' stroke='#3A96AF' strokeWidth='2' strokeLinecap='round' />
                                 </svg>
                             </span>
-                            {/* Disabled arrow */}
                             <span className='arrow-disabled'>
                                 <svg className='rotate-180' width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
                                     <path d='M5.00015 12H18.0002M13.0002 6L18.293 11.2929C18.6836 11.6834 18.6836 12.3166 18.293 12.7071L13.0002 18' stroke='#B8C9C4' strokeWidth='2' strokeLinecap='round' />
@@ -131,13 +127,11 @@ const TrustedCommunity: React.FC = () => {
                         </button>
                         <div className='trusted-swiper-pagination flex items-center gap-3 sm:!gap-5'></div>
                         <button className='trusted-swiper-next cursor-pointer' aria-label='Next'>
-                            {/* Enabled arrow */}
                             <span className='arrow-enabled'>
                                 <svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
                                     <path d='M5.00015 12H18.0002M13.0002 6L18.293 11.2929C18.6836 11.6834 18.6836 12.3166 18.293 12.7071L13.0002 18' stroke='#3A96AF' strokeWidth='2' strokeLinecap='round' />
                                 </svg>
                             </span>
-                            {/* Disabled arrow */}
                             <span className='arrow-disabled'>
                                 <svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
                                     <path d='M5.00015 12H18.0002M13.0002 6L18.293 11.2929C18.6836 11.6834 18.6836 12.3166 18.293 12.7071L13.0002 18' stroke='#B8C9C4' strokeWidth='2' strokeLinecap='round' />

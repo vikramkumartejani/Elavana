@@ -66,10 +66,6 @@ const FilterSidebar: React.FC<FilterSidebarModalProps> = ({
         setShowFilters(false);
     };
 
-    const handleCloseModal = () => {
-        setShowFilters(false);
-    };
-
     const FilterContent = () => (
         <>
             <div className="flex items-center justify-between mb-6">

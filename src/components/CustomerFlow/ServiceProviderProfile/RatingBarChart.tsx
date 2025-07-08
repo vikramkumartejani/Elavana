@@ -31,7 +31,6 @@ const RatingBarChart: React.FC = () => {
                         {/* Bar container */}
                         <div className="flex-1">
                             <div className="relative h-[15px] bg-[#EEEEEE] rounded-lg overflow-hidden">
-                                {/* Filled bar */}
                                 <div
                                     className={`h-full ${item.color} rounded-l-full`}
                                     style={{

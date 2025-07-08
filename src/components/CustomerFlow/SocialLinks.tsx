@@ -2,14 +2,12 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-// 1. Type definition
 interface SocialLink {
     href: string;
     iconSrc: string;
     alt: string;
 }
 
-// 2. Data array
 const socialLinksData: SocialLink[] = [
     {
         href: "/",
@@ -43,7 +41,6 @@ const socialLinksData: SocialLink[] = [
     },
 ];
 
-// 3. Component
 const SocialLinks = () => {
     return (
         <div className="flex items-center flex-wrap gap-3">

@@ -27,7 +27,6 @@ const Pagination: React.FC<PaginationProps> = ({
 
     if (totalPages <= 1) return null;
 
-    // Calculate page range
     const range = isMobile ? 1 : 2;
     const startPage = Math.max(2, currentPage - range);
     const endPage = Math.min(totalPages - 1, currentPage + range);

@@ -1,4 +1,3 @@
-// Type definitions for CustomerHome components
 export interface Service {
     id: number;
     title: string;

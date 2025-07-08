@@ -40,7 +40,7 @@ const Navbar: React.FC = () => {
     const openContactModal = (e?: MouseEvent) => {
         if (e) e.stopPropagation();
         setShowContactModal(true);
-        closeMobileMenu(); // Close mobile menu if open
+        closeMobileMenu(); 
     }
 
     const closeContactModal = () => {
@@ -94,7 +94,6 @@ const Navbar: React.FC = () => {
                 {/* Mobile Menu */}
                 {showMobileMenu && (
                     <>
-                        {/* Overlay */}
                         <div className='fixed inset-0 bg-black/40 z-40 transition-opacity duration-300' onClick={closeMobileMenu} />
                         <div className={`fixed top-0 right-0 h-full w-80 bg-white z-50 shadow-lg transition-transform duration-300 ease-in-out ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}`} onClick={e => e.stopPropagation()}>
                             <div className='flex items-center justify-between px-5 py-4 border-b border-[#DEE5ED]'>
