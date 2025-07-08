@@ -14,7 +14,7 @@ const ServiceCard: React.FC<ServiceCardPropsWithLoading> = ({ service, loading =
         return (
             <div className="bg-white border border-[#E8ECF4] rounded-xl p-3 overflow-hidden">
                 <Skeleton height={210} className="rounded-xl mb-4 h-[210px] w-full" />
-                
+
                 <div className='flex items-center justify-between gap-3 mb-2'>
                     <Skeleton width="60%" height={28} />
                     <Skeleton width={60} height={20} />
@@ -37,7 +37,7 @@ const ServiceCard: React.FC<ServiceCardPropsWithLoading> = ({ service, loading =
     }
 
     return (
-        <Link href='/service-details' className="bg-white border border-[#E8ECF4] rounded-xl p-3 overflow-hidden hover:shadow-lg transition-shadow duration-300">
+        <Link href={`/service-details?id=${service.id}`} className="bg-white border border-[#E8ECF4] rounded-xl p-3 overflow-hidden hover:shadow-lg transition-shadow duration-300">
             <Image src='/assets/card-placeholder.png' alt='image' width={281} height={210} className='rounded-xl mb-4 w-full h-[210px] object-cover' />
 
             <div className='flex items-center justify-between gap-3'>

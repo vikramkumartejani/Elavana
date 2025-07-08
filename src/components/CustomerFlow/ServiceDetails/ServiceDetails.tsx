@@ -1,5 +1,6 @@
 "use client"
 import React, { useState } from 'react';
+import { Service } from '../CustomerHome/types';
 import Navbar from '../Navbar';
 import Footer from '../Footer';
 import Image from 'next/image';
@@ -10,7 +11,11 @@ import FullStar from '@/SvgIcons/FullStar';
 import WhatIsIncluded from '../WhatIsIncluded';
 import ReviewModal from './ReviewModal'
 
-const ServiceDetails: React.FC = () => {
+interface ServiceDetailsProps {
+    service: Service;
+}
+
+const ServiceDetails: React.FC<ServiceDetailsProps> = ({ service }) => {
     const [quantity, setQuantity] = useState(1);
     const [reviewOpen, setReviewOpen] = useState(false)
     const minQuantity = 1;
@@ -38,7 +43,7 @@ const ServiceDetails: React.FC = () => {
                             <Image src='/assets/service-details-placeholder.png' alt='image' width={740} height={314} className='h-[314px] rounded w-full object-cover' />
                             <div className='my-4 sm:my-6 flex items-start justify-between sm:flex-row flex-col gap-3'>
                                 <div className='flex flex-col gap-2 sm:gap-3 items-start'>
-                                    <h3 className='text-[#252525] text-[20px] sm:text-[24px] leading-[24px] sm:leading-[28px] tracking-[0.5px] font-semibold'>Career Strategy Session</h3>
+                                    <h3 className='text-[#252525] text-[20px] sm:text-[24px] leading-[24px] sm:leading-[28px] tracking-[0.5px] font-semibold'>{service.title}</h3>
                                     {/* Reviews */}
                                     <button
                                         className='flex items-center gap-3 cursor-pointer'
@@ -78,7 +83,7 @@ const ServiceDetails: React.FC = () => {
 
                             <div>
                                 <h1 className='text-[#252525] text-[18px] sm:text-[20px] leading-[20px] sm:leading-[24px] tracking-[0.5px] font-semibold mb-3'>Description</h1>
-                                <p className='text-[#676D75] text-[14px] sm:text-[16px] leading-[20px] sm:leading-[24px] tracking-[0.5px] font-normal'>This session focuses on helping individuals gain clarity in their career paths, explore new opportunities, and create action plans. Ideal for job seekers, professionals in transition, or anyone looking to grow in their current role.</p>
+                                <p className='text-[#676D75] text-[14px] sm:text-[16px] leading-[20px] sm:leading-[24px] tracking-[0.5px] font-normal'>{service.description}</p>
                             </div>
 
                             <WhatIsIncluded
@@ -94,8 +99,8 @@ const ServiceDetails: React.FC = () => {
                         {/* Right Side */}
                         <div className='lg:max-w-[476px] w-full flex flex-col gap-6 items-start'>
                             <div className='w-full border border-[#E8ECF4] rounded-[16px] sm:rounded-[24px] px-4 py-5 sm:p-6'>
-                                <h1 className='text-[20px] sm:text-[24px] leading-[20px] sm:leading-[28px] font-semibold tracking-[0.5px]'>Career Strategy Session</h1>
-                                <h3 className='mt-4 sm:mt-6 text-[#3A96AF] text-[20px] sm:text-[24px] leading-[20px] sm:leading-[28px] tracking-[0.5px] font-bold'>$ 299.00</h3>
+                                <h1 className='text-[20px] sm:text-[24px] leading-[20px] sm:leading-[28px] font-semibold tracking-[0.5px]'>{service.title}</h1>
+                                <h3 className='mt-4 sm:mt-6 text-[#3A96AF] text-[20px] sm:text-[24px] leading-[20px] sm:leading-[28px] tracking-[0.5px] font-bold'>$ {service.price}</h3>
 
                                 <div className='h-[2px] w-full bg-[#E8ECF4] my-4 sm:my-6' />
 
@@ -186,12 +191,12 @@ const ServiceDetails: React.FC = () => {
                                     </div>
                                     <div className="flex justify-between items-center">
                                         <span className="text-[#252525] text-[14px] sm:text-[16px] leading-[18px] sm:leading-[20px] font-normal">Price</span>
-                                        <span className="text-[#252525] text-[14px] sm:text-[16px] leading-[18px] sm:leading-[20px] font-normal">$ 299.0</span>
+                                        <span className="text-[#252525] text-[14px] sm:text-[16px] leading-[18px] sm:leading-[20px] font-normal">$ {service.price}</span>
                                     </div>
                                     <div className="w-full h-[2px] bg-[#E8ECF4] my-3" />
                                     <div className="flex justify-between items-center">
                                         <span className="text-[#252525] text-[14px] sm:text-[16px] leading-[18px] sm:leading-[20px] font-medium">Total</span>
-                                        <span className="text-[#252525] text-[14px] sm:text-[16px] leading-[18px] sm:leading-[20px] font-medium">$ {(quantity * 299).toFixed(1)}</span>
+                                        <span className="text-[#252525] text-[14px] sm:text-[16px] leading-[18px] sm:leading-[20px] font-medium">$ {(quantity * service.price).toFixed(1)}</span>
                                     </div>
                                 </div>
                                 <RippleButton className='w-full bg-[#3A96AF] h-[40px] sm:h-[44px] rounded-md text-[#FFFFFF] text-[14px] sm:text-[16px] leading-[18px] sm:leading-[20px] font-medium tracking-[0.5px]'>Proceed to checkout</RippleButton>

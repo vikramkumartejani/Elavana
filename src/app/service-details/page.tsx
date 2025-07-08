@@ -1,11 +1,15 @@
+import { servicesData } from '@/components/CustomerFlow/CustomerHome/data';
 import ServiceDetails from '@/components/CustomerFlow/ServiceDetails/ServiceDetails';
-import React from 'react';
+import { notFound } from 'next/navigation';
+import { Service } from '@/components/CustomerFlow/CustomerHome/types';
 
-const Page: React.FC = () => {
+interface ServiceDetailsPageProps {
+    searchParams: { id?: string };
+}
 
-    return (
-        <ServiceDetails />
-    );
-};
-
-export default Page; 
+export default function ServiceDetailsPage({ searchParams }: ServiceDetailsPageProps) {
+    const { id } = searchParams;
+    const service = servicesData.find((s: Service) => String(s.id) === String(id));
+    if (!service) return notFound();
+    return <ServiceDetails service={service} />;
+} 
