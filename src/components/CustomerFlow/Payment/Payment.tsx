@@ -49,7 +49,7 @@ const Payment = () => {
                         </div>
 
                         {/* Order Summary Section */}
-                        <div className="w-full max-w-[400px] border border-[#E8ECF4] rounded-lg flex flex-col py-[34px] px-6">
+                        <div className="w-full max-w-[400px] border border-[#E8ECF4] rounded-[24px] flex flex-col py-[34px] px-6">
                             <h3 className="text-center text-[#252525] text-[24px] leading-[28px] font-semibold tracking-[0.5px] mb-6">Order Summary</h3>
 
                             <div className="flex items-center gap-3 mb-6">
@@ -91,24 +91,22 @@ const Payment = () => {
                                 </div>
                             </div>
 
-                            <div className='my-6 bg-[#E8ECF4] h-[2px] w-full'/>
+                            <div className='my-6 bg-[#E8ECF4] h-[2px] w-full' />
 
-                            <div className="flex justify-between text-sm mt-2">
-                                <span>Ticket</span>
-                                <span>{quantity}</span>
+                            <div className="flex justify-between">
+                                <h3 className='text-[#252525] text-[16px] leading-[20px] tracking-[0.5px] font-normal'>Ticket</h3>
+                                <h3 className='text-[#252525] text-[16px] leading-[20px] tracking-[0.5px] font-medium'>{quantity}</h3>
                             </div>
-                            <div className="flex justify-between text-sm">
-                                <span>Subtotal</span>
-                                <span>$ {price}</span>
+                            <div className="mt-3 flex justify-between">
+                                <h3 className='text-[#252525] text-[16px] leading-[20px] tracking-[0.5px] font-normal'>Subtotal</h3>
+                                <h3 className='text-[#252525] text-[16px] leading-[20px] tracking-[0.5px] font-medium'>$ {price}</h3>
                             </div>
-                            <div className="w-full h-[2px] bg-[#E8ECF4] my-2" />
+                            <div className="w-full h-[2px] bg-[#E8ECF4] mt-3 mb-6" />
+                            
                             <div className="flex justify-between text-base font-semibold">
-                                <span>Total Price</span>
-                                <span>$ {total}</span>
+                                <h3 className='text-[#252525] text-[18px] leading-[20px] tracking-[0.5px] font-semibold'>Total Price</h3>
+                                <h3 className='text-[#252525] text-[20px] leading-[20px] tracking-[0.5px] font-bold'>$ {total}</h3>
                             </div>
-                            <RippleButton className="w-full bg-[#3A96AF] h-[40px] sm:h-[44px] rounded-md text-[#FFFFFF] text-[14px] sm:text-[16px] leading-[18px] sm:leading-[20px] font-medium tracking-[0.5px] mt-4">
-                                Proceed to checkout
-                            </RippleButton>
                         </div>
                     </div>
                 </div>
