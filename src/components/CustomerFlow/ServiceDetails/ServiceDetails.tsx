@@ -5,9 +5,15 @@ import Footer from '../Footer';
 import Image from 'next/image';
 import Recommendation from './Recommendation';
 import RippleButton from '@/components/ui/Button';
+import HalfStar from '@/SvgIcons/HalfStar';
+import FullStar from '@/SvgIcons/FullStar';
+import CheckBox from '@/SvgIcons/CheckBox';
+import WhatIsIncluded from '../WhatIsIncluded';
+import ReviewModal from './ReviewModal'
 
 const ServiceDetails: React.FC = () => {
     const [quantity, setQuantity] = useState(1);
+    const [reviewOpen, setReviewOpen] = useState(false)
     const minQuantity = 1;
     const maxQuantity = 5;
 
@@ -17,10 +23,65 @@ const ServiceDetails: React.FC = () => {
             <div className='px-5 md:px-8 w-full pt-8 pb-[150px]'>
                 <div className='max-w-[1280px] mx-auto w-full'>
                     <div className='w-full flex items-start justify-between gap-4'>
-                        <div className='max-w-[740px] w-full bg-red-500'>
+                        {/* Left Side */}
+                        <div className='max-w-[740px] w-full'>
                             <Image src='/assets/service-details-placeholder.png' alt='image' width={740} height={314} className='h-[314px] rounded w-full object-cover' />
+                            <div className='my-6 flex items-start justify-between gap-4'>
+                                <div className='flex flex-col gap-3 items-start'>
+                                    <h3 className='text-[#252525] text-[24px] leading-[28px] tracking-[0.5px] font-semibold'>Career Strategy Session</h3>
+                                    {/* Reviews */}
+                                    <button
+                                        className='flex items-center gap-3 cursor-pointer'
+                                        onClick={() => setReviewOpen(true)}
+                                    >
+                                        <div className='flex items-center gap-1'>
+                                            <FullStar />
+                                            <FullStar />
+                                            <FullStar />
+                                            <FullStar />
+                                            <HalfStar />
+                                        </div>
+                                        <h2 className='text-[#676D75] text-[18px] leading-[20px] font-medium mt-0.5'>288 reviews</h2>
+                                    </button>
+                                    <ReviewModal open={reviewOpen} onClose={() => setReviewOpen(false)} />
+                                </div>
+                                <div>
+                                    <h3 className='text-[#333333] text-[12px] leading-[16px] tracking-[1%] font-medium'>Share with Friends</h3>
+                                </div>
+                            </div>
+
+                            <div className='bg-[#D9D9D9] h-[2px] w-full' />
+
+                            <div className='my-6'>
+                                <h1 className='mb-3 text-[#252525] text-[20px] leading-[24px] font-semibold tracking-[0.5px]'>Service Provider</h1>
+                                <div className='flex items-center justify-between gap-4'>
+                                    <div className='flex items-center gap-2'>
+                                        <Image src='/assets/profile.svg' alt='profile' width={48} height={48} className='rounded-full' />
+                                        <div>
+                                            <h2 className='text-[#252525] text-[16px] leading-[20px] font-semibold'>Amy Watson</h2>
+                                            <h4 className='text-[#676D75] text-[12px] leading-[16px] font-medium mt-1'>Certified Career Coach</h4>
+                                        </div>
+                                    </div>
+                                    <RippleButton className='border border-[#3A96AF] bg-[#3A96AF] h-[40px] rounded-lg px-4 text-white text-[12px] leading-[16px] tracking-[0.5px] font-medium'>View Profile</RippleButton>
+                                </div>
+                            </div>
+
+                            <div>
+                                <h1 className='text-[#252525] text-[20px] leading-[24px] tracking-[0.5px] font-semibold mb-3'>Description</h1>
+                                <p className='text-[#676D75] text-[16px] leading-[24px] tracking-[0.5px] font-normal'>This session focuses on helping individuals gain clarity in their career paths, explore new opportunities, and create action plans. Ideal for job seekers, professionals in transition, or anyone looking to grow in their current role.</p>
+                            </div>
+
+                            <WhatIsIncluded
+                                items={[
+                                    '1-on-1 Video Call',
+                                    '60 - minute session',
+                                    'Personalized Career Plan',
+                                    'Post-session follow-up message',
+                                ]}
+                            />
                         </div>
 
+                        {/* Right Side */}
                         <div className='max-w-[476px] w-full flex flex-col gap-6 items-start'>
                             <div className='w-full border border-[#E8ECF4] rounded-[24px] p-6'>
                                 <h1 className='text-[24px] leading-[28px] font-semibold tracking-[0.5px]'>Career Strategy Session</h1>
@@ -133,4 +194,4 @@ const ServiceDetails: React.FC = () => {
     );
 };
 
-export default ServiceDetails; 
+export default ServiceDetails;
