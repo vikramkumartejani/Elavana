@@ -74,7 +74,7 @@ const ReviewModal: React.FC<ReviewModalProps> = ({ open, onClose }) => {
                         <Image src='/assets/icons/star-icons.svg' alt='star' width={32} height={32} className='sm:w-8 w-5'/>
                         <Image src='/assets/icons/star-icons.svg' alt='star' width={32} height={32} className='sm:w-8 w-5'/>
                     </div>
-                    <span className="text-[#676D75] leading-[24px] text-[16px] font-normal poppins">(15)</span>
+                    <span className="text-[#676D75] leading-[24px] text-[16px] font-normal poppins">(288)</span>
                 </div>
 
                 <div className='bg-[#E8ECF4] h-[2px] w-full mb-4 sm:mb-6' />

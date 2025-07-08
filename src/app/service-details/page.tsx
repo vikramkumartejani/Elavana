@@ -7,8 +7,9 @@ interface ServiceDetailsPageProps {
     searchParams: { id?: string };
 }
 
-export default function ServiceDetailsPage({ searchParams }: ServiceDetailsPageProps) {
-    const { id } = searchParams;
+export default async function ServiceDetailsPage({ searchParams }: { searchParams: Promise<{ [key: string]: string | string[] | undefined }> }) {
+    const params = await searchParams;
+    const { id } = params;
     const service = servicesData.find((s: Service) => String(s.id) === String(id));
     if (!service) return notFound();
     return <ServiceDetails service={service} />;
