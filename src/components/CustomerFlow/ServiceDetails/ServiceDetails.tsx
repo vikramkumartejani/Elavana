@@ -7,7 +7,6 @@ import Recommendation from './Recommendation';
 import RippleButton from '@/components/ui/Button';
 import HalfStar from '@/SvgIcons/HalfStar';
 import FullStar from '@/SvgIcons/FullStar';
-import CheckBox from '@/SvgIcons/CheckBox';
 import WhatIsIncluded from '../WhatIsIncluded';
 import ReviewModal from './ReviewModal'
 
@@ -17,18 +16,29 @@ const ServiceDetails: React.FC = () => {
     const minQuantity = 1;
     const maxQuantity = 5;
 
+    // Add state for active session and time slot
+    const sessions = [
+        { day: 'FRI', date: '16 May' },
+        { day: 'SAT', date: '17 May' },
+        { day: 'MON', date: '19 May' },
+        { day: 'TUE', date: '20 May' },
+    ];
+    const timeSlots = ['4:00 PM', '7:00 PM', '9:00 PM', '11:00 PM'];
+    const [activeSession, setActiveSession] = useState(0);
+    const [activeTimeSlot, setActiveTimeSlot] = useState(0);
+
     return (
         <>
             <Navbar />
-            <div className='px-5 md:px-8 w-full pt-8 pb-[150px]'>
+            <div className='px-5 md:px-8 w-full pt-6 sm:pt-8 pb-[150px]'>
                 <div className='max-w-[1280px] mx-auto w-full'>
-                    <div className='w-full flex items-start justify-between gap-4'>
+                    <div className='w-full flex items-start justify-between lg:flex-row flex-col gap-6 lg:gap-4'>
                         {/* Left Side */}
-                        <div className='max-w-[740px] w-full'>
+                        <div className='lg:max-w-[740px] w-full'>
                             <Image src='/assets/service-details-placeholder.png' alt='image' width={740} height={314} className='h-[314px] rounded w-full object-cover' />
-                            <div className='my-6 flex items-start justify-between gap-4'>
-                                <div className='flex flex-col gap-3 items-start'>
-                                    <h3 className='text-[#252525] text-[24px] leading-[28px] tracking-[0.5px] font-semibold'>Career Strategy Session</h3>
+                            <div className='my-4 sm:my-6 flex items-start justify-between sm:flex-row flex-col gap-3'>
+                                <div className='flex flex-col gap-2 sm:gap-3 items-start'>
+                                    <h3 className='text-[#252525] text-[20px] sm:text-[24px] leading-[24px] sm:leading-[28px] tracking-[0.5px] font-semibold'>Career Strategy Session</h3>
                                     {/* Reviews */}
                                     <button
                                         className='flex items-center gap-3 cursor-pointer'
@@ -52,23 +62,23 @@ const ServiceDetails: React.FC = () => {
 
                             <div className='bg-[#D9D9D9] h-[2px] w-full' />
 
-                            <div className='my-6'>
-                                <h1 className='mb-3 text-[#252525] text-[20px] leading-[24px] font-semibold tracking-[0.5px]'>Service Provider</h1>
+                            <div className='my-4 sm:my-6'>
+                                <h1 className='mb-3 text-[#252525] text-[18px] sm:text-[20px] leading-[20px] sm:leading-[24px] font-semibold tracking-[0.5px]'>Service Provider</h1>
                                 <div className='flex items-center justify-between gap-4'>
                                     <div className='flex items-center gap-2'>
-                                        <Image src='/assets/profile.svg' alt='profile' width={48} height={48} className='rounded-full' />
+                                        <Image src='/assets/profile.svg' alt='profile' width={48} height={48} className='rounded-full sm:w-[50px] w-[40px]' />
                                         <div>
-                                            <h2 className='text-[#252525] text-[16px] leading-[20px] font-semibold'>Amy Watson</h2>
+                                            <h2 className='text-[#252525] text-[14px] sm:text-[16px] leading-[16px] sm:leading-[20px] font-semibold'>Amy Watson</h2>
                                             <h4 className='text-[#676D75] text-[12px] leading-[16px] font-medium mt-1'>Certified Career Coach</h4>
                                         </div>
                                     </div>
-                                    <RippleButton className='border border-[#3A96AF] bg-[#3A96AF] h-[40px] rounded-lg px-4 text-white text-[12px] leading-[16px] tracking-[0.5px] font-medium'>View Profile</RippleButton>
+                                    <RippleButton className='border border-[#3A96AF] bg-[#3A96AF] h-[36px] sm:h-[40px] rounded-lg px-4 text-white text-[12px] leading-[16px] tracking-[0.5px] font-medium'>View Profile</RippleButton>
                                 </div>
                             </div>
 
                             <div>
-                                <h1 className='text-[#252525] text-[20px] leading-[24px] tracking-[0.5px] font-semibold mb-3'>Description</h1>
-                                <p className='text-[#676D75] text-[16px] leading-[24px] tracking-[0.5px] font-normal'>This session focuses on helping individuals gain clarity in their career paths, explore new opportunities, and create action plans. Ideal for job seekers, professionals in transition, or anyone looking to grow in their current role.</p>
+                                <h1 className='text-[#252525] text-[18px] sm:text-[20px] leading-[20px] sm:leading-[24px] tracking-[0.5px] font-semibold mb-3'>Description</h1>
+                                <p className='text-[#676D75] text-[14px] sm:text-[16px] leading-[20px] sm:leading-[24px] tracking-[0.5px] font-normal'>This session focuses on helping individuals gain clarity in their career paths, explore new opportunities, and create action plans. Ideal for job seekers, professionals in transition, or anyone looking to grow in their current role.</p>
                             </div>
 
                             <WhatIsIncluded
@@ -82,54 +92,57 @@ const ServiceDetails: React.FC = () => {
                         </div>
 
                         {/* Right Side */}
-                        <div className='max-w-[476px] w-full flex flex-col gap-6 items-start'>
-                            <div className='w-full border border-[#E8ECF4] rounded-[24px] p-6'>
-                                <h1 className='text-[24px] leading-[28px] font-semibold tracking-[0.5px]'>Career Strategy Session</h1>
-                                <h3 className='mt-6 text-[#3A96AF] text-[24px] leading-[28px] tracking-[0.5px] font-bold'>$ 299.00</h3>
+                        <div className='lg:max-w-[476px] w-full flex flex-col gap-6 items-start'>
+                            <div className='w-full border border-[#E8ECF4] rounded-[16px] sm:rounded-[24px] px-4 py-5 sm:p-6'>
+                                <h1 className='text-[20px] sm:text-[24px] leading-[20px] sm:leading-[28px] font-semibold tracking-[0.5px]'>Career Strategy Session</h1>
+                                <h3 className='mt-4 sm:mt-6 text-[#3A96AF] text-[20px] sm:text-[24px] leading-[20px] sm:leading-[28px] tracking-[0.5px] font-bold'>$ 299.00</h3>
 
-                                <div className='h-[2px] w-full bg-[#E8ECF4] my-6' />
+                                <div className='h-[2px] w-full bg-[#E8ECF4] my-4 sm:my-6' />
 
+                                {/* Available Sessions */}
                                 <div className='w-full'>
-                                    <h3 className='text-[#252525] text-[20px] leading-[24px] tracking-[0.5px] font-medium mb-4'>Available Sessions</h3>
-                                    <div className='w-full grid grid-cols-4 gap-4'>
-                                        <button className='border border-[#D97E59] rounded-md bg-[#D97E591F] py-3 px-4 cursor-pointer'>
-                                            <h3 className='text-[#D97E59] text-[12px] leading-[16px] tracking-[0.5px] font-medium mb-1'>FRI</h3>
-                                            <h3 className='text-[#D97E59] text-[14px] leading-[18px] tracking-[0.5px] font-semibold'>16 May</h3>
-                                        </button>
-                                        <button className='border border-[#E8ECF4] rounded-md bg-transparent py-3 px-4 cursor-pointer'>
-                                            <h3 className='text-[#676D75] text-[12px] leading-[16px] tracking-[0.5px] font-medium mb-1'>SAT</h3>
-                                            <h3 className='text-[#676D75] text-[14px] leading-[18px] tracking-[0.5px] font-semibold'>17 May</h3>
-                                        </button>
-                                        <button className='border border-[#E8ECF4] rounded-md bg-transparent py-3 px-4 cursor-pointer'>
-                                            <h3 className='text-[#676D75] text-[12px] leading-[16px] tracking-[0.5px] font-medium mb-1'>MON</h3>
-                                            <h3 className='text-[#676D75] text-[14px] leading-[18px] tracking-[0.5px] font-semibold'>19 May</h3>
-                                        </button>
-                                        <button className='border border-[#E8ECF4] rounded-md bg-transparent py-3 px-4 cursor-pointer'>
-                                            <h3 className='text-[#676D75] text-[12px] leading-[16px] tracking-[0.5px] font-medium mb-1'>TUE</h3>
-                                            <h3 className='text-[#676D75] text-[14px] leading-[18px] tracking-[0.5px] font-semibold'>20 May</h3>
-                                        </button>
+                                    <h3 className='text-[#252525] text-[18px] sm:text-[20px] leading-[20px] sm:leading-[24px] tracking-[0.5px] font-medium mb-3 sm:mb-4'>Available Sessions</h3>
+                                    <div className='w-full grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4'>
+                                        {sessions.map((session, idx) => (
+                                            <button
+                                                key={session.day}
+                                                className={
+                                                    (idx === activeSession
+                                                        ? 'border border-[#D97E59] rounded-md bg-[#D97E591F]'
+                                                        : 'border border-[#E8ECF4] rounded-md bg-transparent') +
+                                                    ' py-2 sm:py-3 px-3 cursor-pointer transition duration-200 hover:border hover:border-[#d97d59a6]'
+                                                }
+                                                onClick={() => setActiveSession(idx)}
+                                            >
+                                                <h3 className={(idx === activeSession ? 'text-[#D97E59]' : 'text-[#676D75]') + ' text-[12px] leading-[16px] tracking-[0.5px] font-medium mb-1 transition-colors duration-200'}>{session.day}</h3>
+                                                <h3 className={(idx === activeSession ? 'text-[#D97E59]' : 'text-[#676D75]') + ' text-[14px] leading-[18px] tracking-[0.5px] font-semibold transition-colors duration-200'}>{session.date}</h3>
+                                            </button>
+                                        ))}
                                     </div>
                                 </div>
 
+                                {/* Available Time Slots */}
                                 <div className='w-full mt-4'>
-                                    <h3 className='text-[#252525] text-[20px] leading-[24px] tracking-[0.5px] font-medium mb-4'>Available Time Slots</h3>
-                                    <div className='w-full grid grid-cols-4 gap-4'>
-                                        <button className='border border-[#D97E59] rounded-md bg-[#D97E591F] h-[42px] px-3 cursor-pointer'>
-                                            <h3 className='text-[#D97E59] text-[14px] leading-[18px] tracking-[0.5px] font-semibold'>4:00 PM</h3>
-                                        </button>
-                                        <button className='border border-[#E8ECF4] rounded-md bg-transparent h-[42px] px-3 cursor-pointer'>
-                                            <h3 className='text-[#676D75] text-[14px] leading-[18px] tracking-[0.5px] font-semibold'>7:00 PM</h3>
-                                        </button>
-                                        <button className='border border-[#E8ECF4] rounded-md bg-transparent h-[42px] px-3 cursor-pointer'>
-                                            <h3 className='text-[#676D75] text-[14px] leading-[18px] tracking-[0.5px] font-semibold'>9:00 PM</h3>
-                                        </button>
-                                        <button className='border border-[#E8ECF4] rounded-md bg-transparent h-[42px] px-3 cursor-pointer'>
-                                            <h3 className='text-[#676D75] text-[14px] leading-[18px] tracking-[0.5px] font-semibold'>11:00 PM</h3>
-                                        </button>
+                                    <h3 className='text-[#252525] text-[18px] sm:text-[20px] leading-[20px] sm:leading-[24px] tracking-[0.5px] font-medium mb-3 sm:mb-4'>Available Time Slots</h3>
+                                    <div className='w-full grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4'>
+                                        {timeSlots.map((slot, idx) => (
+                                            <button
+                                                key={slot}
+                                                className={
+                                                    (idx === activeTimeSlot
+                                                        ? 'border border-[#D97E59] rounded-md bg-[#D97E591F]'
+                                                        : 'border border-[#E8ECF4] rounded-md bg-transparent') +
+                                                    ' h-[42px] px-2 cursor-pointer transition-colors duration-200 hover:border hover:border-[#d97d59a6]'
+                                                }
+                                                onClick={() => setActiveTimeSlot(idx)}
+                                            >
+                                                <h3 className={(idx === activeTimeSlot ? 'text-[#D97E59]' : 'text-[#676D75]') + ' text-[14px] leading-[16px] sm:leading-[18px] tracking-[0.5px] font-semibold transition-colors duration-200'}>{slot}</h3>
+                                            </button>
+                                        ))}
                                     </div>
                                 </div>
 
-                                <div className='h-[2px] w-full bg-[#E8ECF4] my-6' />
+                                <div className='h-[2px] w-full bg-[#E8ECF4] my-4 sm:my-6' />
 
                                 <div>
                                     <h1 className='text-[#333333] text-[16px] leading-[20px] font-semibold'>Quantity</h1>
@@ -164,24 +177,24 @@ const ServiceDetails: React.FC = () => {
                                 </div>
                             </div>
 
-                            <div className='px-6 py-[30px] w-full border border-[#E8ECF4] rounded-[24px]'>
-                                <h1 className='text-[#252525] text-[24px] leading-[28px] font-semibold tracking-[0.5px] text-center'>Your Order</h1>
-                                <div className='my-5'>
+                            <div className='px-4 sm:px-6 py-5 sm:py-[30px] w-full border border-[#E8ECF4] rounded-[24px]'>
+                                <h1 className='text-[#252525] text-[20px] sm:text-[24px] leading-[24px] sm:leading-[28px] font-semibold tracking-[0.5px] text-center'>Your Order</h1>
+                                <div className='my-4 sm:my-5'>
                                     <div className="flex justify-between items-center mb-3">
-                                        <span className="text-[#252525] text-[16px] leading-[20px] font-normal">Quantity</span>
-                                        <span className="text-[#252525] text-[16px] leading-[20px] font-normal">{quantity}</span>
+                                        <span className="text-[#252525] text-[14px] sm:text-[16px] leading-[18px] sm:leading-[20px] font-normal">Quantity</span>
+                                        <span className="text-[#252525] text-[14px] sm:text-[16px] leading-[18px] sm:leading-[20px] font-normal">{quantity}</span>
                                     </div>
                                     <div className="flex justify-between items-center">
-                                        <span className="text-[#252525] text-[16px] leading-[20px] font-normal">Price</span>
-                                        <span className="text-[#252525] text-[16px] leading-[20px] font-normal">$ 299.0</span>
+                                        <span className="text-[#252525] text-[14px] sm:text-[16px] leading-[18px] sm:leading-[20px] font-normal">Price</span>
+                                        <span className="text-[#252525] text-[14px] sm:text-[16px] leading-[18px] sm:leading-[20px] font-normal">$ 299.0</span>
                                     </div>
                                     <div className="w-full h-[2px] bg-[#E8ECF4] my-3" />
                                     <div className="flex justify-between items-center">
-                                        <span className="text-[#252525] text-[16px] leading-[20px] font-medium">Total</span>
-                                        <span className="text-[#252525] text-[16px] leading-[20px] font-medium">$ {(quantity * 299).toFixed(1)}</span>
+                                        <span className="text-[#252525] text-[14px] sm:text-[16px] leading-[18px] sm:leading-[20px] font-medium">Total</span>
+                                        <span className="text-[#252525] text-[14px] sm:text-[16px] leading-[18px] sm:leading-[20px] font-medium">$ {(quantity * 299).toFixed(1)}</span>
                                     </div>
                                 </div>
-                                <RippleButton className='w-full bg-[#3A96AF] h-[44px] rounded-md text-[#FFFFFF] text-[16px] leading-[20px] font-medium tracking-[0.5px]'>Proceed to checkout</RippleButton>
+                                <RippleButton className='w-full bg-[#3A96AF] h-[40px] sm:h-[44px] rounded-md text-[#FFFFFF] text-[14px] sm:text-[16px] leading-[18px] sm:leading-[20px] font-medium tracking-[0.5px]'>Proceed to checkout</RippleButton>
                             </div>
                         </div>
                     </div>
