@@ -10,6 +10,8 @@ import HalfStar from '@/SvgIcons/HalfStar';
 import FullStar from '@/SvgIcons/FullStar';
 import WhatIsIncluded from '../WhatIsIncluded';
 import ReviewModal from './ReviewModal'
+import SocialLinks from '../SocialLinks';
+import Link from 'next/link';
 
 interface ServiceDetailsProps {
     service: Service;
@@ -61,7 +63,8 @@ const ServiceDetails: React.FC<ServiceDetailsProps> = ({ service }) => {
                                     <ReviewModal open={reviewOpen} onClose={() => setReviewOpen(false)} />
                                 </div>
                                 <div>
-                                    <h3 className='text-[#333333] text-[12px] leading-[16px] tracking-[1%] font-medium'>Share with Friends</h3>
+                                    <h3 className='text-[#333333] text-[12px] leading-[16px] tracking-[1%] font-medium mb-3'>Share with Friends</h3>
+                                    <SocialLinks />
                                 </div>
                             </div>
 
@@ -77,7 +80,9 @@ const ServiceDetails: React.FC<ServiceDetailsProps> = ({ service }) => {
                                             <h4 className='text-[#676D75] text-[12px] leading-[16px] font-medium mt-1'>Certified Career Coach</h4>
                                         </div>
                                     </div>
+                                    <Link href='/service-provider-profile'>
                                     <RippleButton className='border border-[#3A96AF] bg-[#3A96AF] h-[36px] sm:h-[40px] rounded-lg px-4 text-white text-[12px] leading-[16px] tracking-[0.5px] font-medium'>View Profile</RippleButton>
+                                    </Link>
                                 </div>
                             </div>
 

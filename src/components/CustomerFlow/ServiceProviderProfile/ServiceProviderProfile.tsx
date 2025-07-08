@@ -11,6 +11,9 @@ import Briefcase from '@/SvgIcons/Briefcase'
 import MedalStar from '@/SvgIcons/MedalStar'
 import Location from '@/SvgIcons/Location'
 import Call from '@/SvgIcons/Call'
+import Verifed from '@/SvgIcons/Verifed'
+import SocialLinks from '../SocialLinks'
+import ServicesOffered from './ServicesOffered'
 
 const ServiceProviderProfile = () => {
     const [reviewOpen, setReviewOpen] = useState(false)
@@ -20,9 +23,19 @@ const ServiceProviderProfile = () => {
             <div>
                 <Image src='/assets/service-provider-profile-bg.png' alt='service-provider-profile-bg' width={2000} height={275} className='w-full object-cover h-[275px]' />
                 <div className='w-full px-5 md:px-8'>
-                    <div className='w-full max-w-[1280px] mx-auto -mt-[75px]'>
-                        <div>
+                    <div className='pb-20 md:pb-[150px] w-full max-w-[1280px] mx-auto -mt-[75px]'>
+                        <div className='flex items-start gap-6'>
                             <Image src='/assets/service-provider-profile.png' alt='card-image' width={180} height={180} className='rounded-full h-[180x] w-[180px] object-cover' />
+                            <div className='mt-[97px] flex items-center justify-between gap-4 w-full'>
+                                <div>
+                                    <div className='flex items-center gap-2'>
+                                        <h1 className='text-[#252525] text-[24px] leading-[28px] font-semibold tracking-[0.5px]'>Alice Mwende</h1>
+                                        <Verifed />
+                                    </div>
+                                    <p className='mt-2 text-[#676D75] text-[16px] leading-[20px] font-normal max-w-[536px]'>Art Director and UI/UX & Visual Design Specialist at Omaha Victoria Design Studio</p>
+                                </div>
+                                <SocialLinks />
+                            </div>
                         </div>
 
                         <div className='mb-10 mt-8 flex items-start flex-row justify-between gap-4'>
@@ -30,15 +43,15 @@ const ServiceProviderProfile = () => {
                                 <div className='flex items-center gap-2 justify-between'>
                                     <div className='flex items-center gap-3'>
                                         <Gmail />
-                                        <Link href='alicemwnde@gmail.com' className='text-[#252525] text-[16px] leading-[20px] font-medium poppins underline'>Alice Mwnde@gmail.com</Link>
+                                        <Link href='mailto:alicemwnde@gmail.com' className='text-[#252525] text-[16px] leading-[20px] font-medium poppins underline'>Alice Mwnde@gmail.com</Link>
                                     </div>
                                     <div className='flex items-center gap-3'>
                                         <Location />
-                                        <Link href='alicemwnde@gmail.com' className='text-[#252525] text-[16px] leading-[20px] font-medium poppins underline'>New York, USA</Link>
+                                        <h3 className='text-[#252525] text-[16px] leading-[20px] font-medium poppins'>New York, USA</h3>
                                     </div>
                                     <div className='flex items-center gap-3'>
                                         <Call />
-                                        <Link href='alicemwnde@gmail.com' className='text-[#252525] text-[16px] leading-[20px] font-medium poppins underline'>+11 45678 900</Link>
+                                        <Link href='tel:+1145678900' className='text-[#252525] text-[16px] leading-[20px] font-medium poppins underline'>+11 45678 900</Link>
                                     </div>
                                 </div>
 
@@ -127,6 +140,7 @@ const ServiceProviderProfile = () => {
                                 </div>
                             </div>
                         </div>
+                        <ServicesOffered />
                     </div>
                 </div>
             </div>

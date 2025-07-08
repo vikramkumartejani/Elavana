@@ -3,6 +3,7 @@ import { Star } from 'lucide-react';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import Image from 'next/image';
+import Link from 'next/link';
 
 interface ServiceProviderCardProps {
     provider: {
@@ -14,7 +15,7 @@ interface ServiceProviderCardProps {
         description: string;
         tags: string[];
         category: string;
-    }; 
+    };
     loading?: boolean;
 }
 
@@ -44,7 +45,7 @@ const ServiceProviderCard: React.FC<ServiceProviderCardProps> = ({ provider, loa
     }
 
     return (
-        <div className="bg-white border border-[#E8ECF4] rounded-xl p-3 overflow-hidden hover:shadow-lg transition-shadow duration-300 flex flex-col">
+        <Link href='/service-provider-profile' className="bg-white border border-[#E8ECF4] rounded-xl p-3 overflow-hidden hover:shadow-lg transition-shadow duration-300 flex flex-col">
             {/* Provider Image */}
             {provider.image ? (
                 <img
@@ -113,7 +114,7 @@ const ServiceProviderCard: React.FC<ServiceProviderCardProps> = ({ provider, loa
                     ))
                 )}
             </div>
-        </div>
+        </Link>
     );
 };
 
