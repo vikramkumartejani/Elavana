@@ -2,39 +2,6 @@
 import React from "react";
 import Image from "next/image";
 
-const features = [
-  {
-    icon: "/assets/icons/core-features1.svg",
-    title: "Client Management Dashboard",
-    position: "top-left",
-  },
-  {
-    icon: "/assets/icons/core-features2.svg",
-    title: "Automated Scheduling & Reminders",
-    position: "top-right",
-  },
-  {
-    icon: "/assets/icons/core-features3.svg",
-    title: "Built In Community Space",
-    position: "middle-left",
-  },
-  {
-    icon: "/assets/icons/core-features4.svg",
-    title: "On Demand Invoicing",
-    position: "middle-right",
-  },
-  {
-    icon: "/assets/icons/core-features5.svg",
-    title: "Analytics & Performing Tracking",
-    position: "bottom-left",
-  },
-  {
-    icon: "/assets/icons/core-features6.svg",
-    title: "Custom Coaching Packages And Digital Products",
-    position: "bottom-right",
-  },
-];
-
 const CoreFeatures: React.FC = () => {
   return (
     <section className="w-full bg-[#F8FAFC] py-16 md:py-24 overflow-hidden">
