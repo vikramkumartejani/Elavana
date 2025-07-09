@@ -47,7 +47,7 @@ const options = [
   },
 ];
 
-const Registeration = () => {
+const Registration = () => {
   const [selected, setSelected] = useState("customer");
   const router = useRouter();
 
@@ -100,4 +100,4 @@ const Registeration = () => {
   );
 };
 
-export default Registeration;
+export default Registration;

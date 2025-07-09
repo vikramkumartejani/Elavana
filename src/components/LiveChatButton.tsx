@@ -1,22 +1,30 @@
-'use client';
-import { useEffect, useState } from "react";
+"use client";
 import LiveChat from "@/SvgIcons/LiveChat";
+import React, { useState, MouseEvent } from "react";
+import ContactModal from "./ContactWithUsModal";
 
 export default function LiveChatButton() {
-    const [showLiveChat, setShowLiveChat] = useState(false);
+  const [showContactModal, setShowContactModal] = useState<boolean>(false);
 
-    useEffect(() => {
-        const handleScroll = () => {
-            setShowLiveChat(window.scrollY >= 100);
-        };
-        window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
+  const openContactModal = (e?: MouseEvent) => {
+    if (e) e.stopPropagation();
+    setShowContactModal(true);
+  };
 
-    if (!showLiveChat) return null;
-    return (
-        <button className="fixed bottom-2 right-2 z-50 cursor-pointer">
-            <LiveChat />
-        </button>
-    );
-} 
+  const closeContactModal = () => {
+    setShowContactModal(false);
+  };
+  return (
+    <>
+      <button
+        onClick={openContactModal}
+        className="fixed bottom-2 right-2 z-50 cursor-pointer"
+      >
+        <LiveChat />
+      </button>
+
+      {/* Contact Modal */}
+      <ContactModal isOpen={showContactModal} onClose={closeContactModal} />
+    </>
+  );
+}
