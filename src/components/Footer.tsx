@@ -7,6 +7,8 @@ import Linkedin from "../SvgIcons/Linkedin";
 import Fiverr from "@/SvgIcons/Fiverr";
 import Upwork from "@/SvgIcons/Upwork";
 import Button from "./ui/Button";
+import Youtube from "@/SvgIcons/youtube";
+import Twitter from "@/SvgIcons/Twitter";
 
 interface FooterLink {
   href: string;
@@ -119,6 +121,12 @@ const Footer: React.FC = () => {
             </Link>
             <Link href="/" className="cursor-pointer">
               <Upwork />
+            </Link>
+            <Link href="/" className="cursor-pointer">
+              <Youtube />
+            </Link>
+            <Link href="/" className="cursor-pointer">
+              <Twitter />
             </Link>
           </div>
           <div className="flex items-center w-full justify-between gap-2">
