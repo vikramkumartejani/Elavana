@@ -7,6 +7,7 @@ import CoreFeatures from "@/components/coaches/CoreFeatures";
 import TrustedByCommunity from "@/components/coaches/TrustedByCommunity";
 import Image from "next/image";
 import React from "react";
+import HowItWorks from "@/components/ForCoachesMentor/HowItWorks";
 
 const ForCoachesMentor = () => {
   return (
@@ -15,6 +16,7 @@ const ForCoachesMentor = () => {
       <Hero />
       <CoreFeatures />
       <TrustedByCommunity />
+      <HowItWorks/>
       <div className="bg-[#F6FCFD] py-10 px-5 md:px-8">
         <h1 className="text-[#2E2E2E] text-[24px] sm:text-[40px] sm:leading-[76px] font-semibold text-center">
           Strategic Patnerships
