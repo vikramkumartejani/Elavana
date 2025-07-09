@@ -15,6 +15,8 @@ import { filterByPriceRange, filterByDate, sortServices } from '../utils';
 
 const CustomerHome: React.FC = () => {
     const [showFilters, setShowFilters] = useState<boolean>(false);
+    const [isClosing, setIsClosing] = useState<boolean>(false);
+    const [isDesktop, setIsDesktop] = useState<boolean>(false);
     const [searchTerm, setSearchTerm] = useState<string>('');
     const [selectedCategory, setSelectedCategory] = useState<string>('all');
     const [selectedPriceRange, setSelectedPriceRange] = useState<PriceRange>('all');
@@ -26,12 +28,39 @@ const CustomerHome: React.FC = () => {
 
     const itemsPerPage = 8;
 
+    // Check screen size
+    useEffect(() => {
+        const checkScreenSize = () => {
+            setIsDesktop(window.innerWidth >= 1024);
+        };
+
+        checkScreenSize();
+        window.addEventListener('resize', checkScreenSize);
+
+        return () => {
+            window.removeEventListener('resize', checkScreenSize);
+        };
+    }, []);
+
     const clearAllFilters = (): void => {
         setSearchTerm('');
         setSelectedCategory('all');
         setSelectedPriceRange('all');
         setSelectedDateFilter('anytime');
         setSortBy('popular');
+    };
+
+    const handleCloseFilters = () => {
+        if (!isDesktop) {
+            setShowFilters(false);
+            return;
+        }
+        
+        setIsClosing(true);
+        setTimeout(() => {
+            setShowFilters(false);
+            setIsClosing(false);
+        }, 300);
     };
 
     useEffect(() => {
@@ -132,7 +161,12 @@ const CustomerHome: React.FC = () => {
                         </div>
                     ) : (
                         // Layout with filters
-                        <div className="flex items-start gap-[20px] xl:gap-[30px]">
+                        <div 
+                            className="flex items-start gap-[20px] xl:gap-[30px] transition-all duration-500 ease-in-out"
+                            style={{
+                                animation: isDesktop ? (isClosing ? 'slideOutToLeft 0.3s ease-in' : 'slideInFromLeft 0.5s ease-out') : 'none'
+                            }}
+                        >
                             {/* Filter Sidebar */}
                             <FilterSidebar
                                 selectedCategory={selectedCategory}
@@ -153,7 +187,7 @@ const CustomerHome: React.FC = () => {
                                     searchTerm={searchTerm}
                                     setSearchTerm={setSearchTerm}
                                     showFilters={showFilters}
-                                    setShowFilters={setShowFilters}
+                                    setShowFilters={handleCloseFilters}
                                 />
 
                                 {/* Services Grid */}
