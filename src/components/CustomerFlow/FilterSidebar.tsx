@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { ChevronDown, X } from 'lucide-react';
-import { FilterSidebarProps, PriceRange, DateFilter } from './types';
+import { FilterSidebarProps, DateFilter } from './types';
 import { categories, dateFilters } from './data';
 import PriceRangeButton from './PriceRangeButton';
 
@@ -23,19 +23,44 @@ const FilterSidebar: React.FC<FilterSidebarModalProps> = ({
     const [categoryDropdownOpen, setCategoryDropdownOpen] = useState(false);
     const [dateDropdownOpen, setDateDropdownOpen] = useState(false);
     const modalRef = useRef<HTMLDivElement>(null);
+    const [isMobile, setIsMobile] = useState(false);
 
     useEffect(() => {
-        if (!showFilters) return;
+        const checkScreenSize = () => {
+            setIsMobile(window.innerWidth < 1024);
+        };
+
+        // Check initial screen size
+        checkScreenSize();
+
+        // Add event listener for window resize
+        window.addEventListener('resize', checkScreenSize);
+
+        return () => {
+            window.removeEventListener('resize', checkScreenSize);
+        };
+    }, []);
+
+    useEffect(() => {
+        // Only add click outside functionality on mobile/tablet (less than 1024px)
+        if (!showFilters || !isMobile) return;
+
         function handleClickOutside(event: MouseEvent) {
             if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
                 setShowFilters(false);
             }
         }
-        document.addEventListener('mousedown', handleClickOutside);
+
+        // Add a small delay to prevent immediate closing
+        const timeoutId = setTimeout(() => {
+            document.addEventListener('mousedown', handleClickOutside);
+        }, 100);
+
         return () => {
+            clearTimeout(timeoutId);
             document.removeEventListener('mousedown', handleClickOutside);
         };
-    }, [showFilters, setShowFilters]);
+    }, [showFilters, setShowFilters, isMobile]);
 
     const getCategoryDisplayName = (categoryId: string) => {
         const category = categories.find(cat => cat.id === categoryId);
@@ -140,6 +165,10 @@ const FilterSidebar: React.FC<FilterSidebarModalProps> = ({
                         </div>
                     )}
                 </div>
+
+                {/* then // Layout with filters opens proper but  after that when i click on screen then why // Layout with filters close auto please fix it. */}
+
+{/* LayoutWithFilter open or close just on this  */}
             </div>
             {/* Price Range Buttons */}
             <div className="mb-6 w-full">
@@ -173,8 +202,23 @@ const FilterSidebar: React.FC<FilterSidebarModalProps> = ({
             </div>
             {/* Mobile/Tablet Modal */}
             {showFilters && (
-                <div className="lg:hidden fixed inset-0 bg-black/40 z-50 flex items-center justify-center p-4">
-                    <div ref={modalRef} className="bg-white rounded-[16px] w-full max-w-[400px] max-h-[95vh] overflow-y-auto">
+                <div 
+                    className="lg:hidden fixed inset-0 z-50 flex items-center justify-center p-4"
+                    style={{
+                        animation: 'fadeIn 0.2s ease-out'
+                    }}
+                >
+                    {/* Backdrop with blur effect */}
+                    <div className="absolute inset-0 bg-black/40 backdrop-blur-sm transition-all duration-300 ease-in-out"></div>
+                    
+                    {/* Modal content */}
+                    <div 
+                        ref={modalRef} 
+                        className="relative bg-white rounded-[16px] w-full max-w-[400px] max-h-[95vh] overflow-y-auto shadow-2xl border border-gray-100"
+                        style={{
+                            animation: 'slideInUp 0.3s ease-out'
+                        }}
+                    >
                         <div className="p-5">
                             <FilterContent />
                         </div>
