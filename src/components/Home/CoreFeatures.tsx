@@ -1,198 +1,175 @@
-"use client";
-import React from "react";
-import Image from "next/image";
+'use client'
+import Image from 'next/image';
+import React, { useState } from 'react';
 
-const features = [
-  {
-    icon: "/assets/icons/core-features1.svg",
-    title: "Client Management Dashboard",
-    position: "top-left",
-  },
-  {
-    icon: "/assets/icons/core-features2.svg",
-    title: "Automated Scheduling & Reminders",
-    position: "top-right",
-  },
-  {
-    icon: "/assets/icons/core-features3.svg",
-    title: "Built In Community Space",
-    position: "middle-left",
-  },
-  {
-    icon: "/assets/icons/core-features4.svg",
-    title: "On Demand Invoicing",
-    position: "middle-right",
-  },
-  {
-    icon: "/assets/icons/core-features5.svg",
-    title: "Analytics & Performing Tracking",
-    position: "bottom-left",
-  },
-  {
-    icon: "/assets/icons/core-features6.svg",
-    title: "Custom Coaching Packages And Digital Products",
-    position: "bottom-right",
-  },
-];
+const CoreFeatures = () => {
+    const [activeTab, setActiveTab] = useState('customers');
 
-const CoreFeatures: React.FC = () => {
-  return (
-    <section className="w-full bg-[#F8FAFC] py-16 md:py-24 overflow-hidden">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-12 md:mb-16">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#1E293B] mb-4">
-            Core Features
-          </h2>
-          <p className="text-lg text-[#64748B] max-w-3xl mx-auto">
-            Become the best version of yourself by accessing to the perspectives
-            and life experiences of others who've been there, done that.
-          </p>
-        </div>
+    const customerFeatures = [
+        {
+            icon: "/assets/icons/core-features1.svg",
+            title: "Easy Coach Discovery",
+            description: "Browse and find the perfect coach based on your goals, preferences, and budget."
+        },
+        {
+            icon: "/assets/icons/core-features2.svg",
+            title: "Secure Booking System",
+            description: "Book sessions with confidence using our secure scheduling platform."
+        },
+        {
+            icon: "/assets/icons/core-features3.svg",
+            title: "Progress Tracking",
+            description: "Monitor your journey with detailed progress reports and milestone tracking."
+        },
+        {
+            icon: "/assets/icons/core-features4.svg",
+            title: "Flexible Payment Options",
+            description: "Pay securely with multiple payment methods including M-Pesa integration."
+        },
+        {
+            icon: "/assets/icons/core-features5.svg",
+            title: "Session History",
+            description: "Access all your past sessions, notes, and resources in one place."
+        },
+        {
+            icon: "/assets/icons/core-features6.svg",
+            title: "24/7 Support",
+            description: "Get help whenever you need it with our round-the-clock customer support."
+        }
+    ];
 
-        <div className="relative max-w-6xl mx-auto pb-32 md:pb-40 pt-32 md:pt-40">
-          {/* Dashboard mockup image in center */}
-          <div className="relative z-10 mx-auto mb-8 md:mb-0 max-w-3xl rounded-[24px] shadow-lg overflow-hidden border-2 border-black">
-            <Image
-              src="/assets/hero/dashboard.png"
-              alt="Dashboard Mockup"
-              width={800}
-              height={450}
-              className="w-full h-auto"
-            />
-          </div>
+    const coachFeatures = [
+        {
+            icon: "/assets/icons/core-features1.svg",
+            title: "Seamless M-Pesa Payments",
+            description: "Simple and intuitive design for hassle-free planning."
+        },
+        {
+            icon: "/assets/icons/core-features2.svg",
+            title: "Smart Booking & Scheduling",
+            description: "Manage your calendar with automated booking and smart scheduling tools."
+        },
+        {
+            icon: "/assets/icons/core-features3.svg",
+            title: "Personal Profile + Portfolio",
+            description: "Showcase your expertise with a professional profile and portfolio showcase."
+        },
+        {
+            icon: "/assets/icons/core-features4.svg",
+            title: "Marketplace Visibility",
+            description: "Get discovered by potential clients through our optimized marketplace."
+        },
+        {
+            icon: "/assets/icons/core-features5.svg",
+            title: "Reviews & Testimonials",
+            description: "Build credibility with client reviews and testimonial management system."
+        },
+        {
+            icon: "/assets/icons/core-features6.svg",
+            title: "Earnings Dashboard",
+            description: "Track your income, sessions, and performance with comprehensive analytics."
+        }
+    ];
 
-          {/* Feature cards positioned around the dashboard */}
-          <div className="relative z-20 max-w-5xl mx-auto">
-            {/* Top Left - Client Management Dashboard */}
-            <div className="absolute top-[-100px] left-[-20px] md:top-[-100px] md:left-[-120px] max-w-[280px]">
-              <div className="flex items-center bg-white rounded-lg p-3 md:p-4 shadow-lg border border-gray-100">
-                <div className="flex-shrink-0 mr-3 md:mr-4">
-                  <div className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center bg-[#FEF2F2] rounded-lg">
-                    <Image
-                      src="/assets/icons/core-features1.svg"
-                      alt="Client Management"
-                      width={24}
-                      height={24}
-                    />
-                  </div>
+    const currentFeatures = activeTab === 'customers' ? customerFeatures : coachFeatures;
+
+    return (
+        <>
+            <style jsx>{`
+                @keyframes slideIn {
+                    from {
+                        transform: scaleX(0);
+                        opacity: 0;
+                    }
+                    to {
+                        transform: scaleX(1);
+                        opacity: 1;
+                    }
+                }
+                .animate-slideIn {
+                    animation: slideIn 0.3s ease-out;
+                    transform-origin: left;
+                }
+                @keyframes fadeIn {
+                    from {
+                        opacity: 0;
+                        transform: translateY(20px);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                }
+                .animate-fadeIn {
+                    animation: fadeIn 0.4s ease-out;
+                }
+            `}</style>
+            <div className="w-full pt-[100px] pb-[150px] md:px-8 px-5 bg-[url('/assets/core-bg.svg')] bg-no-repeat bg-cover bg-center">
+                <div className="max-w-[1127px] mx-auto">
+                    {/* Header */}
+                    <div className="text-center w-full">
+                        <h2 className="text-[24px] sm:text-[40px] sm:leading-[44px] font-bold text-[#181E4B] mb-4">
+                            Core Features
+                        </h2>
+                        <p className="text-[#8896AB] text-[16px] sm:text-[20px] leading-[20px] sm:leading-[24px] max-w-[919px] mx-auto mb-4">
+                            {activeTab === 'customers'
+                                ? 'Discover and connect with expert coaches to accelerate your personal and professional growth journey.'
+                                : 'Empower your coaching business with tools designed to help you reach more clients and maximize your impact.'
+                            }
+                        </p>
+                        {/* Tab Navigation */}
+                        <div className="flex justify-center mb-[56px] h-[44px] max-w-fit mx-auto items-center border-b border-[#8896AB]">
+                            <button
+                                onClick={() => setActiveTab('customers')}
+                                className={`px-3 sm:px-4 text-[20px] sm:text-[24px] sm:leading-[28px] h-full flex items-center relative transition-colors cursor-pointer ${activeTab === 'customers'
+                                    ? 'text-[#3A96AF] font-bold'
+                                    : 'text-[#8896AB] font-medium'
+                                    }`}
+                            >
+                                For Customers
+                                {activeTab === 'customers' && (
+                                    <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#3A96AF] animate-slideIn"></div>
+                                )}
+                            </button>
+                            <button
+                                onClick={() => setActiveTab('coaches')}
+                                className={`px-3 sm:px-4 text-[20px] sm:text-[24px] sm:leading-[28px] h-full flex items-center relative transition-colors cursor-pointer ${activeTab === 'coaches'
+                                    ? 'text-[#3A96AF] font-bold'
+                                    : 'text-[#8896AB] font-medium'
+                                    }`}
+                            >
+                                For Coaches
+                                {activeTab === 'coaches' && (
+                                    <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#3A96AF] animate-slideIn"></div>
+                                )}
+                            </button>
+                        </div>
+                    </div>
+                    {/* Features Grid */}
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-x-[46px] gap-y-[36px] animate-fadeIn" key={activeTab}>
+                        {currentFeatures.map((feature, index) => (
+                            <div key={index} className="text-center transition duration-300 hover:shadow-md flex items-center justify-center flex-col bg-white rounded-[20px] pb-3.5 pt-6 px-6">
+                                {/* Icon */}
+                                <Image
+                                    src={feature.icon}
+                                    alt={feature.title}
+                                    width={60}
+                                    height={62}
+                                />
+                                {/* Content */}
+                                <h3 className="mt-5 mb-2 text-[20px] leading-[32px] font-semibold text-[#181E4B]">
+                                    {feature.title}
+                                </h3>
+                                <p className="text-[#8896AB] text-[16px] leading-[25px] font-normal">
+                                    {feature.description}
+                                </p>
+                            </div>
+                        ))}
+                    </div>
                 </div>
-                <div className="flex-grow">
-                  <h3 className="text-sm md:text-base font-semibold text-[#1E293B]">
-                    Client Management Dashboard
-                  </h3>
-                </div>
-              </div>
             </div>
-
-            {/* Top Right - Automated Scheduling */}
-            <div className="absolute top-[-100px] right-[-20px] md:top-[-100px] md:right-[-120px] max-w-[280px]">
-              <div className="flex items-center bg-white rounded-lg p-3 md:p-4 shadow-lg border border-gray-100">
-                <div className="flex-shrink-0 mr-3 md:mr-4">
-                  <div className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center bg-[#FEF2F2] rounded-lg">
-                    <Image
-                      src="/assets/icons/core-features2.svg"
-                      alt="Automated Scheduling"
-                      width={24}
-                      height={24}
-                    />
-                  </div>
-                </div>
-                <div className="flex-grow">
-                  <h3 className="text-sm md:text-base font-semibold text-[#1E293B]">
-                    Automated Scheduling & Reminders
-                  </h3>
-                </div>
-              </div>
-            </div>
-
-            {/* Middle Left - Community Space */}
-            <div className="absolute top-1/2 left-[-20px] md:left-[-120px] max-w-[280px] transform -translate-y-1/2">
-              <div className="flex items-center bg-white rounded-lg p-3 md:p-4 shadow-lg border border-gray-100">
-                <div className="flex-shrink-0 mr-3 md:mr-4">
-                  <div className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center bg-[#FEF2F2] rounded-lg">
-                    <Image
-                      src="/assets/icons/core-features3.svg"
-                      alt="Community Space"
-                      width={24}
-                      height={24}
-                    />
-                  </div>
-                </div>
-                <div className="flex-grow">
-                  <h3 className="text-sm md:text-base font-semibold text-[#1E293B]">
-                    Built In Community Space
-                  </h3>
-                </div>
-              </div>
-            </div>
-
-            {/* Middle Right - On Demand Invoicing */}
-            <div className="absolute top-1/2 right-[-20px] md:right-[-120px] max-w-[280px] transform -translate-y-1/2">
-              <div className="flex items-center bg-white rounded-lg p-3 md:p-4 shadow-lg border border-gray-100">
-                <div className="flex-shrink-0 mr-3 md:mr-4">
-                  <div className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center bg-[#FEF2F2] rounded-lg">
-                    <Image
-                      src="/assets/icons/core-features4.svg"
-                      alt="On Demand Invoicing"
-                      width={24}
-                      height={24}
-                    />
-                  </div>
-                </div>
-                <div className="flex-grow">
-                  <h3 className="text-sm md:text-base font-semibold text-[#1E293B]">
-                    On Demand Invoicing
-                  </h3>
-                </div>
-              </div>
-            </div>
-
-            {/* Bottom Left - Analytics */}
-            <div className="absolute bottom-[-100px] left-[-20px] md:bottom-[-100px] md:left-[-120px] max-w-[280px]">
-              <div className="flex items-center bg-white rounded-lg p-3 md:p-4 shadow-lg border border-gray-100">
-                <div className="flex-shrink-0 mr-3 md:mr-4">
-                  <div className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center bg-[#FEF2F2] rounded-lg">
-                    <Image
-                      src="/assets/icons/core-features5.svg"
-                      alt="Analytics"
-                      width={24}
-                      height={24}
-                    />
-                  </div>
-                </div>
-                <div className="flex-grow">
-                  <h3 className="text-sm md:text-base font-semibold text-[#1E293B]">
-                    Analytics & Performing Tracking
-                  </h3>
-                </div>
-              </div>
-            </div>
-
-            {/* Bottom Right - Custom Coaching */}
-            <div className="absolute bottom-[-100px] right-[-20px] md:bottom-[-100px] md:right-[-120px] max-w-[280px]">
-              <div className="flex items-center bg-white rounded-lg p-3 md:p-4 shadow-lg border border-gray-100">
-                <div className="flex-shrink-0 mr-3 md:mr-4">
-                  <div className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center bg-[#FEF2F2] rounded-lg">
-                    <Image
-                      src="/assets/icons/core-features6.svg"
-                      alt="Custom Coaching"
-                      width={24}
-                      height={24}
-                    />
-                  </div>
-                </div>
-                <div className="flex-grow">
-                  <h3 className="text-sm md:text-base font-semibold text-[#1E293B]">
-                    Custom Coaching Packages And Digital Products
-                  </h3>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
+        </>
+    );
 };
 
 export default CoreFeatures;
