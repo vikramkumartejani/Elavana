@@ -1,171 +1,171 @@
-import React from "react";
-import {
-  Users,
-  Shield,
-  TrendingUp,
-  Calendar,
-  CreditCard,
-  Heart,
-} from "lucide-react";
+import { Card } from "@/components/ui/card";
+import Image from "next/image";
 
-interface BenefitProps {
-  icon: React.ReactNode;
-  title: string;
-  description: string;
+type CardItem = {
   position: string;
-}
+  imgSrc: string;
+  imgAlt: string;
+  label: string[];
+};
 
-const Benefit: React.FC<BenefitProps> = ({
-  icon,
-  title,
-  description,
-  position,
-}) => (
-  <div
-    className={`absolute ${position} bg-white rounded-lg shadow-lg p-6 max-w-48 text-center border border-gray-100`}
-  >
-    <div className="flex justify-center mb-3">
-      <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
-        {icon}
-      </div>
-    </div>
-    <h3 className="font-semibold text-gray-800 mb-2 text-sm leading-tight">
-      {title}
-    </h3>
-    <p className="text-gray-600 text-xs leading-relaxed">{description}</p>
-  </div>
-);
+const cards: CardItem[] = [
+  {
+    position: "top-[18.5%] left-[9%]",
+    imgSrc: "/assets/peoples.svg",
+    imgAlt: "Clients icon",
+    label: ["Get discovered by", "real clients"],
+  },
+  {
+    position: "top-[18.5%] right-[9%]",
+    imgSrc: "/assets/verified.svg",
+    imgAlt: "Verified icon",
+    label: ["Trusted, verified", "experts"],
+  },
+  {
+    position: "top-1/2 left-0 -translate-y-1/2",
+    imgSrc: "/assets/build-circle.svg",
+    imgAlt: "Brand icon",
+    label: ["Build your brand &", "credibility"],
+  },
+  {
+    position: "top-1/2 right-0 -translate-y-1/2",
+    imgSrc: "/assets/wallet-open.svg",
+    imgAlt: "M‑Pesa icon",
+    label: ["Book securely with", "M‑Pesa"],
+  },
+  {
+    position: "bottom-[18.5%] left-[9%]",
+    imgSrc: "/assets/tickets.svg",
+    imgAlt: "Events icon",
+    label: ["Host paid sessions,", "events, and more"],
+  },
+  {
+    position: "bottom-[18.5%] right-[9%]",
+    imgSrc: "/assets/clipboard-heart.svg",
+    imgAlt: "Career icon",
+    label: ["Grow your career,", "life, and wellness"],
+  },
+];
 
-const WhyElevana: React.FC = () => {
-  const benefits = [
-    {
-      icon: <Users className="w-6 h-6 text-blue-600" />,
-      title: "Get discovered by real clients",
-      description: "Connect with genuine clients looking for your services",
-      position: "top-0 left-16",
-    },
-    {
-      icon: <Shield className="w-6 h-6 text-teal-600" />,
-      title: "Trusted, verified experts",
-      description: "Join a network of verified professionals",
-      position: "top-0 right-16",
-    },
-    {
-      icon: <TrendingUp className="w-6 h-6 text-cyan-600" />,
-      title: "Build your brand & credibility",
-      description: "Establish your professional reputation",
-      position: "left-0 top-1/2 -translate-y-1/2",
-    },
-    {
-      icon: <CreditCard className="w-6 h-6 text-blue-500" />,
-      title: "Book securely with M-Pesa",
-      description: "Safe and convenient payment processing",
-      position: "right-0 top-1/2 -translate-y-1/2",
-    },
-    {
-      icon: <Calendar className="w-6 h-6 text-teal-500" />,
-      title: "Host paid sessions, events, and more",
-      description: "Monetize your expertise through various formats",
-      position: "bottom-0 left-16",
-    },
-    {
-      icon: <Heart className="w-6 h-6 text-blue-400" />,
-      title: "Grow your career, life, and wellness",
-      description: "Personal and professional development",
-      position: "bottom-0 right-16",
-    },
-  ];
+type ConnectorItem = {
+  position: string;
+  src: string;
+  w: number;
+  h: number;
+};
 
+const connectors: ConnectorItem[] = [
+  {
+    position: "top-[25%] left-[31%]",
+    src: "/assets/connector-lines/top-left-line.svg",
+    w: 118,
+    h: 155,
+  },
+  {
+    position: "top-[25%] right-[31%]",
+    src: "/assets/connector-lines/top-right-line.svg",
+    w: 118,
+    h: 155,
+  },
+  {
+    position: "top-1/2 left-[20%] -translate-y-1/2",
+    src: "/assets/connector-lines/middle-left-line.svg",
+    w: 215,
+    h: 40,
+  },
+  {
+    position: "top-1/2 right-[20%] -translate-y-1/2",
+    src: "/assets/connector-lines/middle-right-line.svg",
+    w: 215,
+    h: 40,
+  },
+  {
+    position: "bottom-[25%] left-[31%]",
+    src: "/assets/connector-lines/bottom-left-line.svg",
+    w: 172,
+    h: 155,
+  },
+  {
+    position: "bottom-[25%] right-[31%]",
+    src: "/assets/connector-lines/bottom-right-line.svg",
+    w: 172,
+    h: 155,
+  },
+];
+
+export function WhyElevana() {
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center p-8">
-      <div className="max-w-4xl w-full">
-        <h1 className="text-4xl font-bold text-center text-gray-800 mb-16">
+    <section className="w-full py-16 px-4">
+      <div className="max-w-[972px] w-full md:h-[868px] h-[700px] mx-auto mb-[-50px]">
+        {/* Section Title */}
+        <h2 className="text-center text-4xl font-bold text-gray-900 -mb-12">
           Why Elevana?
-        </h1>
+        </h2>
 
-        <div className="relative flex items-center justify-center">
-          {/* Connection Lines */}
-          <svg
-            className="absolute inset-0 w-full h-full"
-            viewBox="0 0 800 600"
-            style={{ zIndex: 1 }}
+        {/* Main Container */}
+        <div className="relative w-full h-full flex justify-center items-center">
+          {/* Concentric Circles SVG */}
+          <Image
+            src="/assets/connector-lines/dashed-circles.svg" // adjust path if different
+            alt=""
+            width={700}
+            height={700}
+            priority
+            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none select-none"
+          />
+
+          {/* Central Logo Card */}
+          <Card
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 md:p-[30px] p-4 rounded-[37px] bg-white border-[#DCE6E9] flex items-center justify-center z-10 shadow-[#616C6F4D]"
+            style={{ boxShadow: "0px 32px 50px -20px #616C6F4D" }}
           >
-            <defs>
-              <pattern
-                id="dots"
-                patternUnits="userSpaceOnUse"
-                width="4"
-                height="4"
-              >
-                <circle cx="2" cy="2" r="1" fill="#e5e7eb" />
-              </pattern>
-            </defs>
-
-            {/* Dotted lines connecting to center */}
-            <path
-              d="M 150 100 Q 300 200 400 300"
-              stroke="url(#dots)"
-              strokeWidth="2"
-              fill="none"
-            />
-            <path
-              d="M 650 100 Q 500 200 400 300"
-              stroke="url(#dots)"
-              strokeWidth="2"
-              fill="none"
-            />
-            <path
-              d="M 50 300 Q 200 300 400 300"
-              stroke="url(#dots)"
-              strokeWidth="2"
-              fill="none"
-            />
-            <path
-              d="M 750 300 Q 600 300 400 300"
-              stroke="url(#dots)"
-              strokeWidth="2"
-              fill="none"
-            />
-            <path
-              d="M 150 500 Q 300 400 400 300"
-              stroke="url(#dots)"
-              strokeWidth="2"
-              fill="none"
-            />
-            <path
-              d="M 650 500 Q 500 400 400 300"
-              stroke="url(#dots)"
-              strokeWidth="2"
-              fill="none"
-            />
-          </svg>
-
-          {/* Center Logo */}
-          <div
-            className="relative bg-white rounded-full p-8 shadow-lg border-4 border-orange-100"
-            style={{ zIndex: 2 }}
-          >
-            <div className="w-20 h-20 bg-gradient-to-br from-orange-400 via-orange-500 to-teal-500 rounded-full flex items-center justify-center">
-              <div className="text-white text-2xl font-bold">E</div>
-            </div>
-          </div>
-
-          {/* Benefit Cards */}
-          <div className="relative w-full h-96" style={{ zIndex: 3 }}>
-            {benefits.map((benefit, index) => (
-              <Benefit
-                key={index}
-                icon={benefit.icon}
-                title={benefit.title}
-                description={benefit.description}
-                position={benefit.position}
+            <div className="flex items-center justify-center md:w-[97.05px] w-[60px]">
+              <Image
+                src="/assets/why-elevana-logo.svg"
+                alt=""
+                width={97.05}
+                height={106.83}
+                className="object-contain"
               />
-            ))}
-          </div>
+            </div>
+          </Card>
+
+          {/* Connector lines */}
+          {connectors.map(({ position, src, w, h }, i) => (
+            <div key={i} className={`absolute ${position} pointer-events-none`}>
+              <Image
+                src={src}
+                alt=""
+                width={w}
+                height={h}
+                className="object-contain"
+              />
+            </div>
+          ))}
+
+          {/* Feature Cards */}
+          {cards.map(({ position, imgSrc, imgAlt, label }, idx) => (
+            <Card
+              key={idx}
+              className={`absolute ${position} w-[217px] text-center p-[20px] rounded-[20px] bg-white z-20 gap-[14px] border-[#DCE6E9]`}
+              style={{ boxShadow: "0px 32px 50px -20px #616C6F26" }}
+            >
+              <Image
+                src={imgSrc}
+                alt={imgAlt}
+                width={32}
+                height={32}
+                className="mx-auto"
+              />
+              <p className="font-semibold text-gray-800 text-sm leading-tight">
+                {label[0]} <br /> {label[1]}
+              </p>
+            </Card>
+          ))}
         </div>
       </div>
-    </div>
+    </section>
   );
-};
+}
 
 export default WhyElevana;
