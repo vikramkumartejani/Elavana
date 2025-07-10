@@ -205,7 +205,7 @@ const ServiceProviderProfile = () => {
                       <button
                         key={expertise.id}
                         onClick={() => handleExpertiseClick(expertise.name)}
-                        className="border border-[#D97E59] bg-[#D97E591F] rounded-lg h-8 sm:h-[36px] text-[#D97E59] text-[14px] sm:text-[16px] leading-[18px] sm:leading-[20px] font-normal px-3 sm:px-4"
+                        className="border cursor-pointer border-[#D97E59] bg-[#D97E591F] rounded-lg h-8 sm:h-[36px] text-[#D97E59] text-[14px] sm:text-[16px] leading-[18px] sm:leading-[20px] font-normal px-3 sm:px-4"
                       >
                         {expertise.name}
                       </button>
@@ -219,7 +219,7 @@ const ServiceProviderProfile = () => {
                   </h2>
                   <div className="flex items-center gap-2 sm:gap-3">
                     <Briefcase />
-                    <h3 className="text-[#252525] text-[14px] sm:text-[16px] leading-[18px] sm:leading-[20px] font-normal poppinss">
+                    <h3 className="text-[#252525] text-[14px] sm:text-[16px] leading-[18px] sm:leading-[20px] font-normal poppins">
                       {serviceProvider.experience}
                     </h3>
                   </div>
