@@ -37,7 +37,7 @@ const PaymentFailedModal: FC<PaymentFailedModalProps> = ({
       onClick={onClose}
     >
       <div
-        className="bg-white rounded-[24px] max-w-[501px] mx-auto w-full py-[34px] px-6 flex flex-col items-center"
+        className="bg-white rounded-xl sm:rounded-[24px] max-w-[501px] mx-auto w-full py-5 sm:py-[34px] px-5 sm:px-6 flex flex-col items-center"
         onClick={e => e.stopPropagation()}
       >
         <Image
@@ -45,72 +45,72 @@ const PaymentFailedModal: FC<PaymentFailedModalProps> = ({
           alt="Success"
           width={120}
           height={120}
-          className="object-contain mb-6"
+          className="object-contain w-[100px] sm:w-[120px] mb-4 sm:mb-6"
         />
 
-        <h2 className="text-[#E21B1B] text-[24px] leading-[28px] tracking-[0.5px] font-semibold mb-3">
+        <h2 className="text-[#E21B1B] text-[20px] sm:text-[24px] leading-[22px] sm:leading-[28px] tracking-[0.5px] font-semibold mb-3">
           Payment Failed
         </h2>
-        <p className="text-[#252525] text-[16px] leading-[20px] tracking-[0.5px]">
+        <p className="text-[#252525] text-[14px] sm:text-[16px] leading-[16px] sm:leading-[20px] tracking-[0.5px]">
           Oops! Something went wrong with your Payment.
         </p>
 
-        <div className="bg-[#E8ECF4] h-[2px] w-full my-6" />
+        <div className="bg-[#E8ECF4] h-[2px] w-full my-4 sm:my-6" />
 
-        <div className="w-full space-y-3 mb-6">
+        <div className="w-full space-y-2 sm:space-y-3 mb-4 sm:mb-6">
           <div className="flex justify-between">
-            <h3 className="text-[#252525] text-[16px] leading-[20px] font-normal tracking-[0.5px]">
+            <h3 className="text-[#252525] text-[14px] sm:text-[16px] leading-[18px] sm:leading-[20px] font-normal tracking-[0.5px]">
               Transaction ID
             </h3>
-            <h3 className="text-[#252525] text-[16px] leading-[20px] tracking-[0.5px] font-medium">
+            <h3 className="text-[#252525] text-[14px] sm:text-[16px] leading-[18px] sm:leading-[20px] tracking-[0.5px] font-medium">
               {transactionId}
             </h3>
           </div>
           <div className="flex justify-between">
-            <h3 className="text-[#252525] text-[16px] leading-[20px] font-normal tracking-[0.5px]">
+            <h3 className="text-[#252525] text-[14px] sm:text-[16px] leading-[18px] sm:leading-[20px] font-normal tracking-[0.5px]">
               Date
             </h3>
-            <h3 className="text-[#252525] text-[16px] leading-[20px] tracking-[0.5px] font-medium">
+            <h3 className="text-[#252525] text-[14px] sm:text-[16px] leading-[18px] sm:leading-[20px] tracking-[0.5px] font-medium">
               {date}
             </h3>
           </div>
           <div className="flex justify-between">
-            <h3 className="text-[#252525] text-[16px] leading-[20px] font-normal tracking-[0.5px]">
+            <h3 className="text-[#252525] text-[14px] sm:text-[16px] leading-[18px] sm:leading-[20px] font-normal tracking-[0.5px]">
               Time
             </h3>
-            <h3 className="text-[#252525] text-[16px] leading-[20px] tracking-[0.5px] font-medium">
+            <h3 className="text-[#252525] text-[14px] sm:text-[16px] leading-[18px] sm:leading-[20px] tracking-[0.5px] font-medium">
               {time}
             </h3>
           </div>
           <div className="flex justify-between">
-            <h3 className="text-[#252525] text-[16px] leading-[20px] font-normal tracking-[0.5px]">
+            <h3 className="text-[#252525] text-[14px] sm:text-[16px] leading-[18px] sm:leading-[20px] font-normal tracking-[0.5px]">
               Payment Method
             </h3>
-            <h3 className="text-[#252525] text-[16px] leading-[20px] tracking-[0.5px] font-medium">
+            <h3 className="text-[#252525] text-[14px] sm:text-[16px] leading-[18px] sm:leading-[20px] tracking-[0.5px] font-medium">
               {paymentMethod}
             </h3>
           </div>
           <div className="w-full h-[2px] bg-[#E8ECF4]" />
           <div className="flex justify-between">
-            <h3 className="text-[#252525] text-[16px] leading-[20px] font-normal tracking-[0.5px]">
+            <h3 className="text-[#252525] text-[14px] sm:text-[16px] leading-[18px] sm:leading-[20px] font-normal tracking-[0.5px]">
               Amount Paid
             </h3>
-            <h3 className="text-[#ED0006] text-[16px] leading-[20px] tracking-[0.5px] font-medium">
+            <h3 className="text-[#ED0006] text-[14px] sm:text-[16px] leading-[18px] sm:leading-[20px] tracking-[0.5px] font-medium">
               $ {amount.toFixed(1)} (Failed)
             </h3>
           </div>
         </div>
 
-        <div className="w-full space-y-3">
+        <div className="w-full space-y-2 sm:space-y-3">
           <RippleButton
             onClick={onResendRequest}
-            className="w-full py-3 border border-[#3A96AF] rounded-lg text-[#3A96AF] text-[16px] leading-[20px] tracking-[#3A96AF] font-medium"
+            className="w-full py-2.5 sm:py-3 border border-[#3A96AF] rounded-lg text-[#3A96AF] text-[16px] leading-[20px] tracking-[#3A96AF] font-medium"
           >
             Resend Payment Request
           </RippleButton>
           <RippleButton
             onClick={handleBackToServices}
-            className="w-full py-3 bg-[#3A96AF] text-white rounded-lg text-[16px] leading-[20px] tracking-[#3A96AF] font-medium"
+            className="w-full py-2.5 sm:py-3 bg-[#3A96AF] text-white rounded-lg text-[16px] leading-[20px] tracking-[#3A96AF] font-medium"
           >
             Back to Services
           </RippleButton>

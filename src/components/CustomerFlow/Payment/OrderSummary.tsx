@@ -29,23 +29,23 @@ interface OrderSummaryProps {
 }
 
 const OrderSummary: React.FC<OrderSummaryProps> = ({ title, mockOrder, price, quantity, total }) => (
-    <div className="w-full max-w-[400px] border border-[#E8ECF4] rounded-[24px] flex flex-col py-[34px] px-6">
-        <h3 className="text-center text-[#252525] text-[24px] leading-[28px] font-semibold tracking-[0.5px] mb-6">
+    <div className="w-full md:max-w-[400px] border border-[#E8ECF4] rounded-xl sm:rounded-[24px] flex flex-col py-5 sm:py-[34px] px-5 sm:px-6">
+        <h3 className="text-center text-[#252525] text-[20px] sm:text-[24px] leading-[24px] sm:leading-[28px] font-semibold tracking-[0.5px] mb-4 sm:mb-6">
             Order Summary
         </h3>
-        <div className="flex items-center gap-3 mb-6">
+        <div className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
             <Image
                 src={mockOrder.image}
                 alt="Service"
                 width={60}
                 height={60}
-                className="rounded-xl h-[60px] w-[60px] object-cover"
+                className="rounded-lg sm:rounded-xl h-[50px] sm:h-[60px] w-[50px] sm:w-[60px] object-cover"
             />
             <div>
-                <h1 className="font-semibold text-[20px] leading-[24px] tracking-[0.5px] text-[#252525]">
+                <h1 className="font-semibold text-[18px] sm:text-[20px] leading-[20px] sm:leading-[24px] tracking-[0.5px] text-[#252525]">
                     {title}
                 </h1>
-                <div className="mt-2 flex items-center gap-2">
+                <div className="mt-1 sm:mt-2 flex items-center gap-2">
                     <div className="flex items-center gap-0.5">
                         <Image src="/assets/icons/star.svg" alt="star" width={14} height={14} />
                         <Image src="/assets/icons/star.svg" alt="star" width={14} height={14} />
@@ -103,7 +103,7 @@ const OrderSummary: React.FC<OrderSummaryProps> = ({ title, mockOrder, price, qu
                 </div>
             </div>
         </div>
-        <div className="my-6 bg-[#E8ECF4] h-[2px] w-full" />
+        <div className="my-4 sm:my-6 bg-[#E8ECF4] h-[2px] w-full" />
         <div className="flex justify-between">
             <h3 className="text-[#252525] text-[16px] leading-[20px] tracking-[0.5px] font-normal">
                 Ticket
@@ -112,7 +112,7 @@ const OrderSummary: React.FC<OrderSummaryProps> = ({ title, mockOrder, price, qu
                 {quantity}
             </h3>
         </div>
-        <div className="mt-3 flex justify-between">
+        <div className="mt-2 sm:mt-3 flex justify-between">
             <h3 className="text-[#252525] text-[16px] leading-[20px] tracking-[0.5px] font-normal">
                 Subtotal
             </h3>
@@ -120,12 +120,12 @@ const OrderSummary: React.FC<OrderSummaryProps> = ({ title, mockOrder, price, qu
                 $ {price}
             </h3>
         </div>
-        <div className="w-full h-[2px] bg-[#E8ECF4] mt-3 mb-6" />
+        <div className="w-full h-[2px] bg-[#E8ECF4] mt-3 mb-4 sm:mb-6" />
         <div className="flex justify-between text-base font-semibold">
-            <h3 className="text-[#252525] text-[18px] leading-[20px] tracking-[0.5px] font-semibold">
+            <h3 className="text-[#252525] text-[16px] sm:text-[18px] leading-[18px] sm:leading-[20px] tracking-[0.5px] font-semibold">
                 Total Price
             </h3>
-            <h3 className="text-[#252525] text-[20px] leading-[20px] tracking-[0.5px] font-bold">
+            <h3 className="text-[#252525] text-[18px] sm:text-[20px] leading-[18px] sm:leading-[20px] tracking-[0.5px] font-bold">
                 $ {total}
             </h3>
         </div>

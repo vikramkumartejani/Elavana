@@ -87,16 +87,16 @@ const Payment: FC = () => {
             <div className="w-full px-5 md:px-8">
                 <div className="max-w-[1280px] w-full mx-auto pt-6 pb-20">
                     <div>
-                        <h1 className="text-[#252525] text-[24px] font-semibold leading-[31px] mb-3">
+                        <h1 className="text-[#252525] text-[20px] sm:text-[24px] font-semibold leading-[26px] sm:leading-[31px] mb-2 sm:mb-3">
                             Payment Method
                         </h1>
-                        <h3 className="text-[#252525] text-[20px] leading-[26px] font-normal">
+                        <h3 className="text-[#252525] text-[16px] sm:text-[20px] leading-[20px] sm:leading-[26px] font-normal">
                             Select your payment method
                         </h3>
                     </div>
-                    <div className="mt-6 flex items-start justify-between gap-6">
+                    <div className="mt-4 sm:mt-6 flex items-start justify-between lg:flex-row flex-col-reverse gap-6">
                         {/* Card Method */}
-                        <div className="max-w-[709px] w-full flex flex-col gap-6">
+                        <div className="lg:max-w-[709px] w-full flex flex-col gap-6">
                             <CardPayment
                                 selected={selectedPayment === 'card'}
                                 onSelect={() => setSelectedPayment('card')}
@@ -113,6 +113,7 @@ const Payment: FC = () => {
                                 handleProceedPayment={handleProceedPayment}
                             />
                         </div>
+
                         {/* Order Summary Section */}
                         <OrderSummary
                             title={title}
