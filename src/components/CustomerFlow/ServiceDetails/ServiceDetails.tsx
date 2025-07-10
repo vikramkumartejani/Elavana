@@ -65,6 +65,8 @@ const ServiceDetails: React.FC<ServiceDetailsProps> = ({ service }) => {
   const [activeTimeSlot, setActiveTimeSlot] = useState(0);
   const [selectedPackage, setSelectedPackage] = useState("student");
   const [packageQuantity, setPackageQuantity] = useState(1);
+  const [generalPackageQuantity, setGeneralPackageQuantity] = useState(0);
+  const [vipPackageQuantity, setVipPackageQuantity] = useState(0);
 
   // Package options
   const packages = [
@@ -138,6 +140,33 @@ const ServiceDetails: React.FC<ServiceDetailsProps> = ({ service }) => {
       verified: true,
     },
   ];
+
+  // Calculate total price including base service, packages, and add-ons
+  const calculateTotal = () => {
+    let total = service.price;
+
+    // Add package prices based on selected package and quantity
+    if (selectedPackage === "student") {
+      total += packageQuantity * 200;
+    } else if (selectedPackage === "member") {
+      // For member package, add both General and VIP package prices
+      total += generalPackageQuantity * 50; // General Package
+      total += vipPackageQuantity * 60; // VIP Package
+    } else if (selectedPackage === "non-member") {
+      total += packageQuantity * 300; // Non-member package price
+    }
+
+    // Add add-on prices
+    selectedAddOns.forEach((addonId) => {
+      const addon = addOns.find((a) => a.id === addonId);
+      if (addon) {
+        // Remove the $ sign and convert to number
+        total += parseFloat(addon.price.replace("$", "").trim());
+      }
+    });
+
+    return total;
+  };
 
   return (
     <>
@@ -414,312 +443,7 @@ const ServiceDetails: React.FC<ServiceDetailsProps> = ({ service }) => {
                 </div>
               )}
 
-              {/* Choose your Package - Only for events */}
-              {["event", "workshops", "conference"].includes(
-                service.category
-              ) && (
-                <div className="w-full mt-6">
-                  <h3 className="text-[#252525] text-[18px] sm:text-[20px] leading-[20px] sm:leading-[24px] tracking-[0.5px] font-medium mb-3 sm:mb-4">
-                    Choose your Package
-                  </h3>
-
-                  <div className="w-full space-y-4">
-                    {/* Student Package */}
-                    <div className="border border-[#E8ECF4] rounded-lg overflow-hidden">
-                      <button
-                        className="w-full flex items-center justify-between px-4 py-3 bg-white"
-                        onClick={() =>
-                          setSelectedPackage(
-                            selectedPackage === "student" ? "" : "student"
-                          )
-                        }
-                      >
-                        <h3 className="text-[#252525] text-[16px] sm:text-[18px] leading-[20px] sm:leading-[24px] font-medium">
-                          Student Package {packages[0].price}
-                        </h3>
-                        <svg
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                          className={
-                            selectedPackage === "student"
-                              ? "rotate-180 transform"
-                              : ""
-                          }
-                        >
-                          <path
-                            d="M6 9L12 15L18 9"
-                            stroke="#252525"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
-                        </svg>
-                      </button>
-
-                      {selectedPackage === "student" && (
-                        <div className="px-4 py-3 bg-white">
-                          <div className="space-y-2">
-                            {packages[0].features.map((feature, idx) => (
-                              <p
-                                key={idx}
-                                className="text-[#676D75] text-[14px] sm:text-[16px] leading-[20px] sm:leading-[24px] font-normal"
-                              >
-                                {feature}
-                              </p>
-                            ))}
-                            <div className="pt-2">
-                              <p className="text-[#252525] text-[14px] sm:text-[16px] leading-[20px] sm:leading-[24px] font-medium mb-2">
-                                Quantity
-                              </p>
-                              <div className=" flex w-full items-center">
-                                <button
-                                  className="flex items-center justify-center w-8 h-8 border-t border-l border-b border-[#E8ECF4] rounded-l-md bg-white text-[#252525] text-xl font-medium"
-                                  onClick={() =>
-                                    setPackageQuantity(
-                                      Math.max(1, packageQuantity - 1)
-                                    )
-                                  }
-                                >
-                                  -
-                                </button>
-                                <div className="flex items-center justify-center w-full h-8 border-t border-b border-[#E8ECF4] bg-white text-[#252525] text-base font-medium">
-                                  {packageQuantity}
-                                </div>
-                                <button
-                                  className="flex items-center justify-center w-8 h-8 border-t border-b border-r border-[#E8ECF4] rounded-r-md bg-white text-[#252525] text-xl font-medium"
-                                  onClick={() =>
-                                    setPackageQuantity(
-                                      Math.min(5, packageQuantity + 1)
-                                    )
-                                  }
-                                >
-                                  +
-                                </button>
-                              </div>
-                              <p className="text-[#676D75] text-[12px] sm:text-[14px] leading-[18px] font-normal mt-1">
-                                Maximum purchase 5
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                      )}
-                    </div>
-
-                    {/* Member Package */}
-                    <div className="border border-[#E8ECF4] rounded-lg overflow-hidden">
-                      <button
-                        className="w-full flex items-center justify-between px-4 py-3 bg-white"
-                        onClick={() =>
-                          setSelectedPackage(
-                            selectedPackage === "member" ? "" : "member"
-                          )
-                        }
-                      >
-                        <h3 className="text-[#252525] text-[16px] sm:text-[18px] leading-[20px] sm:leading-[24px] font-medium">
-                          Member Package
-                        </h3>
-                        <svg
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                          className={
-                            selectedPackage === "member"
-                              ? "rotate-180 transform"
-                              : ""
-                          }
-                        >
-                          <path
-                            d="M6 9L12 15L18 9"
-                            stroke="#252525"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
-                        </svg>
-                      </button>
-
-                      {selectedPackage === "member" && (
-                        <div className="px-4 py-3 bg-white">
-                          {/* General Package */}
-                          <div className="border-b border-[#E8ECF4] pb-4 mb-4">
-                            <div className="flex justify-between items-center mb-2">
-                              <h3 className="text-[#252525] text-[14px] sm:text-[16px] leading-[20px] sm:leading-[24px] font-medium">
-                                General Package
-                              </h3>
-                              <span className="text-[#252525] text-[14px] sm:text-[16px] leading-[20px] sm:leading-[24px] font-medium">
-                                50$
-                              </span>
-                            </div>
-                            <div className="space-y-2 mb-3">
-                              <p className="text-[#676D75] text-[14px] sm:text-[16px] leading-[20px] sm:leading-[24px] font-normal">
-                                Conference welcome kit
-                              </p>
-                              <p className="text-[#676D75] text-[14px] sm:text-[16px] leading-[20px] sm:leading-[24px] font-normal">
-                                Access to networking lounges
-                              </p>
-                            </div>
-                            <div>
-                              <p className="text-[#252525] text-[14px] sm:text-[16px] leading-[20px] sm:leading-[24px] font-medium mb-2">
-                                Quantity
-                              </p>
-                              <div className="flex w-full items-center">
-                                <button
-                                  className="flex items-center justify-center w-8 h-8 border-t border-l border-b border-[#E8ECF4] rounded-l-md bg-white text-[#252525] text-xl font-medium"
-                                  onClick={() =>
-                                    setPackageQuantity(
-                                      Math.max(1, packageQuantity - 1)
-                                    )
-                                  }
-                                >
-                                  -
-                                </button>
-                                <div className="flex items-center justify-center w-full h-8 border-t border-b border-[#E8ECF4] bg-white text-[#252525] text-base font-medium">
-                                  1
-                                </div>
-                                <button
-                                  className="flex items-center justify-center w-8 h-8 border-t border-b border-r border-[#E8ECF4] rounded-r-md bg-white text-[#252525] text-xl font-medium"
-                                  onClick={() =>
-                                    setPackageQuantity(
-                                      Math.min(5, packageQuantity + 1)
-                                    )
-                                  }
-                                >
-                                  +
-                                </button>
-                              </div>
-                              <p className="text-[#676D75] text-[12px] sm:text-[14px] leading-[18px] font-normal mt-1">
-                                Maximum purchase 5
-                              </p>
-                            </div>
-                          </div>
-
-                          {/* VIP Package */}
-                          <div>
-                            <div className="flex justify-between items-center mb-2">
-                              <h3 className="text-[#252525] text-[14px] sm:text-[16px] leading-[20px] sm:leading-[24px] font-medium">
-                                VIP Package
-                              </h3>
-                              <span className="text-[#252525] text-[14px] sm:text-[16px] leading-[20px] sm:leading-[24px] font-medium">
-                                60$
-                              </span>
-                            </div>
-                            <div className="space-y-2 mb-3">
-                              <p className="text-[#676D75] text-[14px] sm:text-[16px] leading-[20px] sm:leading-[24px] font-normal">
-                                Conference welcome kit
-                              </p>
-                              <p className="text-[#676D75] text-[14px] sm:text-[16px] leading-[20px] sm:leading-[24px] font-normal">
-                                Access to networking lounges
-                              </p>
-                              <p className="text-[#676D75] text-[14px] sm:text-[16px] leading-[20px] sm:leading-[24px] font-normal">
-                                Priority dinner reservation
-                              </p>
-                            </div>
-                            <div>
-                              <p className="text-[#252525] text-[14px] sm:text-[16px] leading-[20px] sm:leading-[24px] font-medium mb-2">
-                                Quantity
-                              </p>
-                              <div className="flex w-full items-center">
-                                <button className="flex items-center justify-center w-8 h-8 border-t border-l border-b border-[#E8ECF4] rounded-l-md bg-white text-[#252525] text-xl font-medium">
-                                  -
-                                </button>
-                                <div className="flex items-center justify-center w-full h-8 border-t border-b border-[#E8ECF4] bg-white text-[#252525] text-base font-medium">
-                                  1
-                                </div>
-                                <button className="flex items-center justify-center w-8 h-8 border-t border-b border-r border-[#E8ECF4] rounded-r-md bg-white text-[#252525] text-xl font-medium">
-                                  +
-                                </button>
-                              </div>
-                              <p className="text-[#676D75] text-[12px] sm:text-[14px] leading-[18px] font-normal mt-1">
-                                Maximum purchase 5
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                      )}
-                    </div>
-
-                    {/* Non-Member Package */}
-                    <div className="border border-[#E8ECF4] rounded-lg overflow-hidden">
-                      <button
-                        className="w-full flex items-center justify-between px-4 py-3 bg-white"
-                        onClick={() =>
-                          setSelectedPackage(
-                            selectedPackage === "non-member" ? "" : "non-member"
-                          )
-                        }
-                      >
-                        <h3 className="text-[#252525] text-[16px] sm:text-[18px] leading-[20px] sm:leading-[24px] font-medium">
-                          Non- Member Package {packages[2].price}
-                        </h3>
-                        <svg
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                          className={
-                            selectedPackage === "non-member"
-                              ? "rotate-180 transform"
-                              : ""
-                          }
-                        >
-                          <path
-                            d="M6 9L12 15L18 9"
-                            stroke="#252525"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
-                        </svg>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {/* Adds On Event - Only for events */}
-              {["event", "workshops", "conference"].includes(
-                service.category
-              ) && (
-                <div className="w-full mt-6">
-                  <h3 className="text-[#252525] text-[18px] sm:text-[20px] leading-[20px] sm:leading-[24px] tracking-[0.5px] font-medium mb-3 sm:mb-4">
-                    Adds On Event
-                  </h3>
-
-                  <div className="space-y-3">
-                    {addOns.map((addon) => (
-                      <div
-                        key={addon.id}
-                        className="flex items-center justify-between"
-                      >
-                        <div className="flex items-center gap-2">
-                          <input
-                            type="checkbox"
-                            id={addon.id}
-                            checked={selectedAddOns.includes(addon.id)}
-                            onChange={() => toggleAddOn(addon.id)}
-                            className="w-4 h-4 border border-[#E8ECF4] rounded"
-                          />
-                          <label
-                            htmlFor={addon.id}
-                            className="text-[#252525] text-[14px] sm:text-[16px] leading-[20px] sm:leading-[24px] font-normal cursor-pointer"
-                          >
-                            {addon.name}
-                          </label>
-                        </div>
-                        <span className="text-[#252525] text-[14px] sm:text-[16px] leading-[20px] sm:leading-[24px] font-normal">
-                          {addon.price}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
+         
             </div>
 
             {/* Right Side */}
@@ -975,21 +699,21 @@ const ServiceDetails: React.FC<ServiceDetailsProps> = ({ service }) => {
                                   <button
                                     className="flex items-center justify-center w-8 h-8 border-t border-l border-b border-[#E8ECF4] rounded-l-md bg-white text-[#252525] text-xl font-medium"
                                     onClick={() =>
-                                      setPackageQuantity(
-                                        Math.max(1, packageQuantity - 1)
+                                      setGeneralPackageQuantity(
+                                        Math.max(1, generalPackageQuantity - 1)
                                       )
                                     }
                                   >
                                     -
                                   </button>
                                   <div className="flex items-center justify-center w-full h-8 border-t border-b border-[#E8ECF4] bg-white text-[#252525] text-base font-medium">
-                                    1
+                                    {generalPackageQuantity}
                                   </div>
                                   <button
                                     className="flex items-center justify-center w-8 h-8 border-t border-b border-r border-[#E8ECF4] rounded-r-md bg-white text-[#252525] text-xl font-medium"
                                     onClick={() =>
-                                      setPackageQuantity(
-                                        Math.min(5, packageQuantity + 1)
+                                      setGeneralPackageQuantity(
+                                        Math.min(5, generalPackageQuantity + 1)
                                       )
                                     }
                                   >
@@ -1028,16 +752,31 @@ const ServiceDetails: React.FC<ServiceDetailsProps> = ({ service }) => {
                                   Quantity
                                 </p>
                                 <div className="flex w-full items-center">
-                                  <button className="flex items-center justify-center w-8 h-8 border-t border-l border-b border-[#E8ECF4] rounded-l-md bg-white text-[#252525] text-xl font-medium">
+                                  <button
+                                    className="flex items-center justify-center w-8 h-8 border-t border-l border-b border-[#E8ECF4] rounded-l-md bg-white text-[#252525] text-xl font-medium"
+                                    onClick={() =>
+                                      setVipPackageQuantity(
+                                        Math.max(0, vipPackageQuantity - 1)
+                                      )
+                                    }
+                                  >
                                     -
                                   </button>
                                   <div className="flex items-center justify-center w-full h-8 border-t border-b border-[#E8ECF4] bg-white text-[#252525] text-base font-medium">
-                                    1
+                                    {vipPackageQuantity}
                                   </div>
-                                  <button className="flex items-center justify-center w-8 h-8 border-t border-b border-r border-[#E8ECF4] rounded-r-md bg-white text-[#252525] text-xl font-medium">
+                                  <button
+                                    className="flex items-center justify-center w-8 h-8 border-t border-b border-r border-[#E8ECF4] rounded-r-md bg-white text-[#252525] text-xl font-medium"
+                                    onClick={() =>
+                                      setVipPackageQuantity(
+                                        Math.min(5, vipPackageQuantity + 1)
+                                      )
+                                    }
+                                  >
                                     +
                                   </button>
                                 </div>
+
                                 <p className="text-[#676D75] text-[12px] sm:text-[14px] leading-[18px] font-normal mt-1">
                                   Maximum purchase 5
                                 </p>
@@ -1203,44 +942,120 @@ const ServiceDetails: React.FC<ServiceDetailsProps> = ({ service }) => {
                 </div>
               </div>
 
+              {/* Your Order */}
               <div className="px-4 sm:px-6 py-5 sm:py-[30px] w-full border border-[#E8ECF4] rounded-[24px]">
                 <h1 className="text-[#252525] text-[20px] sm:text-[24px] leading-[24px] sm:leading-[28px] font-semibold tracking-[0.5px] text-center">
                   Your Order
                 </h1>
                 <div className="my-4 sm:my-5">
-                  <div className="flex justify-between items-center mb-3">
-                    <span className="text-[#252525] text-[14px] sm:text-[16px] leading-[18px] sm:leading-[20px] font-normal">
-                      Quantity
-                    </span>
-                    <span className="text-[#252525] text-[14px] sm:text-[16px] leading-[18px] sm:leading-[20px] font-normal">
-                      {quantity}
-                    </span>
-                  </div>
+                  {/* Package Order Details */}
+                  {["event", "workshops", "conference"].includes(
+                    service.category
+                  ) && (
+                    <>
+                      {selectedPackage === "student" && packageQuantity > 0 && (
+                        <div className="flex justify-between items-center mb-2">
+                          <span className="text-[#252525] text-[14px] sm:text-[16px] leading-[18px] sm:leading-[20px] font-normal">
+                            {packageQuantity} × Student Package
+                          </span>
+                          <span className="text-[#252525] text-[14px] sm:text-[16px] leading-[18px] sm:leading-[20px] font-normal">
+                            $ {(packageQuantity * 200).toFixed(2)}
+                          </span>
+                        </div>
+                      )}
+                      {selectedPackage === "member" && (
+                        <>
+                          {generalPackageQuantity > 0 && (
+                            <div className="flex justify-between items-center mb-2">
+                              <span className="text-[#252525] text-[14px] sm:text-[16px] leading-[18px] sm:leading-[20px] font-normal">
+                                {generalPackageQuantity} × General Package
+                              </span>
+                              <span className="text-[#252525] text-[14px] sm:text-[16px] leading-[18px] sm:leading-[20px] font-normal">
+                                $ {(generalPackageQuantity * 50).toFixed(2)}
+                              </span>
+                            </div>
+                          )}
+                          {vipPackageQuantity > 0 && (
+                            <div className="flex justify-between items-center mb-2">
+                              <span className="text-[#252525] text-[14px] sm:text-[16px] leading-[18px] sm:leading-[20px] font-normal">
+                                {vipPackageQuantity} × VIP Package
+                              </span>
+                              <span className="text-[#252525] text-[14px] sm:text-[16px] leading-[18px] sm:leading-[20px] font-normal">
+                                $ {(vipPackageQuantity * 60).toFixed(2)}
+                              </span>
+                            </div>
+                          )}
+                        </>
+                      )}
+                      {selectedPackage === "non-member" &&
+                        packageQuantity > 0 && (
+                          <div className="flex justify-between items-center mb-2">
+                            <span className="text-[#252525] text-[14px] sm:text-[16px] leading-[18px] sm:leading-[20px] font-normal">
+                              {packageQuantity} × Non-Member Package
+                            </span>
+                            <span className="text-[#252525] text-[14px] sm:text-[16px] leading-[18px] sm:leading-[20px] font-normal">
+                              $ {(packageQuantity * 300).toFixed(2)}
+                            </span>
+                          </div>
+                        )}
+                    </>
+                  )}
+
+                  {/* Add-ons Details */}
+                  {selectedAddOns.map((addonId) => {
+                    const addon = addOns.find((a) => a.id === addonId);
+                    return addon ? (
+                      <div
+                        key={addonId}
+                        className="flex justify-between items-center mb-2"
+                      >
+                        <span className="text-[#252525] text-[14px] sm:text-[16px] leading-[18px] sm:leading-[20px] font-normal">
+                          {addon.name}
+                        </span>
+                        <span className="text-[#252525] text-[14px] sm:text-[16px] leading-[18px] sm:leading-[20px] font-normal">
+                          {addon.price}
+                        </span>
+                      </div>
+                    ) : null;
+                  })}
+
+                  {/* Base Service Price */}
                   <div className="flex justify-between items-center">
                     <span className="text-[#252525] text-[14px] sm:text-[16px] leading-[18px] sm:leading-[20px] font-normal">
-                      Price
+                      Base Service Price
                     </span>
                     <span className="text-[#252525] text-[14px] sm:text-[16px] leading-[18px] sm:leading-[20px] font-normal">
-                      $ {service.price}
+                      $ {service.price.toFixed(2)}
                     </span>
                   </div>
+
                   <div className="w-full h-[2px] bg-[#E8ECF4] my-3" />
+
+                  {/* Total Calculation */}
                   <div className="flex justify-between items-center">
                     <span className="text-[#252525] text-[14px] sm:text-[16px] leading-[18px] sm:leading-[20px] font-medium">
                       Total
                     </span>
                     <span className="text-[#252525] text-[14px] sm:text-[16px] leading-[18px] sm:leading-[20px] font-medium">
-                      $ {(quantity * service.price).toFixed(1)}
+                      $ {calculateTotal().toFixed(2)}
                     </span>
                   </div>
                 </div>
                 <RippleButton
                   className="w-full bg-[#3A96AF] h-[40px] sm:h-[44px] rounded-md text-[#FFFFFF] text-[14px] sm:text-[16px] leading-[18px] sm:leading-[20px] font-medium tracking-[0.5px]"
                   onClick={() => {
+                    // Prepare package details
+                    const packageDetails =
+                      selectedPackage === "student"
+                        ? `studentQuantity=${packageQuantity}`
+                        : selectedPackage === "member"
+                        ? `generalQuantity=${generalPackageQuantity}&vipQuantity=${vipPackageQuantity}`
+                        : `nonMemberQuantity=${packageQuantity}`;
+
                     router.push(
-                      `/payment-page?price=${
-                        service.price
-                      }&quantity=${quantity}&title=${encodeURIComponent(
+                      `/payment-page?price=${calculateTotal().toFixed(
+                        2
+                      )}&${packageDetails}&title=${encodeURIComponent(
                         service.title
                       )}`
                     );
