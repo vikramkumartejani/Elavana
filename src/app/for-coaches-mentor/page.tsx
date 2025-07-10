@@ -1,5 +1,5 @@
 import Footer from "@/components/Footer";
-import Hero from "@/components/ForCoachesMentor/Hero";
+import Hero from "@/components/coaches/Hero";
 import StrategicPatnerships from "@/components/Home/StrategicPatnerships";
 import Navbar from "@/components/Navbar";
 import RippleButton from "@/components/ui/Button";
@@ -8,6 +8,7 @@ import TrustedByCommunity from "@/components/coaches/TrustedByCommunity";
 import Image from "next/image";
 import React from "react";
 import HowItWorks from "@/components/ForCoachesMentor/HowItWorks";
+import WhatClientSays from "@/components/coaches/WhatClientSays";
 
 const ForCoachesMentor = () => {
   return (
@@ -15,8 +16,9 @@ const ForCoachesMentor = () => {
       <Navbar />
       <Hero />
       <CoreFeatures />
+      <WhatClientSays />
       <TrustedByCommunity />
-      <HowItWorks/>
+      <HowItWorks />
       <div className="bg-[#F6FCFD] py-10 px-5 md:px-8">
         <h1 className="text-[#2E2E2E] text-[24px] sm:text-[40px] sm:leading-[76px] font-semibold text-center">
           Strategic Patnerships
