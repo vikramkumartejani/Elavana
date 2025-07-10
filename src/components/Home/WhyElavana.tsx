@@ -95,17 +95,17 @@ const connectors: ConnectorItem[] = [
 
 export function WhyElevana() {
   return (
-    <section className="w-full py-8 sm:py-12 lg:py-16 px-4 sm:px-6 lg:px-8">
+    <section className="w-full py-6 sm:pt-12 lg:pt-[111px] px-5 md:px-8">
       <div className="max-w-[972px] w-full mx-auto">
         {/* Section Title */}
-        <h2 className="text-center text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-6 sm:mb-8">
+        <h2 className="text-center text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-6 sm:mb-0">
           Why Elevana?
         </h2>
 
         {/* Mobile Layout: Vertical Stack */}
         <div className="sm:hidden space-y-6">
           {/* Central Logo Card - Full Width */}
-          <Card
+          {/* <Card
             className="w-full p-4 rounded-[20px] bg-white border-[#DCE6E9] flex items-center justify-center shadow-[#616C6F4D]"
             style={{ boxShadow: "0px 16px 25px -10px #616C6F4D" }}
           >
@@ -118,10 +118,10 @@ export function WhyElevana() {
                 className="object-contain w-full h-auto"
               />
             </div>
-          </Card>
+          </Card> */}
 
           {/* Feature Cards - 2 Column Grid */}
-          <div className="grid grid-cols-2 gap-6">
+          <div className="grid grid-cols-2 gap-3">
             {cards.map(({ imgSrc, imgAlt, label }, idx) => (
               <Card
                 key={idx}
@@ -135,7 +135,7 @@ export function WhyElevana() {
                   height={32}
                   className="mx-auto w-8 h-8"
                 />
-                <p className="font-semibold text-gray-800 text-sm leading-tight">
+                <p className="font-semibold text-[#181E4B] text-[14px] leading-[16px] tracking-[0.5px]">
                   {label[0]} <br /> {label[1]}
                 </p>
               </Card>
@@ -144,7 +144,7 @@ export function WhyElevana() {
         </div>
 
         {/* Desktop/Tablet Layout: Circular with Connectors */}
-        <div className="hidden sm:block relative h-[600px] md:h-[868px]">
+        <div className="hidden sm:block relative h-[600px] md:h-[800px]">
           {/* Concentric Circles SVG */}
           <Image
             src="/assets/connector-lines/dashed-circles.svg"
