@@ -29,9 +29,9 @@ const CoreFeatures: React.FC = () => {
           </div>
 
           {/* Feature cards positioned around the dashboard */}
-          <div className=" z-200 max-w-5xl mx-auto">
+          <div className=" z-20 hidden md:block max-w-5xl mx-auto">
             {/* Top Left - Client Management Dashboard */}
-            <div className="absolute z-20 top-[-100px] left-[-20px] md:top-[30px] md:left-[-30px] ">
+            <div className="absolute z-20 md:top-[30px] md:left-[-30px] ">
               <div className="flex items-center bg-white rounded-lg p-3 md:p-4 shadow-lg border-l-2 border-[#D97E59]">
                 <div className="flex-shrink-0 mr-3 md:mr-4">
                   <div className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center bg-[#FEF2F2] rounded-lg">
@@ -52,7 +52,7 @@ const CoreFeatures: React.FC = () => {
             </div>
 
             {/* Top Right - Automated Scheduling */}
-            <div className="absolute z-20 top-[-100px] right-[-20px] md:top-[30px] max-w-[420px] md:right-[-30px] ">
+            <div className="absolute z-20  md:top-[30px] max-w-[420px] md:right-[-30px] ">
               <div className="flex items-center bg-white rounded-lg p-3 md:p-4 shadow-lg border-r-2 border-[#D97E59]">
                 <div className="flex-shrink-0 mr-3 md:mr-4">
                   <div className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center bg-[#FEF2F2] rounded-lg">
@@ -73,7 +73,7 @@ const CoreFeatures: React.FC = () => {
             </div>
 
             {/* Middle Left - Community Space */}
-            <div className="absolute z-20 top-1/2  md:top-[50%] md:left-[70px]  transform -translate-y-1/2">
+            <div className="absolute z-20  md:top-[50%] md:left-[70px]  transform -translate-y-1/2">
               <div className="flex items-center bg-white rounded-lg p-3 md:p-4 shadow-lg border-l-2 border-[#D97E59]">
                 <div className="flex-shrink-0 mr-3 md:mr-4">
                   <div className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center bg-[#FEF2F2] rounded-lg">
@@ -94,7 +94,7 @@ const CoreFeatures: React.FC = () => {
             </div>
 
             {/* Middle Right - On Demand Invoicing */}
-            <div className="absolute z-20 top-1/2 right-[-20px] md:right-[70px] max-w-[420px] transform -translate-y-1/2">
+            <div className="absolute z-20  top-1/2 md:right-[70px] max-w-[420px] transform -translate-y-1/2">
               <div className="flex items-center bg-white rounded-lg p-3 md:p-4 shadow-lg border-r-2 border-[#D97E59]">
                 <div className="flex-shrink-0 mr-3 md:mr-4">
                   <div className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center bg-[#FEF2F2] rounded-lg">
@@ -115,7 +115,7 @@ const CoreFeatures: React.FC = () => {
             </div>
 
             {/* Bottom Left - Analytics */}
-            <div className="absolute z-20 bottom-[-100px] left-[-20px] md:bottom-[30px] md:left-[-30px]  ">
+            <div className="absolute z-20 md:bottom-[30px] md:left-[-30px]  ">
               <div className="flex items-center bg-white rounded-lg p-3 md:p-4 shadow-lg  border-l-2 border-[#D97E59]">
                 <div className="flex-shrink-0 mr-3 md:mr-4">
                   <div className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center bg-[#FEF2F2] rounded-lg">
@@ -136,7 +136,7 @@ const CoreFeatures: React.FC = () => {
             </div>
 
             {/* Bottom Right - Custom Coaching */}
-            <div className="absolute z-20 bottom-[-100px] right-[-20px] md:bottom-[30px] max-w-[420px] md:right-[-30px] ">
+            <div className="absolute z-20 md:bottom-[30px] max-w-[420px] md:right-[-30px] ">
               <div className="flex items-center bg-white rounded-lg p-3 md:p-4 shadow-lg border-r-2 border-red-600">
                 <div className="flex-shrink-0 mr-3 md:mr-4">
                   <div className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center bg-[#FEF2F2] rounded-lg">
