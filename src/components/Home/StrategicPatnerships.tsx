@@ -1,5 +1,6 @@
 import Image from "next/image"
 import RippleButton from "../ui/Button"
+import Link from "next/link"
 
 const StrategicPatnerships = () => {
     return (
@@ -30,8 +31,12 @@ const StrategicPatnerships = () => {
                         <div className="max-w-[630px] lg:text-left text-center">
                             <h1 className="text-[18px] sm:text-[32px] lg:text-[42px] leading-[25px] sm:leading-[44px] lg:leading-[54.6px] font-bold text-white">Elevate your journey. Whether you're guiding others or growing yourself — start now.</h1>
                             <div className="mt-8 flex items-center justify-center lg:justify-start flex-wrap gap-3">
-                                <RippleButton className="text-white text-[14px] sm:text-[20px] sm:leading-[24px] font-semibold border border-[#FFFFFF] rounded-xl px-6 h-11 sm:h-[56px] tracking-[0.5px]">Discover Coaches</RippleButton>
-                                <RippleButton className="text-[#3A96AF] bg-[#F7F8F9] text-[14px] sm:text-[20px] sm:leading-[24px] font-semibold border border-[#FFFFFF] rounded-xl px-6 h-11 sm:h-[56px] tracking-[0.5px]">I Am a Coach</RippleButton>
+                                <Link href="/service-providers">
+                                    <RippleButton className="text-white text-[14px] sm:text-[20px] sm:leading-[24px] font-semibold border border-[#FFFFFF] rounded-xl px-6 h-11 sm:h-[56px] tracking-[0.5px]">Discover Coaches</RippleButton>
+                                </Link>
+                                <Link href="/for-coaches-mentor">
+                                    <RippleButton className="text-[#3A96AF] bg-[#F7F8F9] text-[14px] sm:text-[20px] sm:leading-[24px] font-semibold border border-[#FFFFFF] rounded-xl px-6 h-11 sm:h-[56px] tracking-[0.5px]">I Am a Coach</RippleButton>
+                                </Link>
                             </div>
                         </div>
                         <Image src='/assets/image.png' alt="image" width={343} height={431} />
