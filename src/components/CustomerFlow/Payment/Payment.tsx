@@ -108,6 +108,7 @@ const Payment: FC = () => {
                                 phoneNumber={phoneNumber}
                                 setPhoneNumber={setPhoneNumber}
                                 mpesaPromptSent={mpesaPromptSent}
+                                setMpesaPromptSent={setMpesaPromptSent}
                                 showInstructions={showInstructions}
                                 setShowInstructions={setShowInstructions}
                                 handleProceedPayment={handleProceedPayment}

@@ -1,3 +1,4 @@
+"use client";
 import Footer from "@/components/Footer";
 import Hero from "@/components/coaches/Hero";
 import StrategicPatnerships from "@/components/Home/StrategicPatnerships";
@@ -6,12 +7,24 @@ import RippleButton from "@/components/ui/Button";
 import CoreFeatures from "@/components/coaches/CoreFeatures";
 import TrustedByCommunity from "@/components/coaches/TrustedByCommunity";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import HowItWorks from "@/components/ForCoachesMentor/HowItWorks";
 import WhatClientSays from "@/components/coaches/WhatClientSays";
 import WhyElevana from "@/components/coaches/WhyElavana";
+import ContactWithUsModal from "@/components/ContactWithUsModal";
+import Link from "next/link";
 
 const ForCoachesMentor = () => {
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+
+  const handleOpenContactModal = () => {
+    setIsContactModalOpen(true);
+  };
+
+  const handleCloseContactModal = () => {
+    setIsContactModalOpen(false);
+  };
+
   return (
     <div>
       <Navbar />
@@ -71,12 +84,17 @@ const ForCoachesMentor = () => {
                 Ready To Coach Smarter, Not Harder ?
               </h1>
               <div className="mt-8 flex items-center justify-center lg:justify-start flex-wrap gap-3">
-                <RippleButton className="text-white text-[14px] sm:text-[20px] sm:leading-[24px] font-semibold border border-[#FFFFFF] rounded-xl px-6 h-11 sm:h-[56px] tracking-[0.5px]">
+                <RippleButton 
+                  onClick={handleOpenContactModal}
+                  className="text-white text-[14px] sm:text-[20px] sm:leading-[24px] font-semibold border border-[#FFFFFF] rounded-xl px-6 h-11 sm:h-[56px] tracking-[0.5px]"
+                >
                   Schedule Demo
                 </RippleButton>
+                <Link href='/registration'>
                 <RippleButton className="text-[#3A96AF] bg-[#F7F8F9] text-[14px] sm:text-[20px] sm:leading-[24px] font-semibold border border-[#FFFFFF] rounded-xl px-6 h-11 sm:h-[56px] tracking-[0.5px]">
                   Start for free today
                 </RippleButton>
+                </Link>
               </div>
             </div>
             <Image
@@ -88,6 +106,12 @@ const ForCoachesMentor = () => {
           </div>
         </div>
       </div>
+      
+      {/* Contact Modal */}
+      <ContactWithUsModal 
+        isOpen={isContactModalOpen} 
+        onClose={handleCloseContactModal} 
+      />
       <Footer />
     </div>
   );

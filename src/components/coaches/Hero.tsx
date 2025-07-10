@@ -2,8 +2,21 @@
 import type React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import RippleButton from "../ui/Button";
+import ContactWithUsModal from "../ContactWithUsModal";
+import { useState } from "react";
 
 const Hero: React.FC = () => {
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+
+  const handleOpenContactModal = () => {
+    setIsContactModalOpen(true);
+  };
+
+  const handleCloseContactModal = () => {
+    setIsContactModalOpen(false);
+  };
+
   return (
     <div className="relative w-full bg-white overflow-hidden min-h-[100vh] md:min-h-screen">
       {/* Background shapes */}
@@ -58,17 +71,17 @@ const Hero: React.FC = () => {
           <div className="space-y-4">
             <div className="flex gap-3 md:gap-4">
               <Link
-                href="/service-providers"
+                href="/registration"
                 className="flex items-center justify-between text-[3.5vw] leading-[1.3] md:text-[1.25vw] md:leading-[1.3] lg:text-[1.125vw] lg:leading-[1.3] bg-[#3A96AF] text-white px-4 py-3 md:px-6 md:py-4 rounded-full hover:bg-[#2d7a8c] transition-colors"
               >
                 Start Free Today
               </Link>
-              <Link
-                href="/for-coaches-mentor"
+              <RippleButton
+                onClick={handleOpenContactModal}
                 className="flex items-center justify-between text-[3.5vw] leading-[1.3] md:text-[1.25vw] md:leading-[1.3] lg:text-[1.125vw] lg:leading-[1.3] bg-[#F7F8F9] text-[#3A96AF] hover:bg-[#f1f5fa] px-4 py-3 md:px-6 md:py-4 rounded-full  transition-colors"
               >
                 Book a 15 Minute Demo
-              </Link>
+              </RippleButton>
             </div>
           </div>
         </div>
@@ -84,6 +97,12 @@ const Hero: React.FC = () => {
           />
         </div>
       </div>
+      
+      {/* Contact Modal */}
+      <ContactWithUsModal 
+        isOpen={isContactModalOpen} 
+        onClose={handleCloseContactModal} 
+      />
     </div>
   );
 };

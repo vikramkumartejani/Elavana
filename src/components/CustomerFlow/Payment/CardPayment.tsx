@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import RippleButton from "@/components/ui/Button";
 
 interface CardPaymentProps {
     selected: boolean;
@@ -15,7 +16,7 @@ const paymentMethods = [
     { src: "/assets/icons/gpay.svg", alt: "Google Pay", label: "Google Pay" },
 ];
 
-const CardPayment: React.FC<CardPaymentProps> = ({ selected, onSelect }) => (
+const CardPayment: React.FC<CardPaymentProps> = ({ selected, onSelect, onProceed }) => (
     <div
         className={`border ${selected ? "border-[#3A96AF]" : "border-[#E8ECF4]"} rounded-lg p-4 sm:p-5 cursor-pointer transition-colors`}
         onClick={onSelect}
@@ -54,14 +55,14 @@ const CardPayment: React.FC<CardPaymentProps> = ({ selected, onSelect }) => (
                 ))}
             </div>
         </div>
-        {/* {selected && (
-            <button
-                className="w-full mt-8 bg-[#3A96AF] text-white py-3 rounded-lg text-[16px] leading-[20px] font-medium"
+        {selected && (
+            <RippleButton
+                className="w-full mt-6 sm:mt-8 bg-[#3A96AF] text-white py-3 rounded-lg text-[16px] leading-[20px] font-medium"
                 onClick={e => { e.stopPropagation(); onProceed(); }}
             >
                 Proceed Payment
-            </button>
-        )} */}
+            </RippleButton>
+        )}
     </div>
 );
 

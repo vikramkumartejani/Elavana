@@ -9,6 +9,7 @@ interface MPesaPaymentProps {
     phoneNumber: string;
     setPhoneNumber: (v: string) => void;
     mpesaPromptSent: boolean;
+    setMpesaPromptSent: (v: boolean) => void;
     showInstructions: boolean;
     setShowInstructions: (v: boolean) => void;
     handleProceedPayment: () => void;
@@ -20,6 +21,7 @@ const MPesaPayment: React.FC<MPesaPaymentProps> = ({
     phoneNumber,
     setPhoneNumber,
     mpesaPromptSent,
+    setMpesaPromptSent,
     showInstructions,
     setShowInstructions,
     handleProceedPayment,
@@ -112,7 +114,11 @@ const MPesaPayment: React.FC<MPesaPaymentProps> = ({
 
                             <RippleButton
                                 className="bg-[#3A96AF] text-white p-2 rounded-lg text-[10px] leading-[14px] tracking-[0.5px] font-medium"
-                                onClick={e => { e.stopPropagation(); handleProceedPayment(); }}
+                                onClick={e => { 
+                                    e.stopPropagation(); 
+                                    // Reset to original view by setting mpesaPromptSent to false
+                                    setMpesaPromptSent(false);
+                                }}
                             >
                                 Resend Payment Prompt
                             </RippleButton>
