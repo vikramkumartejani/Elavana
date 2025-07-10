@@ -16,23 +16,23 @@ const CoreFeatures: React.FC = () => {
           </p>
         </div>
 
-        <div className="relative max-w-6xl mx-auto pb-32 md:pb-40 pt-32 md:pt-40">
+        <div className="relative max-w-6xl mx-auto ">
           {/* Dashboard mockup image in center */}
           <div className="relative z-10 mx-auto mb-8 md:mb-0 max-w-3xl rounded-[24px] shadow-lg overflow-hidden border-2 border-black">
             <Image
               src="/assets/hero/dashboard.png"
               alt="Dashboard Mockup"
-              width={800}
-              height={450}
+              width={680}
+              height={527}
               className="w-full h-auto"
             />
           </div>
 
           {/* Feature cards positioned around the dashboard */}
-          <div className="relative z-20 max-w-5xl mx-auto">
+          <div className=" z-200 max-w-5xl mx-auto">
             {/* Top Left - Client Management Dashboard */}
-            <div className="absolute top-[-100px] left-[-20px] md:top-[-100px] md:left-[-120px] max-w-[280px]">
-              <div className="flex items-center bg-white rounded-lg p-3 md:p-4 shadow-lg border border-gray-100">
+            <div className="absolute z-20 top-[-100px] left-[-20px] md:top-[30px] md:left-[-30px] ">
+              <div className="flex items-center bg-white rounded-lg p-3 md:p-4 shadow-lg border-l-2 border-[#D97E59]">
                 <div className="flex-shrink-0 mr-3 md:mr-4">
                   <div className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center bg-[#FEF2F2] rounded-lg">
                     <Image
@@ -52,8 +52,8 @@ const CoreFeatures: React.FC = () => {
             </div>
 
             {/* Top Right - Automated Scheduling */}
-            <div className="absolute top-[-100px] right-[-20px] md:top-[-100px] md:right-[-120px] max-w-[280px]">
-              <div className="flex items-center bg-white rounded-lg p-3 md:p-4 shadow-lg border border-gray-100">
+            <div className="absolute z-20 top-[-100px] right-[-20px] md:top-[30px] max-w-[420px] md:right-[-30px] ">
+              <div className="flex items-center bg-white rounded-lg p-3 md:p-4 shadow-lg border-r-2 border-[#D97E59]">
                 <div className="flex-shrink-0 mr-3 md:mr-4">
                   <div className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center bg-[#FEF2F2] rounded-lg">
                     <Image
@@ -73,8 +73,8 @@ const CoreFeatures: React.FC = () => {
             </div>
 
             {/* Middle Left - Community Space */}
-            <div className="absolute top-1/2 left-[-20px] md:left-[-120px] max-w-[280px] transform -translate-y-1/2">
-              <div className="flex items-center bg-white rounded-lg p-3 md:p-4 shadow-lg border border-gray-100">
+            <div className="absolute z-20 top-1/2  md:top-[50%] md:left-[70px]  transform -translate-y-1/2">
+              <div className="flex items-center bg-white rounded-lg p-3 md:p-4 shadow-lg border-l-2 border-[#D97E59]">
                 <div className="flex-shrink-0 mr-3 md:mr-4">
                   <div className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center bg-[#FEF2F2] rounded-lg">
                     <Image
@@ -94,8 +94,8 @@ const CoreFeatures: React.FC = () => {
             </div>
 
             {/* Middle Right - On Demand Invoicing */}
-            <div className="absolute top-1/2 right-[-20px] md:right-[-120px] max-w-[280px] transform -translate-y-1/2">
-              <div className="flex items-center bg-white rounded-lg p-3 md:p-4 shadow-lg border border-gray-100">
+            <div className="absolute z-20 top-1/2 right-[-20px] md:right-[70px] max-w-[420px] transform -translate-y-1/2">
+              <div className="flex items-center bg-white rounded-lg p-3 md:p-4 shadow-lg border-r-2 border-[#D97E59]">
                 <div className="flex-shrink-0 mr-3 md:mr-4">
                   <div className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center bg-[#FEF2F2] rounded-lg">
                     <Image
@@ -115,8 +115,8 @@ const CoreFeatures: React.FC = () => {
             </div>
 
             {/* Bottom Left - Analytics */}
-            <div className="absolute bottom-[-100px] left-[-20px] md:bottom-[-100px] md:left-[-120px] max-w-[280px]">
-              <div className="flex items-center bg-white rounded-lg p-3 md:p-4 shadow-lg border border-gray-100">
+            <div className="absolute z-20 bottom-[-100px] left-[-20px] md:bottom-[30px] md:left-[-30px]  ">
+              <div className="flex items-center bg-white rounded-lg p-3 md:p-4 shadow-lg  border-l-2 border-[#D97E59]">
                 <div className="flex-shrink-0 mr-3 md:mr-4">
                   <div className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center bg-[#FEF2F2] rounded-lg">
                     <Image
@@ -136,8 +136,8 @@ const CoreFeatures: React.FC = () => {
             </div>
 
             {/* Bottom Right - Custom Coaching */}
-            <div className="absolute bottom-[-100px] right-[-20px] md:bottom-[-100px] md:right-[-120px] max-w-[280px]">
-              <div className="flex items-center bg-white rounded-lg p-3 md:p-4 shadow-lg border border-gray-100">
+            <div className="absolute z-20 bottom-[-100px] right-[-20px] md:bottom-[30px] max-w-[420px] md:right-[-30px] ">
+              <div className="flex items-center bg-white rounded-lg p-3 md:p-4 shadow-lg border-r-2 border-red-600">
                 <div className="flex-shrink-0 mr-3 md:mr-4">
                   <div className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center bg-[#FEF2F2] rounded-lg">
                     <Image
