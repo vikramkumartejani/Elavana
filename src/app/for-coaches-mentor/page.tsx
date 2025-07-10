@@ -9,12 +9,14 @@ import Image from "next/image";
 import React from "react";
 import HowItWorks from "@/components/ForCoachesMentor/HowItWorks";
 import WhatClientSays from "@/components/coaches/WhatClientSays";
+import WhyElevana from "@/components/coaches/WhyElavana";
 
 const ForCoachesMentor = () => {
   return (
     <div>
       <Navbar />
       <Hero />
+      <WhyElevana />
       <CoreFeatures />
       <WhatClientSays />
       <TrustedByCommunity />
