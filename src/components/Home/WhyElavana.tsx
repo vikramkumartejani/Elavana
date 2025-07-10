@@ -95,50 +95,94 @@ const connectors: ConnectorItem[] = [
 
 export function WhyElevana() {
   return (
-    <section className="w-full py-16 px-4">
-      <div className="max-w-[972px] w-full md:h-[868px] h-[700px] mx-auto mb-[-50px]">
+    <section className="w-full py-8 sm:py-12 lg:py-16 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[972px] w-full mx-auto">
         {/* Section Title */}
-        <h2 className="text-center text-4xl font-bold text-gray-900 -mb-12">
+        <h2 className="text-center text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-6 sm:mb-8">
           Why Elevana?
         </h2>
 
-        {/* Main Container */}
-        <div className="relative w-full h-full flex justify-center items-center">
-          {/* Concentric Circles SVG */}
-          <Image
-            src="/assets/connector-lines/dashed-circles.svg" // adjust path if different
-            alt=""
-            width={700}
-            height={700}
-            priority
-            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none select-none"
-          />
-
-          {/* Central Logo Card */}
+        {/* Mobile Layout: Vertical Stack */}
+        <div className="sm:hidden space-y-6">
+          {/* Central Logo Card - Full Width */}
           <Card
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 md:p-[30px] p-4 rounded-[37px] bg-white border-[#DCE6E9] flex items-center justify-center z-10 shadow-[#616C6F4D]"
-            style={{ boxShadow: "0px 32px 50px -20px #616C6F4D" }}
+            className="w-full p-4 rounded-[20px] bg-white border-[#DCE6E9] flex items-center justify-center shadow-[#616C6F4D]"
+            style={{ boxShadow: "0px 16px 25px -10px #616C6F4D" }}
           >
-            <div className="flex items-center justify-center md:w-[97.05px] w-[60px]">
+            <div className="flex items-center justify-center w-[60px]">
               <Image
                 src="/assets/why-elevana-logo.svg"
-                alt=""
+                alt="Elevana Logo"
                 width={97.05}
                 height={106.83}
-                className="object-contain"
+                className="object-contain w-full h-auto"
               />
             </div>
           </Card>
 
-          {/* Connector lines */}
+          {/* Feature Cards - 2 Column Grid */}
+          <div className="grid grid-cols-2 gap-6">
+            {cards.map(({ imgSrc, imgAlt, label }, idx) => (
+              <Card
+                key={idx}
+                className="w-full max-w-[300px] text-center p-4 rounded-[15px] bg-white z-20 gap-3 border-[#DCE6E9]"
+                style={{ boxShadow: "0px 16px 25px -10px #616C6F26" }}
+              >
+                <Image
+                  src={imgSrc || "/placeholder.svg"}
+                  alt={imgAlt}
+                  width={32}
+                  height={32}
+                  className="mx-auto w-8 h-8"
+                />
+                <p className="font-semibold text-gray-800 text-sm leading-tight">
+                  {label[0]} <br /> {label[1]}
+                </p>
+              </Card>
+            ))}
+          </div>
+        </div>
+
+        {/* Desktop/Tablet Layout: Circular with Connectors */}
+        <div className="hidden sm:block relative h-[600px] md:h-[868px]">
+          {/* Concentric Circles SVG */}
+          <Image
+            src="/assets/connector-lines/dashed-circles.svg"
+            alt="Concentric circles"
+            width={700}
+            height={700}
+            priority
+            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none select-none w-[80%] md:w-[700px] h-auto"
+          />
+
+          {/* Central Logo Card */}
+          <Card
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 p-4 md:p-[30px] rounded-[30px] md:rounded-[37px] bg-white border-[#DCE6E9] flex items-center justify-center z-10 shadow-[#616C6F4D]"
+            style={{
+              boxShadow:
+                "0px 24px 40px -15px #616C6F4D md:0px 32px 50px -20px #616C6F4D",
+            }}
+          >
+            <div className="flex items-center justify-center w-[70px] md:w-[97.05px]">
+              <Image
+                src="/assets/why-elevana-logo.svg"
+                alt="Elevana Logo"
+                width={97.05}
+                height={106.83}
+                className="object-contain w-full h-auto"
+              />
+            </div>
+          </Card>
+
+          {/* Connector Lines */}
           {connectors.map(({ position, src, w, h }, i) => (
             <div key={i} className={`absolute ${position} pointer-events-none`}>
               <Image
                 src={src}
-                alt=""
+                alt="Connector line"
                 width={w}
                 height={h}
-                className="object-contain"
+                className="object-contain w-[80%] md:w-full h-auto"
               />
             </div>
           ))}
@@ -147,17 +191,20 @@ export function WhyElevana() {
           {cards.map(({ position, imgSrc, imgAlt, label }, idx) => (
             <Card
               key={idx}
-              className={`absolute ${position} w-[217px] text-center p-[20px] rounded-[20px] bg-white z-20 gap-[14px] border-[#DCE6E9]`}
-              style={{ boxShadow: "0px 32px 50px -20px #616C6F26" }}
+              className={`absolute ${position} w-[180px] md:w-[217px] text-center p-4 md:p-[20px] rounded-[20px] bg-white z-20 gap-3 md:gap-[14px] border-[#DCE6E9]`}
+              style={{
+                boxShadow:
+                  "0px 24px 40px -15px #616C6F26 md:0px 32px 50px -20px #616C6F26",
+              }}
             >
               <Image
                 src={imgSrc}
                 alt={imgAlt}
                 width={32}
                 height={32}
-                className="mx-auto"
+                className="mx-auto w-8 md:w-[32px] h-8 md:h-[32px]"
               />
-              <p className="font-semibold text-gray-800 text-sm leading-tight">
+              <p className="font-semibold text-gray-800 text-sm md:text-sm leading-tight">
                 {label[0]} <br /> {label[1]}
               </p>
             </Card>
