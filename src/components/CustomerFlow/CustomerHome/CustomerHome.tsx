@@ -194,7 +194,11 @@ const CustomerHome: React.FC = () => {
                   ))}
                 </div>
               ) : (
-                <NoResults onClearFilters={clearAllFilters} />
+                <NoResults
+                  description="We couldn't find any services matching your search criteria. Try adjusting
+      your filters or search terms."
+                  onClearFilters={clearAllFilters}
+                />
               )}
             </div>
           ) : (
@@ -254,7 +258,11 @@ const CustomerHome: React.FC = () => {
                     ))}
                   </div>
                 ) : (
-                  <NoResults onClearFilters={clearAllFilters} />
+                  <NoResults
+                    description="We couldn't find any services matching your search criteria. Try adjusting
+      your filters or search terms."
+                    onClearFilters={clearAllFilters}
+                  />
                 )}
               </div>
             </div>

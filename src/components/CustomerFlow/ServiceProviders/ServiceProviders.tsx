@@ -127,116 +127,137 @@ const ServiceProviders: React.FC = () => {
     };
 
     return (
-        <div className="min-h-screen">
-            <Navbar />
+      <div className="min-h-screen">
+        <Navbar />
 
-            <div className='w-full md:px-8 px-5'>
-                <div className="max-w-[1280px] mx-auto pt-8 pb-20 md:pb-[150px]">
-                    {!showFilters ? (
-                        <div className="">
-                            {/* Search Bar */}
-                            <div className="max-w-[810px] mx-auto mb-8">
-                                <SearchBar
-                                    searchTerm={searchTerm}
-                                    setSearchTerm={setSearchTerm}
-                                    showFilters={showFilters}
-                                    setShowFilters={setShowFilters}
-                                />
-                            </div>
-
-                            {/* Category Navigation */}
-                            <CategoryNavigation
-                                selectedCategory={selectedCategory}
-                                setSelectedCategory={setSelectedCategory}
-                            />
-
-                            {/* Available Service Providers Header */}
-                            <ServicesHeader
-                                sortBy={sortBy}
-                                setSortBy={(sort) => setSortBy(sort as SortOption)}
-                                title="Available Service Providers"
-                            />
-
-                            {/* Providers Grid */}
-                            {loading ? (
-                                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-5">
-                                    {Array.from({ length: itemsPerPage }).map((_, i) => (
-                                        <ServiceProviderCard key={i} provider={serviceProvidersData[0]} loading={true} />
-                                    ))}
-                                </div>
-                            ) : currentProviders.length > 0 ? (
-                                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-5">
-                                    {currentProviders.map(provider => (
-                                        <ServiceProviderCard key={provider.id} provider={provider} />
-                                    ))}
-                                </div>
-                            ) : (
-                                <NoResults onClearFilters={clearAllFilters} />
-                            )}
-                        </div>
-                    ) : (
-                        <div 
-                            className="flex items-start gap-[20px] xl:gap-[30px] transition-all duration-500 ease-in-out"
-                            style={{
-                                animation: isDesktop ? (isClosing ? 'slideOutToLeft 0.3s ease-in' : 'slideInFromLeft 0.5s ease-out') : 'none'
-                            }}
-                        >
-                            {/* Filter Sidebar */}
-                            <FilterSidebar
-                                selectedCategory={selectedCategory}
-                                setSelectedCategory={setSelectedCategory}
-                                selectedPriceRange={selectedPriceRange}
-                                setSelectedPriceRange={setSelectedPriceRange}
-                                selectedDateFilter={selectedDateFilter}
-                                setSelectedDateFilter={setSelectedDateFilter}
-                                onClearFilters={clearAllFilters}
-                                showFilters={showFilters}
-                                setShowFilters={setShowFilters}
-                            />
-
-                            {/* Main Content */}
-                            <div className="flex-1 space-y-8">
-                                {/* Search Bar */}
-                                <SearchBar
-                                    searchTerm={searchTerm}
-                                    setSearchTerm={setSearchTerm}
-                                    showFilters={showFilters}
-                                    setShowFilters={handleCloseFilters}
-                                />
-
-                                {/* Providers Grid */}
-                                {loading ? (
-                                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                                        {Array.from({ length: itemsPerPage }).map((_, i) => (
-                                            <ServiceProviderCard key={i} provider={serviceProvidersData[0]} loading={true} />
-                                        ))}
-                                    </div>
-                                ) : currentProviders.length > 0 ? (
-                                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                                        {currentProviders.map(provider => (
-                                            <ServiceProviderCard key={provider.id} provider={provider} />
-                                        ))}
-                                    </div>
-                                ) : (
-                                    <NoResults onClearFilters={clearAllFilters} />
-                                )}
-                            </div>
-                        </div>
-                    )}
-
-                    {/* Pagination */}
-                    <Pagination
-                        currentPage={currentPage}
-                        totalPages={totalPages}
-                        onPageChange={handlePageChange}
-                        onPreviousPage={handlePreviousPage}
-                        onNextPage={handleNextPage}
-                    />
+        <div className="w-full md:px-8 px-5">
+          <div className="max-w-[1280px] mx-auto pt-8 pb-20 md:pb-[150px]">
+            {!showFilters ? (
+              <div className="">
+                {/* Search Bar */}
+                <div className="max-w-[810px] mx-auto mb-8">
+                  <SearchBar
+                    searchTerm={searchTerm}
+                    setSearchTerm={setSearchTerm}
+                    showFilters={showFilters}
+                    setShowFilters={setShowFilters}
+                  />
                 </div>
-            </div>
 
-            <Footer />
+                {/* Category Navigation */}
+                <CategoryNavigation
+                  selectedCategory={selectedCategory}
+                  setSelectedCategory={setSelectedCategory}
+                />
+
+                {/* Available Service Providers Header */}
+                <ServicesHeader
+                  sortBy={sortBy}
+                  setSortBy={(sort) => setSortBy(sort as SortOption)}
+                  title="Available Service Providers"
+                />
+
+                {/* Providers Grid */}
+                {loading ? (
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-5">
+                    {Array.from({ length: itemsPerPage }).map((_, i) => (
+                      <ServiceProviderCard
+                        key={i}
+                        provider={serviceProvidersData[0]}
+                        loading={true}
+                      />
+                    ))}
+                  </div>
+                ) : currentProviders.length > 0 ? (
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-5">
+                    {currentProviders.map((provider) => (
+                      <ServiceProviderCard
+                        key={provider.id}
+                        provider={provider}
+                      />
+                    ))}
+                  </div>
+                ) : (
+                  <NoResults
+                    description="We couldn't find any experts matching your search criteria. Try adjusting your filters or search terms."
+                    onClearFilters={clearAllFilters}
+                  />
+                )}
+              </div>
+            ) : (
+              <div
+                className="flex items-start gap-[20px] xl:gap-[30px] transition-all duration-500 ease-in-out"
+                style={{
+                  animation: isDesktop
+                    ? isClosing
+                      ? "slideOutToLeft 0.3s ease-in"
+                      : "slideInFromLeft 0.5s ease-out"
+                    : "none",
+                }}
+              >
+                {/* Filter Sidebar */}
+                <FilterSidebar
+                  selectedCategory={selectedCategory}
+                  setSelectedCategory={setSelectedCategory}
+                  selectedPriceRange={selectedPriceRange}
+                  setSelectedPriceRange={setSelectedPriceRange}
+                  selectedDateFilter={selectedDateFilter}
+                  setSelectedDateFilter={setSelectedDateFilter}
+                  onClearFilters={clearAllFilters}
+                  showFilters={showFilters}
+                  setShowFilters={setShowFilters}
+                />
+
+                {/* Main Content */}
+                <div className="flex-1 space-y-8">
+                  {/* Search Bar */}
+                  <SearchBar
+                    searchTerm={searchTerm}
+                    setSearchTerm={setSearchTerm}
+                    showFilters={showFilters}
+                    setShowFilters={handleCloseFilters}
+                  />
+
+                  {/* Providers Grid */}
+                  {loading ? (
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                      {Array.from({ length: itemsPerPage }).map((_, i) => (
+                        <ServiceProviderCard
+                          key={i}
+                          provider={serviceProvidersData[0]}
+                          loading={true}
+                        />
+                      ))}
+                    </div>
+                  ) : currentProviders.length > 0 ? (
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                      {currentProviders.map((provider) => (
+                        <ServiceProviderCard
+                          key={provider.id}
+                          provider={provider}
+                        />
+                      ))}
+                    </div>
+                  ) : (
+                    <NoResults onClearFilters={clearAllFilters} />
+                  )}
+                </div>
+              </div>
+            )}
+
+            {/* Pagination */}
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={handlePageChange}
+              onPreviousPage={handlePreviousPage}
+              onNextPage={handleNextPage}
+            />
+          </div>
         </div>
+
+        <Footer />
+      </div>
     );
 };
 
