@@ -106,9 +106,11 @@ const ServiceProviderSlider: React.FC = () => {
                     <h1 className='text-[#12142A] text-[24px] sm:text-[40px] font-bold leading-tight sm:leading-[60px] tracking-[-2px] text-left'>
                         Discover the best service Provider
                     </h1>
-                    <RippleButton className='border border-[#D97E59] rounded-xl h-[56px] px-6 text-[#D97E59] text-[20px] leading-[24px] tracking-[0.5px] font-semibold hover:bg-[#D97E59] hover:text-white transition duration-200 flex-shrink-0'>
-                        Explore All
-                    </RippleButton>
+                    <Link href="/service-providers">
+                        <RippleButton className='border border-[#D97E59] rounded-xl h-[56px] px-6 text-[#D97E59] text-[20px] leading-[24px] tracking-[0.5px] font-semibold hover:bg-[#D97E59] hover:text-white transition duration-200 flex-shrink-0'>
+                            Explore All
+                        </RippleButton>
+                    </Link>
                 </div>
                 
                 <Swiper
