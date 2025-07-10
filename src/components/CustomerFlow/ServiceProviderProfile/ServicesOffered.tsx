@@ -275,7 +275,7 @@ const ServiceCard: React.FC<{ service: Service; loading?: boolean }> = ({ servic
         )
     }
     return (
-        <div className="bg-white border border-[#E8ECF4] rounded-xl p-3 overflow-hidden hover:shadow-lg transition-shadow duration-300">
+        <Link href={`/service-details?id=${service.id}`} className="bg-white border border-[#E8ECF4] rounded-xl p-3 overflow-hidden hover:shadow-lg transition-shadow duration-300">
             <Image
                 src={service.image}
                 alt={service.title}
@@ -307,7 +307,7 @@ const ServiceCard: React.FC<{ service: Service; loading?: boolean }> = ({ servic
                     </span>
                 ))}
             </div>
-        </div>
+        </Link>
     )
 }
 
