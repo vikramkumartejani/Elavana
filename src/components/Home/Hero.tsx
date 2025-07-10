@@ -3,7 +3,6 @@ import type React from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-// Define image arrays
 const firstColumnImages = [
   {
     src: "/assets/hero/1.jpg",
@@ -48,9 +47,9 @@ const secondColumnImages = [
 
 const Hero: React.FC = () => {
   return (
-    <div className="relative w-full bg-white overflow-hidden min-h-[100vh] md:min-h-screen">
+    <div className="relative w-full bg-white overflow-hidden max-h-[715px] h-full min-h-[715px] px-5 md:px-8">
       {/* Background shapes */}
-      <Image
+      {/* <Image
         src="/assets/elements/circle.png"
         alt="hero-bg"
         width={32}
@@ -84,88 +83,56 @@ const Hero: React.FC = () => {
         width={80}
         height={34}
         className="absolute bottom-[5%] left-[25%] -translate-x-1/2 -translate-y-1/2 scale-75 md:scale-100"
-      />
+      /> */}
 
-      <div className="container mx-auto px-4 flex flex-col md:flex-row items-center h-full">
+      <div className="max-w-[1280px] w-full mx-auto flex flex-col lg:flex-row justify-between gap-6 items-center max-h-[715px] min-h-[715px] h-[715px]">
         {/* Left content */}
-        <div className="w-full md:w-1/2 mb-8 md:mb-0 py-8 md:py-12 lg:py-24 z-10">
-          <h1 className="text-[8vw] leading-[1.2] md:text-[4vw] md:leading-[1.2] lg:text-[3.5vw] lg:leading-[1.4] font-bold text-[#252525] mb-4 md:mb-6">
-            Where Experts Elevate
-            <br />
-            and Ambitions Grow.
+        <div className="w-full lg:max-w-[625px] z-10 pt-6 lg:pt-0">
+          <h1 className="text-[#252525] text-[26px] sm:text-[40px] xl:text-[56px] leading-[32px] sm:leading-[50px] xl:leading-[78px] font-bold mb-2 sm:mb-4 xl:mb-6">
+            Where Experts Elevate, <br /> and Ambitions Grow.
           </h1>
-          <p className="text-[4vw] leading-[1.5] md:text-[1.5vw] md:leading-[1.5] lg:text-[1.25vw] lg:leading-[1.5] text-gray-600 mb-6 md:mb-10 max-w-[90%] md:max-w-xl">
+          <p className="text-[#252525] text-[16px] sm:text-[20px] leading-[20px] sm:leading-[28px] font-normal max-w-[554px]">
             Discover top Services for your career and personal growth, or build
             your practice and income as a trusted expert.
           </p>
-          <div className="space-y-4">
-            <h2 className="text-[6vw] leading-[1.3] md:text-[2.5vw] md:leading-[1.3] lg:text-[2vw] lg:leading-[1.3] font-medium text-[#252525] mb-4">
-              I want to..
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
-              <Link
-                href="/service-providers"
-                className="flex items-center justify-between text-[3.5vw] leading-[1.3] md:text-[1.25vw] md:leading-[1.3] lg:text-[1.125vw] lg:leading-[1.3] bg-[#3A96AF] text-white px-4 py-3 md:px-6 md:py-4 rounded-full hover:bg-[#2d7a8c] transition-colors"
-              >
-                <span>Discover coaches/experts</span>
-                <Image
-                  src="/assets/icons/right-arrow.svg"
-                  alt="arrow-right"
-                  width={16}
-                  height={16}
-                  className="md:w-5 md:h-5"
-                />
+          <div className="mt-6 sm:mt-8 xl:mt-[56px]">
+            <h2 className="text-[24px] sm:text-[34px] leading-[30px] sm:leading-[40px] font-semibold text-[#252525]">I want to..</h2>
+            <div className="mt-3 sm:mt-4 xl:mt-6 flex items-center gap-x-3 gap-y-2 flex-wrap">
+              <Link href="/service-providers" className="flex items-center justify-center px-4 py-2.5 sm:p-4 gap-2 bg-[#3A96AF] transition duration-200 hover:bg-[#2d7a8f] text-white rounded-[99px]">
+                <span className="text-[14px] sm:text-[16px] xl:text-[18px] leading-[18px] sm:leading-[22px] font-semibold tracking-[0.5px]">Discover coaches/experts</span>
+                <Image src="/assets/icons/right-arrow.svg" alt="arrow-right" width={24} height={24} />
               </Link>
-              <Link
-                href="/for-coaches-mentor"
-                className="flex items-center justify-between text-[3.5vw] leading-[1.3] md:text-[1.25vw] md:leading-[1.3] lg:text-[1.125vw] lg:leading-[1.3] bg-[#3A96AF] text-white px-4 py-3 md:px-6 md:py-4 rounded-full hover:bg-[#2d7a8c] transition-colors"
-              >
-                <span>Join as a coach/expert</span>
-                <Image
-                  src="/assets/icons/right-arrow.svg"
-                  alt="arrow-right"
-                  width={16}
-                  height={16}
-                  className="md:w-5 md:h-5"
-                />
+              <Link href="/for-coaches-mentor" className="flex items-center justify-center px-4 py-2.5 sm:p-4 gap-2 bg-[#3A96AF] transition duration-200 hover:bg-[#2d7a8f] text-white rounded-[99px]">
+                <span className="text-[14px] sm:text-[16px] xl:text-[18px] leading-[18px] sm:leading-[22px] font-semibold tracking-[0.5px]">Join as a coach/expert</span>
+                <Image src="/assets/icons/right-arrow.svg" alt="arrow-right" width={24} height={24} />
               </Link>
-              <Link
-                href="/customer-home"
-                className="flex items-center justify-between text-[3.5vw] leading-[1.3] md:text-[1.25vw] md:leading-[1.3] lg:text-[1.125vw] lg:leading-[1.3] bg-[#3A96AF] text-white px-4 py-3 md:px-6 md:py-4 rounded-full hover:bg-[#2d7a8c] transition-colors"
-              >
-                <span>Grow my business</span>
-                <Image
-                  src="/assets/icons/right-arrow.svg"
-                  alt="arrow-right"
-                  width={16}
-                  height={16}
-                  className="md:w-5 md:h-5"
-                />
+              <Link href="/customer-home" className="flex items-center justify-center px-4 py-2.5 sm:p-4 gap-2 bg-[#3A96AF] transition duration-200 hover:bg-[#2d7a8f] text-white rounded-[99px]">
+                <span className="text-[14px] sm:text-[16px] xl:text-[18px] leading-[18px] sm:leading-[22px] font-semibold tracking-[0.5px]">Grow my business</span>
+                <Image src="/assets/icons/right-arrow.svg" alt="arrow-right" width={24} height={24} />
               </Link>
-              <Link
-                href="/service-providers"
-                className="flex items-center justify-between text-[3.5vw] leading-[1.3] md:text-[1.25vw] md:leading-[1.3] lg:text-[1.125vw] lg:leading-[1.3] bg-[#3A96AF] text-white px-4 py-3 md:px-6 md:py-4 rounded-full hover:bg-[#2d7a8c] transition-colors"
-              >
-                <span>Improve my professional skills</span>
-                <Image
-                  src="/assets/icons/right-arrow.svg"
-                  alt="arrow-right"
-                  width={16}
-                  height={16}
-                  className="md:w-5 md:h-5"
-                />
+              <Link href="/service-providers" className="flex items-center justify-center px-4 py-2.5 sm:p-4 gap-2 bg-[#3A96AF] transition duration-200 hover:bg-[#2d7a8f] text-white rounded-[99px]">
+                <span className="text-[14px] sm:text-[16px] xl:text-[18px] leading-[18px] sm:leading-[22px] font-semibold tracking-[0.5px]">Improve my professional skills</span>
+                <Image src="/assets/icons/right-arrow.svg" alt="arrow-right" width={24} height={24} />
               </Link>
             </div>
           </div>
         </div>
 
         {/* Right side animated image columns */}
-        <div className="w-full md:w-1/2 relative h-[50vh] md:h-[80vh] lg:h-screen overflow-hidden">
+        <div className="w-full lg:min-w-[598px] lg:max-w-[598px] relative min-h-screen overflow-hidden">
+          {/* Background overlay */}
+          <div
+            className="absolute top-0 left-0 w-full z-20 pointer-events-none"
+            style={{
+              height: "100px",
+              background: "linear-gradient(180deg, rgba(255, 255, 255, 0.8) 23.08%, rgba(255, 255, 255, 0.1) 62.02%)",
+            }}
+          />
           {/* First column - moving up */}
-          <div className="absolute left-0 ml-[2%] w-[55%] md:w-[60%] h-full">
-            <div className="animate-scroll-up-infinite flex flex-col gap-4 md:gap-6">
+          <div className="absolute left-0 h-full w-1/2 lg:w-full pr-2 lg:pr-0 lg:max-w-[350px]">
+            <div className="animate-scroll-up-infinite flex flex-col gap-2">
               {[...Array(4)].map((_, setIndex) => (
-                <div key={setIndex} className="flex flex-col gap-4 md:gap-6">
+                <div key={setIndex} className="flex flex-col gap-2">
                   {firstColumnImages.map((image, imgIndex) => (
                     <div
                       key={`${setIndex}-${imgIndex}`}
@@ -186,10 +153,10 @@ const Hero: React.FC = () => {
           </div>
 
           {/* Second column - moving down */}
-          <div className="absolute right-0 w-[40%] md:w-[35%] h-full">
-            <div className="animate-scroll-down-infinite flex flex-col gap-4 md:gap-6">
+          <div className="absolute right-0 w-1/2 lg:w-full lg:max-w-[239px] h-full">
+            <div className="animate-scroll-down-infinite flex flex-col gap-2">
               {[...Array(4)].map((_, setIndex) => (
-                <div key={setIndex} className="flex flex-col gap-4 md:gap-6">
+                <div key={setIndex} className="flex flex-col gap-2">
                   {secondColumnImages.map((image, imgIndex) => (
                     <div
                       key={`${setIndex}-${imgIndex}`}
@@ -217,13 +184,13 @@ const Hero: React.FC = () => {
             transform: translateY(-25%);
           }
           100% {
-            transform: translateY(-75%);
+            transform: translateY(-50%);
           }
         }
 
         @keyframes scroll-down-infinite {
           0% {
-            transform: translateY(-75%);
+            transform: translateY(-50%);
           }
           100% {
             transform: translateY(-25%);
