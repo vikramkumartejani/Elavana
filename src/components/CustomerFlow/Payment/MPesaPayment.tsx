@@ -44,10 +44,10 @@ const MPesaPayment: React.FC<MPesaPaymentProps> = ({
                         <label className="block text-[16px] leading-[20px] text-[#252525] font-medium mb-3">Phone Number</label>
                         <div className="flex items-center gap-2 mb-6 max-w-[450px]">
                             <input
-                                type="text"
-                                className="flex-1 rounded-lg bg-[#F8FAFC] px-4 py-3.5 placeholder:text-[#9A9EA6] text-[14px] border border-[#E8ECF4] focus:border-[#3A96AF]"
+                                type="tel"
+                                className="flex-1 rounded-xl bg-[#F8FAFC] px-4 py-3.5 placeholder:text-[#676D75] text-[#252525] text-[16px] leading-[20px] tracking-[0.5px] outline-none border focus:border-[#3A96AF] transition duration-150"
                                 placeholder="Enter Your Phone Number"
-                                value={phoneNumber}
+                                required
                                 onChange={e => setPhoneNumber(e.target.value)}
                                 onClick={e => e.stopPropagation()}
                             />
@@ -112,7 +112,7 @@ const MPesaPayment: React.FC<MPesaPaymentProps> = ({
 
                             <RippleButton
                                 className="bg-[#3A96AF] text-white p-2 rounded-lg text-[10px] leading-[14px] tracking-[0.5px] font-medium"
-                                onClick={e => { e.stopPropagation(); setShowInstructions(!showInstructions); }}
+                                onClick={e => { e.stopPropagation(); handleProceedPayment(); }}
                             >
                                 Resend Payment Prompt
                             </RippleButton>

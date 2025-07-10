@@ -2,6 +2,7 @@
 import { FC } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import RippleButton from "@/components/ui/Button";
 
 interface PaymentSuccessModalProps {
   isOpen: boolean;
@@ -34,79 +35,90 @@ const PaymentSuccessModal: FC<PaymentSuccessModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 bg-black/20 backdrop-blur-xs bg-opacity-50 flex items-center justify-center z-50 px-4">
-      <div className="bg-white rounded-2xl max-w-md w-full p-8 flex flex-col items-center">
-        <Image
-          src="/assets/icons/success.svg"
-          alt="Success"
-          width={97}
-          height={97}
-          className="object-contain mb-4"
-        />
+    <div
+      className="fixed inset-0 bg-black/40 backdrop-blur-xs bg-opacity-50 flex items-center justify-center z-50 px-4"
+      onClick={onClose}
+    >
+      <div
+        className="bg-white rounded-[24px] max-w-[501px] mx-auto w-full py-[34px] px-6 flex flex-col items-center"
+        onClick={e => e.stopPropagation()}
+      >
+        <div className="p-[11.25px] mb-6">
+          <Image
+            src="/assets/icons/success.svg"
+            alt="Success"
+            width={97}
+            height={97}
+            className="object-contain"
+          />
+        </div>
 
-        <h2 className="text-[#14A65B] text-[24px] leading-[28px] font-semibold mb-1">
+        <h2 className="text-[#14A65B] text-[24px] leading-[28px] tracking-[0.5px] font-semibold mb-3">
           Payment Successful
         </h2>
-        <p className="text-[#252525] text-[16px] leading-[20px] mb-6">
+        <p className="text-[#252525] text-[16px] leading-[20px] tracking-[0.5px]">
           Your payment has been done successfully
         </p>
 
-        <div className="w-full space-y-[12px] mb-6">
+        <div className="bg-[#E8ECF4] h-[2px] w-full my-6" />
+
+        <div className="w-full space-y-3 mb-6">
           <div className="flex justify-between">
-            <span className="text-[#64748B] text-[16px] leading-[20px]">
+            <h3 className="text-[#252525] text-[16px] leading-[20px] font-normal tracking-[0.5px]">
               Transaction ID
-            </span>
-            <span className="text-[#252525] text-[16px] leading-[20px] font-medium">
+            </h3>
+            <h3 className="text-[#252525] text-[16px] leading-[20px] font-medium tracking-[0.5px]">
               {transactionId}
-            </span>
+            </h3>
           </div>
           <div className="flex justify-between">
-            <span className="text-[#64748B] text-[16px] leading-[20px]">
+            <h3 className="text-[#252525] text-[16px] leading-[20px] font-normal tracking-[0.5px]">
               Date
-            </span>
-            <span className="text-[#252525] text-[16px] leading-[20px] font-medium">
+            </h3>
+            <h3 className="text-[#252525] text-[16px] leading-[20px] font-medium tracking-[0.5px]">
               {date}
-            </span>
+            </h3>
           </div>
           <div className="flex justify-between">
-            <span className="text-[#64748B] text-[16px] leading-[20px]">
+            <h3 className="text-[#252525] text-[16px] leading-[20px] font-normal tracking-[0.5px]">
               Time
-            </span>
-            <span className="text-[#252525] text-[16px] leading-[20px] font-medium">
+            </h3>
+            <h3 className="text-[#252525] text-[16px] leading-[20px] font-medium tracking-[0.5px]">
               {time}
-            </span>
+            </h3>
           </div>
           <div className="flex justify-between">
-            <span className="text-[#64748B] text-[16px] leading-[20px]">
+            <h3 className="text-[#252525] text-[16px] leading-[20px] font-normal tracking-[0.5px]">
               Payment Method
-            </span>
-            <span className="text-[#252525] text-[16px] leading-[20px] font-medium">
+            </h3>
+            <h3 className="text-[#252525] text-[16px] leading-[20px] font-medium tracking-[0.5px]">
               {paymentMethod}
-            </span>
+            </h3>
           </div>
+          <div className="w-full h-[2px] bg-[#E8ECF4]" />
           <div className="flex justify-between">
-            <span className="text-[#64748B] text-[16px] leading-[20px]">
+            <h3 className="text-[#252525] text-[16px] leading-[20px] font-normal tracking-[0.5px]">
               Amount Paid
-            </span>
-            <span className="text-[#252525] text-[16px] leading-[20px] font-medium">
+            </h3>
+            <h3 className="text-[#252525] text-[16px] leading-[20px] font-medium tracking-[0.5px]">
               $ {amount.toFixed(1)}
-            </span>
+            </h3>
           </div>
         </div>
 
         <div className="w-full space-y-3">
-          <button
+          <RippleButton
             onClick={handleViewDetails}
-            className="w-full border border-[#3A96AF] rounded-[8px] py-[12px] text-[#3A96AF] text-[16px] leading-[20px] font-medium"
+            className="w-full border border-[#3A96AF] rounded-lg py-3 text-[#3A96AF] text-[16px] leading-[20px] font-medium tracking-[0.5]"
           >
             View Details
-          </button>
-          <button
+          </RippleButton>
+          <RippleButton
             onClick={handleBackToServices}
-            className="w-full py-3 bg-[#3A96AF] text-white rounded-lg text-[16px] leading-[20px] font-medium"
+            className="w-full py-3 bg-[#3A96AF] text-white rounded-lg text-[16px] leading-[20px] font-medium tracking-[0.5]"
           >
             Back to Services
-          </button>
+          </RippleButton>
         </div>
       </div>
     </div>
