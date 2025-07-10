@@ -1,8 +1,20 @@
+export type ServiceCategory = 
+    'consultation' | 
+    'event' | 
+    'workshops' | 
+    'masterclass' | 
+    'conference' | 
+    'products' | 
+    'courses' | 
+    'coaching' | 
+    'design' | 
+    'writing';
+
 export interface Service {
     id: number;
     title: string;
     instructor: string;
-    category: string;
+    category: ServiceCategory;
     price: number;
     rating: number;
     students: number;
@@ -11,34 +23,35 @@ export interface Service {
     description: string;
     tags: string[];
     datePosted: string;
+    type?: 'service' | 'event';
 }
 
 export interface Category {
-    id: string;
-    name: string;
-    icon: string;
+  id: string;
+  name: string;
+  icon: string;
 }
 
-export type SortOption = 'popular' | 'rating' | 'price-low' | 'price-high';
-export type PriceRange = 'all' | 'under-100' | '100-200' | '250-30000';
-export type DateFilter = 'anytime' | 'today' | 'this-week' | 'this-month';
+export type SortOption = "popular" | "rating" | "price-low" | "price-high";
+export type PriceRange = "all" | "under-100" | "100-200" | "250-30000";
+export type DateFilter = "anytime" | "today" | "this-week" | "this-month";
 
 export interface ServiceCardProps {
-    service: Service;
+  service: Service;
 }
 
 export interface FilterSidebarProps {
-    selectedCategory: string;
-    setSelectedCategory: (category: string) => void;
-    selectedPriceRange: PriceRange;
-    setSelectedPriceRange: (range: PriceRange) => void;
-    selectedDateFilter: DateFilter;
-    setSelectedDateFilter: (filter: DateFilter) => void;
-    onClearFilters: () => void;
+  selectedCategory: string;
+  setSelectedCategory: (category: string) => void;
+  selectedPriceRange: PriceRange;
+  setSelectedPriceRange: (range: PriceRange) => void;
+  selectedDateFilter: DateFilter;
+  setSelectedDateFilter: (filter: DateFilter) => void;
+  onClearFilters: () => void;
 }
 
 export interface PriceRangeButtonProps {
-    label: string;
-    selected: boolean;
-    onClick?: () => void;
-} 
+  label: string;
+  selected: boolean;
+  onClick?: () => void;
+}
