@@ -846,14 +846,18 @@ const ServiceDetails: React.FC<ServiceDetailsProps> = ({ service }) => {
                     <ul className="space-y-[12px] text-[16px] leading-[20px] font-normal">
                       <li className="flex items-center">
                         <span className="text-gray-700">
-                          Start Immediately ✓
+                          Start Immediately <strong> ✓</strong>
                         </span>
                       </li>
                       <li className="flex items-center">
-                        <span className="text-gray-700">Self-paced ✓</span>
+                        <span className="text-gray-700">
+                          Self-paced <strong> ✓</strong>
+                        </span>
                       </li>
                       <li className="flex items-center">
-                        <span className="text-gray-700">Lifetime Access ✓</span>
+                        <span className="text-gray-700">
+                          Lifetime Access <strong> ✓</strong>
+                        </span>
                       </li>
                     </ul>
                   </>
