@@ -1,0 +1,11 @@
+/* Swiper Styles */
+.swiper-pagination-bullet {
+  background-color: #d9d9d9;
+  opacity: 1;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #d97e59;
+  width: 12px;
+  border-radius: 6px;
+}

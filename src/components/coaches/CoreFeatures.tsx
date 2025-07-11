@@ -34,14 +34,12 @@ const CoreFeatures: React.FC = () => {
             <div className="absolute z-20 md:top-[30px] md:left-[-30px] ">
               <div className="flex items-center bg-white rounded-lg p-3 md:p-4 shadow-lg border-l-2 border-[#D97E59]">
                 <div className="flex-shrink-0 mr-3 md:mr-4">
-                  <div className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center bg-[#FEF2F2] rounded-lg">
-                    <Image
-                      src="/assets/icons/core-features1.svg"
-                      alt="Client Management"
-                      width={24}
-                      height={24}
-                    />
-                  </div>
+                  <Image
+                    src="/assets/icons/core-features1.svg"
+                    alt="Client Management"
+                    width={24}
+                    height={24}
+                  />
                 </div>
                 <div className="flex-grow">
                   <h3 className="text-sm md:text-base font-semibold text-[#1E293B]">
@@ -55,14 +53,12 @@ const CoreFeatures: React.FC = () => {
             <div className="absolute z-20  md:top-[30px] max-w-[420px] md:right-[-30px] ">
               <div className="flex items-center bg-white rounded-lg p-3 md:p-4 shadow-lg border-r-2 border-[#D97E59]">
                 <div className="flex-shrink-0 mr-3 md:mr-4">
-                  <div className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center bg-[#FEF2F2] rounded-lg">
-                    <Image
-                      src="/assets/icons/core-features2.svg"
-                      alt="Automated Scheduling"
-                      width={24}
-                      height={24}
-                    />
-                  </div>
+                  <Image
+                    src="/assets/icons/calendar.svg"
+                    alt="Automated Scheduling"
+                    width={24}
+                    height={24}
+                  />
                 </div>
                 <div className="flex-grow">
                   <h3 className="text-sm md:text-base font-semibold text-[#1E293B]">
@@ -76,14 +72,12 @@ const CoreFeatures: React.FC = () => {
             <div className="absolute z-20  md:top-[50%] md:left-[70px]  transform -translate-y-1/2">
               <div className="flex items-center bg-white rounded-lg p-3 md:p-4 shadow-lg border-l-2 border-[#D97E59]">
                 <div className="flex-shrink-0 mr-3 md:mr-4">
-                  <div className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center bg-[#FEF2F2] rounded-lg">
-                    <Image
-                      src="/assets/icons/core-features3.svg"
-                      alt="Community Space"
-                      width={24}
-                      height={24}
-                    />
-                  </div>
+                  <Image
+                    src="/assets/icons/core-features3.svg"
+                    alt="Community Space"
+                    width={24}
+                    height={24}
+                  />
                 </div>
                 <div className="flex-grow">
                   <h3 className="text-sm md:text-base font-semibold text-[#1E293B]">
@@ -97,14 +91,12 @@ const CoreFeatures: React.FC = () => {
             <div className="absolute z-20  top-1/2 md:right-[70px] max-w-[420px] transform -translate-y-1/2">
               <div className="flex items-center bg-white rounded-lg p-3 md:p-4 shadow-lg border-r-2 border-[#D97E59]">
                 <div className="flex-shrink-0 mr-3 md:mr-4">
-                  <div className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center bg-[#FEF2F2] rounded-lg">
-                    <Image
-                      src="/assets/icons/core-features4.svg"
-                      alt="On Demand Invoicing"
-                      width={24}
-                      height={24}
-                    />
-                  </div>
+                  <Image
+                    src="/assets/icons/core-features4.svg"
+                    alt="On Demand Invoicing"
+                    width={24}
+                    height={24}
+                  />
                 </div>
                 <div className="flex-grow">
                   <h3 className="text-sm md:text-base font-semibold text-[#1E293B]">
@@ -118,14 +110,12 @@ const CoreFeatures: React.FC = () => {
             <div className="absolute z-20 md:bottom-[30px] md:left-[-30px]  ">
               <div className="flex items-center bg-white rounded-lg p-3 md:p-4 shadow-lg  border-l-2 border-[#D97E59]">
                 <div className="flex-shrink-0 mr-3 md:mr-4">
-                  <div className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center bg-[#FEF2F2] rounded-lg">
-                    <Image
-                      src="/assets/icons/core-features5.svg"
-                      alt="Analytics"
-                      width={24}
-                      height={24}
-                    />
-                  </div>
+                  <Image
+                    src="/assets/icons/core-features5.svg"
+                    alt="Analytics"
+                    width={24}
+                    height={24}
+                  />
                 </div>
                 <div className="flex-grow">
                   <h3 className="text-sm md:text-base font-semibold text-[#1E293B]">
@@ -139,14 +129,12 @@ const CoreFeatures: React.FC = () => {
             <div className="absolute z-20 md:bottom-[30px] max-w-[420px] md:right-[-30px] ">
               <div className="flex items-center bg-white rounded-lg p-3 md:p-4 shadow-lg border-r-2 border-red-600">
                 <div className="flex-shrink-0 mr-3 md:mr-4">
-                  <div className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center bg-[#FEF2F2] rounded-lg">
-                    <Image
-                      src="/assets/icons/core-features6.svg"
-                      alt="Custom Coaching"
-                      width={24}
-                      height={24}
-                    />
-                  </div>
+                  <Image
+                    src="/assets/icons/core-features6.svg"
+                    alt="Custom Coaching"
+                    width={24}
+                    height={24}
+                  />
                 </div>
                 <div className="flex-grow">
                   <h3 className="text-sm md:text-base font-semibold text-[#1E293B]">
