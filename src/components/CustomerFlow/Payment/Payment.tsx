@@ -47,9 +47,9 @@ const mockOrder: MockOrder = {
 
 const Payment: FC = () => {
     const searchParams = useSearchParams();
-    const price = Number(searchParams.get("price")) || 0;
-    const quantity = Number(searchParams.get("quantity")) || 1;
-    const title = searchParams.get("title") || "Service";
+    const price = Number(searchParams?.get("price")) || 0;
+    const quantity = Number(searchParams?.get("quantity")) || 1;
+    const title = searchParams?.get("title") || "Service";
     const total = price * quantity;
     const [selectedPayment, setSelectedPayment] = useState<"card" | "mpesa">(
         "mpesa"
