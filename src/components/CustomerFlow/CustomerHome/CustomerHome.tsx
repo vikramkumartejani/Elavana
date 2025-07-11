@@ -35,7 +35,7 @@ const CustomerHome: React.FC = () => {
 
   // Get search query from URL parameters
   useEffect(() => {
-    const search = searchParams.get("search");
+    const search = searchParams?.get("search");
     if (search) {
       setSearchTerm(search);
     }
