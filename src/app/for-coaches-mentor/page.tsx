@@ -31,8 +31,8 @@ const ForCoachesMentor = () => {
       <Hero />
       <WhyElevana />
       <CoreFeatures />
-      <WhatClientSays />
       <TrustedByCommunity />
+      <WhatClientSays />
       <HowItWorks />
       <div className="bg-[#F6FCFD] py-10 px-5 md:px-8">
         <h1 className="text-[#2E2E2E] text-[24px] sm:text-[40px] sm:leading-[76px] font-semibold text-center">

@@ -1,8 +1,9 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 
 const TrustedByCommunity: React.FC = () => {
+  const [showVideo, setShowVideo] = useState(false);
   return (
     <section className="w-full py-16 md:py-24 bg-white">
       <div className="container mx-auto px-4">
@@ -19,29 +20,47 @@ const TrustedByCommunity: React.FC = () => {
         <div className="max-w-5xl mx-auto relative">
           {/* Dashboard mockup with rounded corners and shadow */}
           <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-gray-200">
-            <Image
-              src="/assets/hero/dashboard.png"
-              alt="Dashboard Mockup"
-              width={1200}
-              height={675}
-              className="w-full h-auto"
-            />
-
-            {/* Play button overlay */}
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="w-20 h-20 md:w-28 md:h-28 rounded-full bg-white flex items-center justify-center cursor-pointer shadow-lg transition-transform hover:scale-105">
-                <svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-8 h-8 md:w-10 md:h-10 ml-1"
-                >
-                  <path d="M8 5V19L19 12L8 5Z" fill="#3A96AF" />
-                </svg>
+            {!showVideo ? (
+              <>
+                <Image
+                  src="/assets/hero/dashboard.png"
+                  alt="Dashboard Mockup"
+                  width={1200}
+                  height={675}
+                  className="w-full h-auto"
+                />
+                {/* Play button overlay */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <button
+                    className="w-20 h-20 md:w-28 md:h-28 rounded-full bg-white flex items-center justify-center cursor-pointer shadow-lg transition-transform hover:scale-105"
+                    onClick={() => setShowVideo(true)}
+                    aria-label="Play video"
+                  >
+                    <svg
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="w-8 h-8 md:w-10 md:h-10 ml-1"
+                    >
+                      <path d="M8 5V19L19 12L8 5Z" fill="#3A96AF" />
+                    </svg>
+                  </button>
+                </div>
+              </>
+            ) : (
+              <div className="w-full h-auto bg-black flex items-center justify-center" style={{ aspectRatio: '16/9', minHeight: '250px' }}>
+                <iframe
+                  src="https://www.youtube.com/embed/lOcFsSkztKw?autoplay=1&modestbranding=1&rel=0"
+                  title="Trusted by our community video"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  className="w-full h-full rounded-3xl border-none"
+                  style={{ aspectRatio: '16/9' }}
+                ></iframe>
               </div>
-            </div>
+            )}
           </div>
         </div>
       </div>

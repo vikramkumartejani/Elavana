@@ -3,14 +3,59 @@ import React from "react";
 import Image from "next/image";
 
 const CoreFeatures: React.FC = () => {
+  const features = [
+    {
+      position: "md:top-[30px] md:left-[-30px]",
+      border: "border-l-2 border-[#D97E59]",
+      icon: "/assets/icons/core-features1.svg",
+      alt: "Client Management",
+      title: "Client Management Dashboard",
+    },
+    {
+      position: "md:top-[30px] max-w-[420px] md:right-[-30px]",
+      border: "border-r-2 border-[#D97E59]",
+      icon: "/assets/icons/core-features2.svg",
+      alt: "Automated Scheduling",
+      title: "Automated Scheduling & Reminders",
+    },
+    {
+      position: "md:top-[50%] md:left-[70px]  transform -translate-y-1/2",
+      border: "border-l-2 border-[#D97E59]",
+      icon: "/assets/icons/core-features3.svg",
+      alt: "Community Space",
+      title: "Built In Community Space",
+    },
+    {
+      position: "top-1/2 md:right-[70px] max-w-[420px] transform -translate-y-1/2",
+      border: "border-r-2 border-[#D97E59]",
+      icon: "/assets/icons/core-features4.svg",
+      alt: "On Demand Invoicing",
+      title: "On Demand Invoicing",
+    },
+    {
+      position: "md:bottom-[30px] md:left-[-30px]",
+      border: "border-l-2 border-[#D97E59]",
+      icon: "/assets/icons/core-features5.svg",
+      alt: "Analytics",
+      title: "Analytics & Performing Tracking",
+    },
+    {
+      position: "md:bottom-[30px] max-w-[420px] md:right-[-30px]",
+      border: "border-r-2 border-red-600",
+      icon: "/assets/icons/core-features6.svg",
+      alt: "Custom Coaching",
+      title: "Custom Coaching Packages And Digital Products",
+    },
+  ];
+
   return (
-    <section className="w-full bg-[#F8FAFC] py-16 md:py-24 overflow-hidden">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-12 md:mb-16">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#1E293B] mb-4">
+    <section className="w-full py-16 md:pt-[100px] pb-[116px] overflow-hidden px-5 md:px-8" style={{ backgroundImage: 'url(/assets/coaches-core-section-bg.svg)', backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}>
+      <div className="max-w-[1440px] w-full mx-auto px-4">
+        <div className="mb-12 sm:mb-16 max-w-[919px] mx-auto w-full text-center">
+          <h2 className="text-[48px] leading-[66px] font-bold text-[#181E4B] mb-2">
             Core Features
           </h2>
-          <p className="text-lg text-[#64748B] max-w-3xl mx-auto">
+          <p className="text-[#8896AB] text-[20px] leading-[25px] font-normal">
             Become the best version of yourself by accessing to the perspectives
             and life experiences of others who've been there, done that.
           </p>
@@ -18,143 +63,44 @@ const CoreFeatures: React.FC = () => {
 
         <div className="relative max-w-6xl mx-auto ">
           {/* Dashboard mockup image in center */}
-          <div className="relative z-10 mx-auto mb-8 md:mb-0 max-w-3xl rounded-[24px] shadow-lg overflow-hidden border-2 border-black">
+          <div className="relative z-10 overflow-hidden w-full max-w-[700px] mx-auto ">
             <Image
-              src="/assets/hero/dashboard.png"
+              src="/assets/admin.svg"
               alt="Dashboard Mockup"
-              width={680}
+              width={700}
               height={527}
-              className="w-full h-auto"
+              className="h-auto w-full"
             />
           </div>
 
           {/* Feature cards positioned around the dashboard */}
           <div className=" z-20 hidden md:block max-w-5xl mx-auto">
-            {/* Top Left - Client Management Dashboard */}
-            <div className="absolute z-20 md:top-[30px] md:left-[-30px] ">
-              <div className="flex items-center bg-white rounded-lg p-3 md:p-4 shadow-lg border-l-2 border-[#D97E59]">
-                <div className="flex-shrink-0 mr-3 md:mr-4">
-                  <div className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center bg-[#FEF2F2] rounded-lg">
-                    <Image
-                      src="/assets/icons/core-features1.svg"
-                      alt="Client Management"
-                      width={24}
-                      height={24}
-                    />
+            {features.map((feature, idx) => (
+              <div
+                key={feature.title}
+                className={`absolute z-20 ${feature.position}`}
+              >
+                <div
+                  className={`flex items-center bg-white rounded-lg p-3 md:p-4 shadow-lg ${feature.border}`}
+                >
+                  <div className="flex-shrink-0 mr-3 md:mr-4">
+                    <div className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center bg-[#FEF2F2] rounded-lg">
+                      <Image
+                        src={feature.icon}
+                        alt={feature.alt}
+                        width={24}
+                        height={24}
+                      />
+                    </div>
+                  </div>
+                  <div className="flex-grow">
+                    <h3 className="text-sm md:text-base font-semibold text-[#1E293B]">
+                      {feature.title}
+                    </h3>
                   </div>
                 </div>
-                <div className="flex-grow">
-                  <h3 className="text-sm md:text-base font-semibold text-[#1E293B]">
-                    Client Management Dashboard
-                  </h3>
-                </div>
               </div>
-            </div>
-
-            {/* Top Right - Automated Scheduling */}
-            <div className="absolute z-20  md:top-[30px] max-w-[420px] md:right-[-30px] ">
-              <div className="flex items-center bg-white rounded-lg p-3 md:p-4 shadow-lg border-r-2 border-[#D97E59]">
-                <div className="flex-shrink-0 mr-3 md:mr-4">
-                  <div className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center bg-[#FEF2F2] rounded-lg">
-                    <Image
-                      src="/assets/icons/core-features2.svg"
-                      alt="Automated Scheduling"
-                      width={24}
-                      height={24}
-                    />
-                  </div>
-                </div>
-                <div className="flex-grow">
-                  <h3 className="text-sm md:text-base font-semibold text-[#1E293B]">
-                    Automated Scheduling & Reminders
-                  </h3>
-                </div>
-              </div>
-            </div>
-
-            {/* Middle Left - Community Space */}
-            <div className="absolute z-20  md:top-[50%] md:left-[70px]  transform -translate-y-1/2">
-              <div className="flex items-center bg-white rounded-lg p-3 md:p-4 shadow-lg border-l-2 border-[#D97E59]">
-                <div className="flex-shrink-0 mr-3 md:mr-4">
-                  <div className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center bg-[#FEF2F2] rounded-lg">
-                    <Image
-                      src="/assets/icons/core-features3.svg"
-                      alt="Community Space"
-                      width={24}
-                      height={24}
-                    />
-                  </div>
-                </div>
-                <div className="flex-grow">
-                  <h3 className="text-sm md:text-base font-semibold text-[#1E293B]">
-                    Built In Community Space
-                  </h3>
-                </div>
-              </div>
-            </div>
-
-            {/* Middle Right - On Demand Invoicing */}
-            <div className="absolute z-20  top-1/2 md:right-[70px] max-w-[420px] transform -translate-y-1/2">
-              <div className="flex items-center bg-white rounded-lg p-3 md:p-4 shadow-lg border-r-2 border-[#D97E59]">
-                <div className="flex-shrink-0 mr-3 md:mr-4">
-                  <div className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center bg-[#FEF2F2] rounded-lg">
-                    <Image
-                      src="/assets/icons/core-features4.svg"
-                      alt="On Demand Invoicing"
-                      width={24}
-                      height={24}
-                    />
-                  </div>
-                </div>
-                <div className="flex-grow">
-                  <h3 className="text-sm md:text-base font-semibold text-[#1E293B]">
-                    On Demand Invoicing
-                  </h3>
-                </div>
-              </div>
-            </div>
-
-            {/* Bottom Left - Analytics */}
-            <div className="absolute z-20 md:bottom-[30px] md:left-[-30px]  ">
-              <div className="flex items-center bg-white rounded-lg p-3 md:p-4 shadow-lg  border-l-2 border-[#D97E59]">
-                <div className="flex-shrink-0 mr-3 md:mr-4">
-                  <div className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center bg-[#FEF2F2] rounded-lg">
-                    <Image
-                      src="/assets/icons/core-features5.svg"
-                      alt="Analytics"
-                      width={24}
-                      height={24}
-                    />
-                  </div>
-                </div>
-                <div className="flex-grow">
-                  <h3 className="text-sm md:text-base font-semibold text-[#1E293B]">
-                    Analytics & Performing Tracking
-                  </h3>
-                </div>
-              </div>
-            </div>
-
-            {/* Bottom Right - Custom Coaching */}
-            <div className="absolute z-20 md:bottom-[30px] max-w-[420px] md:right-[-30px] ">
-              <div className="flex items-center bg-white rounded-lg p-3 md:p-4 shadow-lg border-r-2 border-red-600">
-                <div className="flex-shrink-0 mr-3 md:mr-4">
-                  <div className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center bg-[#FEF2F2] rounded-lg">
-                    <Image
-                      src="/assets/icons/core-features6.svg"
-                      alt="Custom Coaching"
-                      width={24}
-                      height={24}
-                    />
-                  </div>
-                </div>
-                <div className="flex-grow">
-                  <h3 className="text-sm md:text-base font-semibold text-[#1E293B]">
-                    Custom Coaching Packages And Digital Products
-                  </h3>
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </div>
