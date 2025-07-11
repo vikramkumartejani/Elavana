@@ -16,7 +16,7 @@ function VerifyOtpForm() {
   const [resendSuccess, setResendSuccess] = useState(false);
   const router = useRouter();
   const searchParams = useSearchParams();
-  const email = searchParams.get("email") || "your email";
+  const email = searchParams?.get("email") || "your email";
 
   useEffect(() => {
     if (resendTimer > 0) {
@@ -100,20 +100,14 @@ function VerifyOtpForm() {
               disabled={resendTimer > 0}
               className={`text-[#3A96AF] text-[14px] font-medium hover:underline disabled:opacity-50 disabled:cursor-not-allowed`}
             >
-              {resendTimer > 0
-                ? `Resend code in ${resendTimer}s`
-                : "Resend Code"}
+              {resendTimer > 0 ? `Resend code in ${resendTimer}s` : "Resend Code"}
             </button>
             {resendSuccess && (
-              <span className="text-green-600 text-[13px] mt-1">
-                Code resent!
-              </span>
+              <span className="text-green-600 text-[13px] mt-1">Code resent!</span>
             )}
           </div>
           {success && (
-            <div className="text-green-600 text-center text-[14px]">
-              Code verified! Redirecting...
-            </div>
+            <div className="text-green-600 text-center text-[14px]">Code verified! Redirecting...</div>
           )}
         </form>
       </div>
