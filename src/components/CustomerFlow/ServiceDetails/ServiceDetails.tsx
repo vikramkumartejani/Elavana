@@ -63,7 +63,7 @@ const ServiceDetails: React.FC<ServiceDetailsProps> = ({ service }) => {
   const timeSlots = ["4:00 PM", "7:00 PM", "9:00 PM", "11:00 PM"];
   const [activeSession, setActiveSession] = useState(0);
   const [activeTimeSlot, setActiveTimeSlot] = useState(0);
-  const [selectedPackage, setSelectedPackage] = useState("student");
+  const [selectedPackage, setSelectedPackage] = useState("");
   const [packageQuantity, setPackageQuantity] = useState(1);
   const [generalPackageQuantity, setGeneralPackageQuantity] = useState(0);
   const [vipPackageQuantity, setVipPackageQuantity] = useState(0);
@@ -146,14 +146,26 @@ const ServiceDetails: React.FC<ServiceDetailsProps> = ({ service }) => {
     let total = service.price;
 
     // Add package prices based on selected package and quantity
-    if (selectedPackage === "student") {
-      total += packageQuantity * 200;
-    } else if (selectedPackage === "member") {
-      // For member package, add both General and VIP package prices
-      total += generalPackageQuantity * 50; // General Package
-      total += vipPackageQuantity * 60; // VIP Package
-    } else if (selectedPackage === "non-member") {
-      total += packageQuantity * 300; // Non-member package price
+    if (
+      service.category === "event" ||
+      service.category === "workshops" ||
+      service.category === "conference"
+    ) {
+      if (selectedPackage === "student") {
+        total += packageQuantity * 200;
+      } else if (selectedPackage === "member") {
+        // For member package, add both General and VIP package prices
+        total += generalPackageQuantity * 50; // General Package
+        total += vipPackageQuantity * 60; // VIP Package
+      } else if (selectedPackage === "non-member") {
+        total += packageQuantity * 300; // Non-member package price
+      }
+    } else if (service.category === "masterclass") {
+      if (selectedPackage === "basic") {
+        total += packageQuantity * 100; // Basic Masterclass Package
+      } else if (selectedPackage === "premium") {
+        total += packageQuantity * 200; // Premium Masterclass Package
+      }
     }
 
     // Add add-on prices
@@ -442,8 +454,6 @@ const ServiceDetails: React.FC<ServiceDetailsProps> = ({ service }) => {
                   `}</style>
                 </div>
               )}
-
-         
             </div>
 
             {/* Right Side */}
@@ -458,7 +468,7 @@ const ServiceDetails: React.FC<ServiceDetailsProps> = ({ service }) => {
 
                 <div className="h-[2px] w-full bg-[#E8ECF4] my-4 sm:my-6" />
 
-                {["event", "workshops", "conference"].includes(
+                {["event", "workshops", "conference", "masterclass"].includes(
                   service.category
                 ) ? (
                   ""
@@ -505,7 +515,7 @@ const ServiceDetails: React.FC<ServiceDetailsProps> = ({ service }) => {
                   </div>
                 )}
 
-                {["event", "workshops", "conference"].includes(
+                {["event", "workshops", "conference", "masterclass"].includes(
                   service.category
                 ) ? (
                   ""
@@ -827,6 +837,32 @@ const ServiceDetails: React.FC<ServiceDetailsProps> = ({ service }) => {
                   </div>
                 )}
 
+                {/* Masterclass Package - Only for masterclass */}
+                {service.category === "masterclass" && (
+                  <>
+                    <h3 className="text-[20px] mb-[12px] leading-[20px] font-semibold">
+                      What you will get:
+                    </h3>
+                    <ul className="space-y-[12px] text-[16px] leading-[20px] font-normal">
+                      <li className="flex items-center">
+                        <span className="text-gray-700">
+                          Start Immediately <strong> ✓</strong>
+                        </span>
+                      </li>
+                      <li className="flex items-center">
+                        <span className="text-gray-700">
+                          Self-paced <strong> ✓</strong>
+                        </span>
+                      </li>
+                      <li className="flex items-center">
+                        <span className="text-gray-700">
+                          Lifetime Access <strong> ✓</strong>
+                        </span>
+                      </li>
+                    </ul>
+                  </>
+                )}
+
                 {/* Adds On Event - Only for events */}
                 {["event", "workshops", "conference"].includes(
                   service.category
@@ -1001,6 +1037,31 @@ const ServiceDetails: React.FC<ServiceDetailsProps> = ({ service }) => {
                     </>
                   )}
 
+                  {service.category === "masterclass" && (
+                    <>
+                      {selectedPackage === "basic" && packageQuantity > 0 && (
+                        <div className="flex justify-between items-center mb-2">
+                          <span className="text-[#252525] text-[14px] sm:text-[16px] leading-[18px] sm:leading-[20px] font-normal">
+                            {packageQuantity} × Basic Masterclass Package
+                          </span>
+                          <span className="text-[#252525] text-[14px] sm:text-[16px] leading-[18px] sm:leading-[20px] font-normal">
+                            $ {(packageQuantity * 100).toFixed(2)}
+                          </span>
+                        </div>
+                      )}
+                      {selectedPackage === "premium" && packageQuantity > 0 && (
+                        <div className="flex justify-between items-center mb-2">
+                          <span className="text-[#252525] text-[14px] sm:text-[16px] leading-[18px] sm:leading-[20px] font-normal">
+                            {packageQuantity} × Premium Masterclass Package
+                          </span>
+                          <span className="text-[#252525] text-[14px] sm:text-[16px] leading-[18px] sm:leading-[20px] font-normal">
+                            $ {(packageQuantity * 200).toFixed(2)}
+                          </span>
+                        </div>
+                      )}
+                    </>
+                  )}
+
                   {/* Add-ons Details */}
                   {selectedAddOns.map((addonId) => {
                     const addon = addOns.find((a) => a.id === addonId);
@@ -1046,11 +1107,19 @@ const ServiceDetails: React.FC<ServiceDetailsProps> = ({ service }) => {
                   onClick={() => {
                     // Prepare package details
                     const packageDetails =
-                      selectedPackage === "student"
-                        ? `studentQuantity=${packageQuantity}`
-                        : selectedPackage === "member"
-                        ? `generalQuantity=${generalPackageQuantity}&vipQuantity=${vipPackageQuantity}`
-                        : `nonMemberQuantity=${packageQuantity}`;
+                      service.category === "event" ||
+                      service.category === "workshops" ||
+                      service.category === "conference"
+                        ? selectedPackage === "student"
+                          ? `studentQuantity=${packageQuantity}`
+                          : selectedPackage === "member"
+                          ? `generalQuantity=${generalPackageQuantity}&vipQuantity=${vipPackageQuantity}`
+                          : `nonMemberQuantity=${packageQuantity}`
+                        : service.category === "masterclass"
+                        ? selectedPackage === "basic"
+                          ? `basicQuantity=${packageQuantity}`
+                          : `premiumQuantity=${packageQuantity}`
+                        : "";
 
                     router.push(
                       `/payment-page?price=${calculateTotal().toFixed(

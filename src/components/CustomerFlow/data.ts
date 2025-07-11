@@ -20,7 +20,7 @@ export const servicesData: Service[] = [
     id: 2,
     title: "UI/UX MasterClass 2",
     instructor: "Andre Muniz",
-    category: "design",
+    category: "masterclass",
     price: 155,
     rating: 4.9,
     students: 189,
@@ -557,36 +557,36 @@ export const serviceProvidersData = [
 ];
 
 export const categories: Category[] = [
-  { id: "all", name: "All", icon: "/assets/icons/all-filters.svg" },
+  { id: "all", name: "All", icon: "/assets/icons/all.svg" },
   {
     id: "consultation",
     name: "Consultation",
-    icon: "/assets/icons/all-filters.svg",
+    icon: "/assets/icons/consultation.svg",
   },
   {
     id: "event",
     name: "Event / Workshops",
-    icon: "/assets/icons/all-filters.svg",
+    icon: "/assets/icons/consultation.svg",
   },
   {
     id: "masterclass",
     name: "Masterclass",
-    icon: "/assets/icons/all-filters.svg",
+    icon: "/assets/icons/masterclass.svg",
   },
   {
     id: "conference",
     name: "Conference / Events",
-    icon: "/assets/icons/all-filters.svg",
+    icon: "/assets/icons/events.svg",
   },
-  { id: "products", name: "Products", icon: "/assets/icons/all-filters.svg" },
+  { id: "products", name: "Products", icon: "/assets/icons/products.svg" },
   {
     id: "courses",
     name: "Self-Paced Courses",
-    icon: "/assets/icons/all-filters.svg",
+    icon: "/assets/icons/courses.svg",
   },
-  { id: "coaching", name: "Coaching", icon: "/assets/icons/all-filters.svg" },
-  { id: "design", name: "Design", icon: "/assets/icons/all-filters.svg" },
-  { id: "writing", name: "Writing", icon: "/assets/icons/all-filters.svg" },
+  { id: "coaching", name: "Coaching", icon: "/assets/icons/masterclass.svg" },
+  { id: "design", name: "Design", icon: "/assets/icons/events.svg" },
+  { id: "writing", name: "Writing", icon: "/assets/icons/courses.svg" },
 ];
 
 export const dateFilters = [
