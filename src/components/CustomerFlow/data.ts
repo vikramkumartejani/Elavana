@@ -20,7 +20,7 @@ export const servicesData: Service[] = [
     id: 2,
     title: "UI/UX MasterClass 2",
     instructor: "Andre Muniz",
-    category: "design",
+    category: "masterclass",
     price: 155,
     rating: 4.9,
     students: 189,
