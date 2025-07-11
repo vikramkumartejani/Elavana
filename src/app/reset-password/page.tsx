@@ -14,7 +14,7 @@ function ResetPasswordForm() {
     const [success, setSuccess] = useState(false);
     const router = useRouter();
     const searchParams = useSearchParams();
-    const email = searchParams.get("email") || "your email";
+    const email = searchParams?.get("email") || "your email";
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
