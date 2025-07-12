@@ -134,7 +134,9 @@ const Recommendation: React.FC = () => {
           el: ".custom-swiper-pagination",
           clickable: true,
           renderBullet: (index, className) => {
-            return `<button class='${className} rounded-full w-3.5 h-3.5 mx-1 transition-all duration-200'></button>`;
+            const isActive = className.includes('swiper-pagination-bullet-active');
+            const backgroundColor = isActive ? '#3A96AF' : '#3A96AF';
+            return `<button class='${className} rounded-full mx-1 transition-all duration-200' style='width: 10px; height: 10px; background-color: ${backgroundColor}; border: none; outline: none;'></button>`;
           },
         }}
         onSlideChange={(swiper) => {
@@ -161,7 +163,7 @@ const Recommendation: React.FC = () => {
 
               <div className="flex flex-col pt-4 flex-1 min-h-0">
                 <div className="flex items-start gap-3 justify-between w-full mb-2">
-                  <h2 className="text-[#252525] text-[18px] leading-[28px] tracking-[0.5px] font-semibold text-left flex-1 min-w-0">
+                  <h2 className="text-[#252525] text-[18px] leading-[28px] tracking-[0.5px] font-semibold text-left flex-1 min-w-0 line-clamp-1">
                     {item.title}
                   </h2>
                   <span className="bg-[#D97E591F] px-3 py-1 rounded-md text-[12px] leading-[16px] tracking-[0.5px] font-semibold text-[#D97E59]">
@@ -305,6 +307,19 @@ const Recommendation: React.FC = () => {
           </button>
         </div>
       </div>
+
+      <style jsx>{`
+        .custom-swiper-pagination .swiper-pagination-bullet {
+          width: 10px !important;
+          height: 10px !important;
+          background-color: #E8ECF4 !important;
+          border: none !important;
+          outline: none !important;
+        }
+        .custom-swiper-pagination .swiper-pagination-bullet-active {
+          background-color: #3A96AF !important;
+        }
+      `}</style>
     </div>
   );
 };
